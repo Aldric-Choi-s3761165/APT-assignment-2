@@ -1,3 +1,6 @@
+#ifndef NODE.H
+#define NODE.H 
+
 #include "Tile.h"
 
 class Node {
@@ -10,3 +13,5 @@ private:
     Tile* tile;
 
 };
+
+#endif

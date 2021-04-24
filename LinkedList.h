@@ -1,3 +1,6 @@
+#ifndef LINKEDLIST.H
+#define LINKEDLIST.H 
+
 #include "Node.h"
 #include "Tile.h"
 
@@ -13,3 +16,5 @@ private:
     int length;
 
 };
+
+#endif

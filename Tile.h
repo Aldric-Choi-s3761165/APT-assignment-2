@@ -1,3 +1,6 @@
+#ifndef TILE.H
+#define TILE.H 
+
 class Tile {
 
 public:
@@ -8,3 +11,5 @@ private:
     char symbol;
 
 };
+
+#endif

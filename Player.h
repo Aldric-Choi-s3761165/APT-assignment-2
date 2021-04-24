@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "LinkedList.h"
 
 class Player{
 private:
@@ -26,6 +27,6 @@ public:
 
     void displayTileHand();
     void clearPlayerHand();
-}
+};
 
 #endif //  PLAYER_H
