@@ -20,9 +20,9 @@ public:
 
 private:
     LinkedList* bag;
-    LinkedList* playerHands[TOTAL_PLAYERS];
     Player* players[TOTAL_PLAYERS];
     
 };
+
 
 #endif // GAMEENGINE_H

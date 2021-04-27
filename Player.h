@@ -20,6 +20,8 @@ public:
     void displayTileHand();
     void clearPlayerHand();
 
+    void addNode(Tile* t);
+
 private:
     int id;
     std::string name;

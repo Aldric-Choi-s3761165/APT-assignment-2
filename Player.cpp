@@ -46,3 +46,7 @@ void Player::clearPlayerHand() {
     hand = nullptr;
     
 }
+
+void Player::addNode(Tile* t) {
+    this->hand->addNode(t);
+}
