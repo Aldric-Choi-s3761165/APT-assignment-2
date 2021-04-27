@@ -8,11 +8,14 @@ class LinkedList {
 
 public:
     LinkedList();
-    void addNode(Tile t);
+    ~LinkedList();
+    void addNode(Tile* t);
+    void removeNode(Tile* t);
+    void removeAllNodes();
+    void printNodes();
 
 private:
     Node* head;
-    Node* tail;
     int length;
 
 };

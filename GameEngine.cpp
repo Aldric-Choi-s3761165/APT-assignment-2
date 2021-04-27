@@ -2,14 +2,16 @@
 #include <iostream>
 
 GameEngine::GameEngine() {
-
+    
 }
 
 GameEngine::~GameEngine() {
 
 }
 
-bool GameEngine::newPlayer(std::string n) {
+bool GameEngine::newPlayer(int id, std::string n) {
+    Player* pla = new Player(id, "test");
+    players[id - 1] = pla;
     return true;
 }
 

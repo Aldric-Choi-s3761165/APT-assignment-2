@@ -6,27 +6,26 @@
 #include "LinkedList.h"
 
 class Player{
-private:
-    int id;
-    std::string name;
-    std::string email;
-    int score;
-    LinkedList* hand;
-
 public:
-    Player(int id, std::string name, std::string email);
-    Player(std::string name, LinkedList* hand);
+    Player(int id, std::string name);
+    Player(int id, std::string name, LinkedList* hand, int score);
     ~Player();
 
     std::string getName();
     int getScore();
     LinkedList* getPlayerhand();
 
-    void setPlayerName(std::string name);
     void setPlayerScore(int score);
 
     void displayTileHand();
     void clearPlayerHand();
+
+private:
+    int id;
+    std::string name;
+    int score;
+    LinkedList* hand;
+
 };
 
 #endif // PLAYER_H

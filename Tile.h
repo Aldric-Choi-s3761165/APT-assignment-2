@@ -1,6 +1,8 @@
 #ifndef TILE_H
 #define TILE_H
 
+#include "Types.h"
+
 // Define a Colour type
 typedef char Colour;
 

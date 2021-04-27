@@ -85,7 +85,7 @@ void newGame() {
         std::cout << "Enter a name for player " << i << " (uppercase characters only)\n" << "> ";
         std::cin >> input;
         if(nameValid(input) == true) {
-            engine->newPlayer(input);
+            engine->newPlayer(i, input);
         }
         else {
             i--;

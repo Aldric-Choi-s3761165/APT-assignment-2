@@ -6,10 +6,13 @@
 class Node {
 
 public:
-    Node();
+    Node(Tile* t, Node* n);
+    Node* getNext();
+    Tile* getTile();
+    void setNext(Node* n);
 
 private:
-    Node* n;
+    Node* next;
     Tile* tile;
 
 };

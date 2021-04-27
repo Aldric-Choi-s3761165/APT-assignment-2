@@ -1,5 +1,4 @@
 #include "Tile.h"
-#include "TileCodes.h"
 
 Tile::Tile(Colour colour, Shape shape){
     this->colour = colour;
