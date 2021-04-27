@@ -13,8 +13,6 @@ void display();
 GameEngine* newEngine();
 bool nameValid(std::string in);
 
-#define totalStudents 4
-
 int main(void) {
     std::cout << "Welcome to Qurikle!" << std::endl;
     std::cout << "-------------------" << std::endl;
@@ -96,7 +94,7 @@ void newGame() {
     }
     std::cout << "Let's Play!" << std::endl;
 
-    engine->gameRun();
+    engine->setupGame();
 }
 
 void loadGame() {
@@ -126,7 +124,7 @@ GameEngine* newEngine() {
 }
 
 void credits() {
-    std::string arr[totalStudents][3] = {
+    std::string arr[TOTAL_STUDENTS][3] = {
         {"Joshua Besei", "s3839264", "s3839264@student.rmit.edu.au"},
         {"Jacqueline Ann Co Lim", "s3753072", "s3753072@student.rmit.edu.au"},
         {"Aldric Choi", "s3761165", "s3761165@student.rmit.edu.au"},
@@ -134,13 +132,13 @@ void credits() {
     };
 
     std::cout << "----------------------------------\n";
-    for(int i = 0; i < totalStudents; i++) {
+    for(int i = 0; i < TOTAL_STUDENTS; i++) {
         std::cout <<
         "Name: <" + arr[i][0] +
         ">\nStudent ID: <" + arr[i][1] +
         ">\nEmail: <" + arr[i][2] +
         ">\n";
-        if(i + 1 != totalStudents) {
+        if(i + 1 != TOTAL_STUDENTS) {
             std::cout << "\n";
         }
     }

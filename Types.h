@@ -20,4 +20,10 @@
 // Total Players
 #define TOTAL_PLAYERS 2
 
+// Total Students
+#define TOTAL_STUDENTS 4
+
+// Total tiles for gameplay
+#define BAG_MAX_LIMIT 108
+
 #endif // TYPES_H
