@@ -29,4 +29,4 @@ public:
     void clearPlayerHand();
 };
 
-#endif //  PLAYER_H
+#endif // PLAYER_H

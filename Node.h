@@ -1,5 +1,5 @@
-#ifndef NODE.H
-#define NODE.H 
+#ifndef NODE_H
+#define NODE_H 
 
 #include "Tile.h"
 
@@ -14,4 +14,4 @@ private:
 
 };
 
-#endif
+#endif // NODE_H 

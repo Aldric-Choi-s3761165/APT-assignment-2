@@ -1,5 +1,5 @@
-#ifndef LINKEDLIST.H
-#define LINKEDLIST.H 
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H 
 
 #include "Node.h"
 #include "Tile.h"
@@ -17,4 +17,4 @@ private:
 
 };
 
-#endif
+#endif // LINKEDLIST_H 

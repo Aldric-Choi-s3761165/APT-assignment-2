@@ -1,7 +1,7 @@
 #include "Tile.h"
 #include "TileCodes.h"
 
-Tile::Tile(Colour Colour, Shape shape){
+Tile::Tile(Colour colour, Shape shape){
     this->colour = colour;
     this->shape = shape;
 }

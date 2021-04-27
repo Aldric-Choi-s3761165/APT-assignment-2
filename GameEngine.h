@@ -1,7 +1,6 @@
-#ifndef GAMEENGINE.H
-#define GAMEENGINE.H 
+#ifndef GAMEENGINE_H
+#define GAMEENGINE_H
 
-#include <string>
 #include "LinkedList.h"
 #include "Player.h"
 
@@ -21,4 +20,4 @@ private:
     
 };
 
-#endif //GAMEENGINE.H
+#endif // GAMEENGINE_H

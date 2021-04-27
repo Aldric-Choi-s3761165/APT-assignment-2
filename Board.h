@@ -5,7 +5,7 @@ class Board {
 private:
     int row;
     int col;
-    char board[][];
+    char board[];
 
 public:
     void getRow();
@@ -17,4 +17,4 @@ public:
     int setBoard(int row, int col);
 };
 
-#endif //  BOARD_H
+#endif // BOARD_H
