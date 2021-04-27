@@ -95,6 +95,8 @@ void newGame() {
         std::cout << "\n";
     }
     std::cout << "Let's Play!" << std::endl;
+
+    engine->gameRun();
 }
 
 void loadGame() {
