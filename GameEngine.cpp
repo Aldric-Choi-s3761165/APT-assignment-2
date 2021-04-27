@@ -11,8 +11,22 @@ GameEngine::~GameEngine() {
 }
 
 bool GameEngine::newPlayer(int id, std::string n) {
-    Player* pla = new Player(id, "test");
-    players[id - 1] = pla;
+    Player* player = new Player(id, "test");
+    players[id - 1] = player;
+    LinkedList* playerHand = new LinkedList();
+
+    for(int i = 0; i < PLAYER_HAND_LIMIT; i++) {
+        Tile* t = bag->pop();
+        if(t != nullptr) {
+            playerHand->addNode(t);
+        }
+        else {
+            throw std::runtime_error("Bag is empty, error has occured");
+        }
+    }
+
+    playerHands[id - 1] = playerHand;
+
     return true;
 }
 
@@ -58,6 +72,22 @@ void GameEngine::setupGame() {
             }
         }
     }
+
+
+    // testing bag printing for comparisson with testing method
+    std::cout << "Current Bag: " << std::endl;
+    bag->printNodes();
+    std::cout << std:: endl;
     
+}
+
+void GameEngine::testing() {
+    for(int x = 0; x < 2; x++) {
+        std::cout << "Player Hand: " << x << std::endl;
+        playerHands[x]->printNodes();
+        std::cout << std::endl;
+    }
+
+    std::cout << "Current Bag: " << std::endl;
     bag->printNodes();
 }

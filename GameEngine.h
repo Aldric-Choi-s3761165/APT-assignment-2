@@ -16,9 +16,11 @@ public:
     void createBoard(int row, int col, std::string states);
     void gameRun(int id);
     void setupGame();
+    void testing();
 
 private:
     LinkedList* bag;
+    LinkedList* playerHands[TOTAL_PLAYERS];
     Player* players[TOTAL_PLAYERS];
     
 };

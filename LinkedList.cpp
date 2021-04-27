@@ -3,6 +3,7 @@
 
 LinkedList::LinkedList() {
     head = nullptr;
+    length = 0;
 }
 
 LinkedList::~LinkedList() {
@@ -19,6 +20,7 @@ LinkedList::~LinkedList() {
 void LinkedList::addNode(Tile* t) {
     Node* n = new Node(t, head);
     this->head = n;
+    length++;
 }
 
 void LinkedList::removeNode(Tile* t) {
@@ -33,6 +35,7 @@ void LinkedList::removeNode(Tile* t) {
         if(current->getTile() == t)  {
             prev->setNext(current->getNext());
             delete current;
+            length--;
         }
     }
 
@@ -47,6 +50,8 @@ void LinkedList::removeAllNodes() {
         delete current;
         current = next;
     }
+
+    length = 0;
 }
 
 void LinkedList::printNodes() {
@@ -58,4 +63,22 @@ void LinkedList::printNodes() {
         upto = upto->getNext();
     }
     std::cout << "null" << std::endl;
+}
+
+int LinkedList::getLength() {
+    return this->length;
+}
+
+Tile* LinkedList::pop() {
+    Tile* t = nullptr;
+
+    if(head != nullptr) {
+        Node* n = head;
+        t = new Tile(n->getTile()->getColour(), n->getTile()->getShape());
+        head = head->getNext();
+        length--;
+        delete n;
+    }
+    
+    return t;
 }

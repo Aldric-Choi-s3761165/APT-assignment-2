@@ -78,8 +78,11 @@ bool checkValid(std::string in) {
 
 void newGame() {
     GameEngine* engine = newEngine();
+    engine->setupGame();
+
     std::cout << "Starting a New Game \n" << std::endl;
     std::string input;
+
     for(int i = 1; i <= TOTAL_PLAYERS; i++) {
         std::cout << "Enter a name for player " << i << " (uppercase characters only)\n" << "> ";
         std::cin >> input;
@@ -94,7 +97,9 @@ void newGame() {
     }
     std::cout << "Let's Play!" << std::endl;
 
-    engine->setupGame();
+    engine->gameRun(0);
+
+    engine->testing();
 }
 
 void loadGame() {

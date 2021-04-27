@@ -13,10 +13,12 @@ public:
     void removeNode(Tile* t);
     void removeAllNodes();
     void printNodes();
+    int getLength();
+    Tile* pop();
 
 private:
     Node* head;
-    // int length;
+    int length;
 
 };
 
