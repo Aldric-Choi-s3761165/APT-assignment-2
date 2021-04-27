@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "GameEngine.h"
+#include "Types.h"
 
 void menu();
 void newGame();
@@ -12,7 +13,7 @@ void display();
 GameEngine* newEngine();
 bool nameValid(std::string in);
 
-#define TOTAL_PLAYERS 2
+#define totalStudents 4
 
 int main(void) {
     std::cout << "Welcome to Qurikle!" << std::endl;
@@ -123,12 +124,11 @@ GameEngine* newEngine() {
 }
 
 void credits() {
-    int totalStudents = 4;
     std::string arr[totalStudents][3] = {
         {"Joshua Besei", "s3839264", "s3839264@student.rmit.edu.au"},
         {"Jacqueline Ann Co Lim", "s3753072", "s3753072@student.rmit.edu.au"},
-        {"Aldric Choi", "", ""},
-        {"Kinh lol how to spell", "", ""},
+        {"Aldric Choi", "s3761165", "s3761165@student.rmit.edu.au"},
+        {"Pham Nguyen Ngoc Kinh", "s3773604", "s3773604@student.rmit.edu.au"},
     };
 
     std::cout << "----------------------------------\n";

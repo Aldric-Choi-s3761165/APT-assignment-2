@@ -6,7 +6,7 @@ GameEngine::GameEngine() {
 }
 
 GameEngine::~GameEngine() {
-
+    bag = nullptr;
 }
 
 bool GameEngine::newPlayer(int id, std::string n) {
