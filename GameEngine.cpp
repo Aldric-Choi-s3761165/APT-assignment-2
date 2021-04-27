@@ -10,22 +10,26 @@ GameEngine::~GameEngine() {
     bag = nullptr;
 }
 
+// precondition; id is valid above 0 and hasn't already been added
+// hence if we add player of id 1 and we create a second new player of
+// id 1 again, this will replace the first created player
+// However, the bag state will decrease further and the tiles that the
+// first player held will be lost
+
 bool GameEngine::newPlayer(int id, std::string n) {
-    Player* player = new Player(id, "test");
-    players[id - 1] = player;
-    LinkedList* playerHand = new LinkedList();
+    Player* player = new Player(id, n);
 
     for(int i = 0; i < PLAYER_HAND_LIMIT; i++) {
         Tile* t = bag->pop();
         if(t != nullptr) {
-            playerHand->addNode(t);
+            player->addNode(t);
         }
         else {
-            throw std::runtime_error("Bag is empty, error has occured");
+            throw std::runtime_error("Bag is empty, error has occured"); //temp testing may remove later
         }
     }
 
-    playerHands[id - 1] = playerHand;
+    players[id - 1] = player;
 
     return true;
 }
@@ -82,9 +86,9 @@ void GameEngine::setupGame() {
 }
 
 void GameEngine::testing() {
-    for(int x = 0; x < 2; x++) {
+    for(int x = 1; x <= 2; x++) {
         std::cout << "Player Hand: " << x << std::endl;
-        playerHands[x]->printNodes();
+        players[x - 1]->displayTileHand();
         std::cout << std::endl;
     }
 
