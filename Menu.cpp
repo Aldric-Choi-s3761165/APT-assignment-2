@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "GameEngine.h"
 #include "Types.h"
 
@@ -12,6 +13,7 @@ bool checkValid(std::string in);
 void display();
 GameEngine* newEngine();
 bool nameValid(std::string in);
+bool loadValid(std::string in);
 
 int main(void) {
     std::cout << "Welcome to Qurikle!" << std::endl;
@@ -103,7 +105,32 @@ void newGame() {
 }
 
 void loadGame() {
-    //GameEngine* engine = newEngine();
+    GameEngine* engine = newEngine();
+    std::string input;
+    bool check = false;
+
+    while(check == false) {
+        std::cout << "Enter the filename from which load a game\n" << "> ";
+        std::cin >> input;
+        check = loadValid(input);
+    }
+}
+
+bool loadValid(std::string in) {
+    bool check = false;
+    std::string directory = "saves/" + in;
+    
+    std::ifstream file(directory);
+
+    if(file.is_open()) {
+        check = true;
+        file.close();
+    }
+    else {
+        std::cout << "File does not exist!" << std::endl; 
+    }
+
+    return check;
 }
 
 bool nameValid(std::string in) {
