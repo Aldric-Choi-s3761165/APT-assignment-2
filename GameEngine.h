@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Types.h"
 #include "Tile.h"
+#include "Board.h"
 
 class GameEngine{
 
@@ -21,6 +22,7 @@ public:
 private:
     LinkedList* bag;
     Player* players[TOTAL_PLAYERS];
+    Board board;
     
 };
 

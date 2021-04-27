@@ -82,7 +82,7 @@ void GameEngine::setupGame() {
     std::cout << "Current Bag: " << std::endl;
     bag->printNodes();
     std::cout << std:: endl;
-    
+    // board.printBoard();
 }
 
 void GameEngine::testing() {
