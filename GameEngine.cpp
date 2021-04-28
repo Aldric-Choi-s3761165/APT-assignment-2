@@ -4,7 +4,6 @@
 
 GameEngine::GameEngine() {
     bag = new LinkedList();
-    board = new Board();
 }
 
 GameEngine::~GameEngine() {
@@ -95,6 +94,4 @@ void GameEngine::testing() {
 
     std::cout << "Current Bag: " << std::endl;
     bag->printNodes();
-
-    board->printBoard();
 }

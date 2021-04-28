@@ -9,20 +9,22 @@ private:
     int row;
     int col;
     std::vector<std::vector<Tile *>> vectorBoard;
+    std:vector<Coordinate *> coordsPlaced;
+
 
 public:
     Board();
     ~Board();
     void printBoard();
+    void resizeBoard(int row, int col);
+    void placeTile(int row, int col, Tile * tile);
+    Tile* getTile(int row, int col);
     int getHorizontalSize();
     int getVerticalSize();
 
-    void getRow();
-    void getCol();
+    int getRow();
+    int getCol();
     void getBoard(int row, int col);
-
-    int setRow();
-    int setCol();
     int setBoard(int row, int col);
 };
 
