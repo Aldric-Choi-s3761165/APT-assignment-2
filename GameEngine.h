@@ -22,7 +22,7 @@ public:
 private:
     LinkedList* bag;
     Player* players[TOTAL_PLAYERS];
-    Board board;
+    Board* board;
     
 };
 
