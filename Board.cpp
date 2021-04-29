@@ -1,10 +1,7 @@
 #include "Board.h"
 #include <iostream>
 #include <vector>
-
-using std::cout;
-using std::cin;
-using std::endl;
+#include <algorithm>
 
 
 Board::Board(){
@@ -56,7 +53,7 @@ void Board::printBoard(){
                 std::cout << '|';
             }
         }
-        cout<< endl;
+        std::cout << std::endl;
     }
 }
 
@@ -124,6 +121,7 @@ void Board::resizeBoard(int row, int col){
             row.push_back(nullptr);
             std::rotate(row.rbegin(), row.rbegin() + 1, row.rend());
         }
+        
 
         // std::vector<Tile *> temp;
 
