@@ -2,13 +2,21 @@
 #include <iostream>
 #include <random>
 
+
 GameEngine::GameEngine() {
-    bag = new LinkedList();
-    board = new Board();
+    // we only create smart pointers for non-array objects
+    // since creating array of smart pointers would require a pointer pointing
+    // to the array, we could also use vectors of smart pointers but it
+    // becomes messy, hence we will control the deletion of players
+    
+    bag = std::make_unique<LinkedList>();
+    board = std::make_unique<Board>();
 }
 
 GameEngine::~GameEngine() {
-    bag = nullptr;
+    for(int i = 0; i < TOTAL_PLAYERS; i++) {
+        delete players[i];
+    }
 }
 
 // precondition; id is valid above 0 and hasn't already been added
@@ -108,4 +116,7 @@ void GameEngine::testing() {
 
     std::cout << "Current Bag: " << std::endl;
     bag->printNodes();
+
+    players[0]->getPlayerhand()->printNodes();
+    players[0]->displayTileHand();
 }

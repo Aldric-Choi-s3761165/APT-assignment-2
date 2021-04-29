@@ -11,7 +11,7 @@ void credits();
 void quit();
 bool checkValid(std::string in);
 void display();
-GameEngine* newEngine();
+std::unique_ptr<GameEngine> newEngine();
 bool nameValid(std::string in);
 bool loadValid(std::string in);
 

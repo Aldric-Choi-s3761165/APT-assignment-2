@@ -6,6 +6,17 @@ LinkedList::LinkedList() {
     length = 0;
 }
 
+LinkedList::LinkedList(LinkedList& other) {
+    head = nullptr;
+    length = 0;
+
+    for(int i = other.length - 1; i >= 0; i--) {
+        Tile* temp = other.getTile(i);
+        Tile* n = new Tile(temp->getColour(), temp->getShape());
+        addNode(n);
+    }
+}
+
 LinkedList::~LinkedList() {
     Node* current = head;
     Node* next;
@@ -15,6 +26,32 @@ LinkedList::~LinkedList() {
         delete current;
         current = next;
     }
+}
+
+// precondition: int is within range else nullptr
+// LinkedList constructor relies on int being within range and that length
+// is up to date
+Tile* LinkedList::getTile(int i) {
+    Node* upto = head;
+    int counter = 0;
+    Tile* tile = nullptr;
+
+    if(i < 0) {
+        upto = nullptr;
+    }
+
+    while(upto != nullptr) {
+        if(counter == i) {
+            tile = upto->getTile();
+            upto = nullptr;
+        }
+        else {
+            upto = upto->getNext();
+            counter++;
+        }
+    }
+
+    return tile;
 }
 
 void LinkedList::addNode(Tile* t) {

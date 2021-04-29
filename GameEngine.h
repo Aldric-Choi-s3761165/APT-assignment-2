@@ -6,6 +6,7 @@
 #include "Types.h"
 #include "Tile.h"
 #include "Board.h"
+#include <memory>
 
 class GameEngine{
 
@@ -20,9 +21,10 @@ public:
     void testing();
 
 private:
-    LinkedList* bag;
+    
     Player* players[TOTAL_PLAYERS];
-    Board* board;
+    std::unique_ptr<LinkedList> bag;
+    std::unique_ptr<Board> board;
     
 };
 

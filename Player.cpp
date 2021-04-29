@@ -5,18 +5,19 @@ Player::Player(int id, std::string name) {
     this->id = id;
     this->name = name;
     this->score = 0;
-    this->hand = new LinkedList;
+    //this->hand = new LinkedList;
+    this->hand = std::make_unique<LinkedList>();
 }
 
-Player::Player(int id, std::string name, LinkedList* hand, int score) {
+Player::Player(int id, std::string name, std::unique_ptr<LinkedList> hand, int score) {
     this->id = id;
     this->name = name;
     this->score = score;
-    this->hand = hand;
+    this->hand = std::unique_ptr<LinkedList>(new LinkedList(*hand));
 }
 
 Player::~Player() {
-    delete hand;
+    //delete hand;
 }
 
 std::string Player::getName() {
@@ -27,8 +28,10 @@ int Player::getScore() {
     return score;
 }
 
-LinkedList* Player::getPlayerhand() {
-    return hand; // only shallow copy
+std::unique_ptr<LinkedList> Player::getPlayerhand() {
+    // new linkedlist with deep copy of all nodes and tiles
+    std::unique_ptr<LinkedList> returnPtr = std::unique_ptr<LinkedList>(new LinkedList(*hand));
+    return returnPtr; 
 }
 
 void Player::setPlayerScore(int score) {

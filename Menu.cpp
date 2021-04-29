@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <memory>
 #include "Menu.h"
 
 int main(void) {
@@ -66,7 +67,7 @@ bool checkValid(std::string in) {
 }
 
 void newGame() {
-    GameEngine* engine = newEngine();
+    std::unique_ptr<GameEngine> engine = newEngine();
     engine->setupGame();
 
     std::cout << "Starting a New Game \n" << std::endl;
@@ -137,8 +138,8 @@ bool nameValid(std::string in) {
     return check;
 }
 
-GameEngine* newEngine() {
-    GameEngine* engine = new GameEngine();
+std::unique_ptr<GameEngine> newEngine() {
+    std::unique_ptr<GameEngine> engine = std::make_unique<GameEngine>();
     return engine;
 }
 

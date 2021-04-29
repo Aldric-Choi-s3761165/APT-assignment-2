@@ -3,17 +3,18 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 #include "LinkedList.h"
 
 class Player{
 public:
     Player(int id, std::string name);
-    Player(int id, std::string name, LinkedList* hand, int score);
+    Player(int id, std::string name, std::unique_ptr<LinkedList> hand, int score);
     ~Player();
 
     std::string getName();
     int getScore();
-    LinkedList* getPlayerhand();
+    std::unique_ptr<LinkedList> getPlayerhand();
 
     void setPlayerScore(int score);
 
@@ -26,7 +27,8 @@ private:
     int id;
     std::string name;
     int score;
-    LinkedList* hand;
+    //LinkedList* hand;
+    std::unique_ptr<LinkedList> hand;
 
 };
 
