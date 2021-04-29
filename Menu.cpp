@@ -105,7 +105,7 @@ void newGame() {
 }
 
 void loadGame() {
-    GameEngine* engine = newEngine();
+    // GameEngine* engine = newEngine();
     std::string input;
     bool check = false;
 

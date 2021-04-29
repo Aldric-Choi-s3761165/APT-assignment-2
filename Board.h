@@ -9,7 +9,7 @@ private:
     int row;
     int col;
     std::vector<std::vector<Tile *>> vectorBoard;
-    std:vector<Coordinate *> coordsPlaced;
+    // std:vector<Coordinate *> coordsPlaced;
 
 
 public:

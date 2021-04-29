@@ -8,7 +8,7 @@ using std::endl;
 
 
 Board::Board(){
-    vectorBoard = std::vector<std::vector<Tile *>>(6, std::vector<Tile*> (6, nullptr));
+    vectorBoard = std::vector<std::vector<Tile *>>(6, std::vector<Tile *> (6, nullptr));
     // std::vector<Tile *> temp;
     // temp.push_back(nullptr);
     // vectorBoard.push_back(temp);
@@ -43,14 +43,14 @@ void Board::printBoard(){
         std::cout << rowLabel++ << " ";
 
         for(int j = 0; j < maxCol; j++) {
-            std::cout << "| ";
+            std::cout << "|";
             if(vectorBoard[i][j]== nullptr){
-                std::cout << " ";
+                std::cout << "  ";
             } 
             else{
                 //print out the tile
-                Tile *currTile = vectorBoard[row][col];
-                std::cout << currTile->getColour() << currTile->getShape() << std::endl;
+                Tile *currTile = vectorBoard[i][j];
+                std::cout << currTile->getColour() << currTile->getShape();
             }
             if (j == maxCol-1) {
                 std::cout << '|';
@@ -65,9 +65,8 @@ void Board::placeTile(int row, int col, Tile * tile){
     int maxColSize = getHorizontalSize();
     if(row < maxRowSize && col < maxColSize && row >= 0 && col >= 0){
         if(vectorBoard[row][col] == nullptr){
-            coordPlaced.push_back(new Coordinate(row, col));
+            // coordPlaced.push_back(new Coordinate(row, col));
             vectorBoard[row][col] = tile;
-
             //Checks if the tile placed is at the end of one of the sides of the board and resizes accdgly.
             resizeBoard(row, col);
         }
@@ -101,7 +100,7 @@ void Board::resizeBoard(int row, int col){
         }
         vectorBoard.push_back(temp);
 
-        //shoft all down by 1
+        //shift all down by 1
         std::rotate(vectorBoard.rbegin(), vectorBoard.rbegin() + 1, vectorBoard.rend());
     } 
     
@@ -118,28 +117,42 @@ void Board::resizeBoard(int row, int col){
 
     // if tile is added at the left
     else if(col == minColSize) {
-        std::vector<Tile *> temp;
+
+        // add a col with nullptr each row at the front
+        // move all tiles by one position to the left
+        for(auto &row : vectorBoard){
+            row.push_back(nullptr);
+            std::rotate(row.rbegin(), row.rbegin() + 1, row.rend());
+        }
+
+        // std::vector<Tile *> temp;
 
         // adds a new row at the left
-        for(int i = 0; i < maxRowSize + 1; i++){
-            temp.push_back(nullptr);
-        }
-        vectorBoard.push_back(temp);
+        // for(int i = 0; i < maxRowSize + 1; i++){
+        //     temp.push_back(nullptr);
+        // }
+        // vectorBoard.push_back(temp);
 
-        // shofts all left by 1
-        std::rotate(vectorBoard.rbegin(), vectorBoard.rbegin() + 1, vectorBoard.rend());
+        // // shofts all left by 1
+        // std::rotate(vectorBoard.rbegin(), vectorBoard.rbegin() + 1, vectorBoard.rend());
 
     }
 
     //if tile is added to the right
     else if(col == maxColSize) {
-        std::vector<Tile *> temp;
 
-        // adds a new row at the right
-        for (int i = 0; i < maxRowSize + 1; i++) {
-            temp.push_back(nullptr);
+        // add a col with nullptr each row at the last
+        for(auto &row : vectorBoard){
+            row.push_back(nullptr);
         }
-        vectorBoard.push_back(temp);
+
+        // std::vector<Tile *> temp;
+
+        // // adds a new row at the right
+        // for (int i = 0; i < maxRowSize + 1; i++) {
+        //     temp.push_back(nullptr);
+        // }
+        // vectorBoard.push_back(temp);
     }
 }
 

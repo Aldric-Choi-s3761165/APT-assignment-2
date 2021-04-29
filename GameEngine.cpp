@@ -4,6 +4,7 @@
 
 GameEngine::GameEngine() {
     bag = new LinkedList();
+    board = new Board();
 }
 
 GameEngine::~GameEngine() {
@@ -77,12 +78,25 @@ void GameEngine::setupGame() {
         }
     }
 
+    //Testing for the board
+    board->printBoard();
+    Tile * firstTile = bag->pop();
+    board->placeTile(5, 3, firstTile);
+    board->printBoard();
+    Tile * secondTile = bag->pop();
+    board->placeTile(3, 5, secondTile);
+    board->printBoard();    
+    Tile * thirdTile = bag->pop();
+    board->placeTile(0, 2, thirdTile);
+    board->printBoard();
+    Tile * fourthTile = bag->pop();
+    board->placeTile(2, 0, fourthTile);
+    board->printBoard();
 
     // testing bag printing for comparisson with testing method
     std::cout << "Current Bag: " << std::endl;
     bag->printNodes();
     std::cout << std:: endl;
-    // board.printBoard();
 }
 
 void GameEngine::testing() {
