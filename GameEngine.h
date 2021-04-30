@@ -13,7 +13,7 @@ public:
     GameEngine();
     ~GameEngine();
     bool newPlayer(int id, std::string n);
-    bool existingPlayer(std::string n, int s, std::string h);
+    bool existingPlayer(int id, std::string name, int score, LinkedList* hand);
     void createBoard(int row, int col, std::string states);
     void gameRun(int id);
     void setupGame();

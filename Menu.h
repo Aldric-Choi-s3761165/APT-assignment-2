@@ -12,6 +12,8 @@ bool checkValid(std::string in);
 void display();
 GameEngine* newEngine();
 bool nameValid(std::string in);
-bool loadValid(std::string in);
+int loadValid(std::string in);
+int loadPlayers(GameEngine& engine, std::string in);
+int setupGame(GameEngine& engine, std::string in, int currentLine);
 
 #endif // MENU_H

@@ -8,7 +8,7 @@ Player::Player(int id, std::string name) {
     this->hand = new LinkedList();
 }
 
-Player::Player(int id, std::string name, LinkedList* hand, int score) {
+Player::Player(int id, std::string name, int score, LinkedList* hand) {
     this->id = id;
     this->name = name;
     this->score = score;

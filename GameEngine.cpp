@@ -35,7 +35,11 @@ bool GameEngine::newPlayer(int id, std::string n) {
     return true;
 }
 
-bool GameEngine::existingPlayer(std::string n, int s, std::string h) {
+bool GameEngine::existingPlayer(int id, std::string name, int score, LinkedList* hand) {
+    Player* player = new Player(id, name, score, hand);
+    
+    players[id - 1] = player;
+    
     return true;
 }
 

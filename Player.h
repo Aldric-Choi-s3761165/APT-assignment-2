@@ -8,7 +8,7 @@
 class Player{
 public:
     Player(int id, std::string name);
-    Player(int id, std::string name, LinkedList* hand, int score);
+    Player(int id, std::string name, int score, LinkedList* hand);
     ~Player();
 
     std::string getName();
