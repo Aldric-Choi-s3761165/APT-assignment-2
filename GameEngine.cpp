@@ -52,7 +52,7 @@ void GameEngine::setupGame() {
     int shapes[6] = { CIRCLE, STAR_4, DIAMOND, SQUARE, STAR_6, CLOVER };
     
     std::random_device generator;
-    std::uniform_int_distribution<int> distribute(0, BAG_MAX_LIMIT);
+    std::uniform_int_distribution<int> distribute(0, BAG_MAX_LIMIT - 1);
     Tile* tempArray[BAG_MAX_LIMIT];
     int counter = 0;
 

@@ -51,6 +51,7 @@ void LinkedList::removeAllNodes() {
         current = next;
     }
 
+    head = nullptr;
     length = 0;
 }
 

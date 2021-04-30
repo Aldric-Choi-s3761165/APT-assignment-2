@@ -7,6 +7,7 @@ class Node {
 
 public:
     Node(Tile* t, Node* n);
+    ~Node();
     Node* getNext();
     Tile* getTile();
     void setNext(Node* n);

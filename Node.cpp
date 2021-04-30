@@ -5,6 +5,10 @@ Node::Node(Tile* t, Node* n) {
     this->next = n;
 }
 
+Node::~Node() {
+    delete tile;
+}
+
 Node* Node::getNext() {
     return next;
 }

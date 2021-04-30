@@ -27,10 +27,10 @@ int main(void) {
 
     // add these to test if deconstructors are the cause for segmentation fault
     
-    //delete l;
-    //delete p;
-    //delete e;
-    //delete b;
+    delete l;
+    delete p;
+    delete e;
+    delete b;
     
 
     return EXIT_SUCCESS;
