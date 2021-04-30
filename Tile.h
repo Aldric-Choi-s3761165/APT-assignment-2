@@ -19,7 +19,10 @@ public:
 
    void setRowCol(int row, int col);
    void shiftRowDown();
-   void shiftColLeft();
+   void shiftColRight();
+
+   int getCol();
+   int getRow();
 
 private:
    Colour colour;

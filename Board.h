@@ -1,7 +1,6 @@
 #ifndef BOARD_H
 #define BOARD_H 
 #include "Tile.h"
-#include "Coordinate.h"
 #include <vector>
 
 
@@ -10,8 +9,6 @@ private:
     int row;
     int col;
     std::vector<std::vector<Tile *>> vectorBoard;
-    //std::vector<Coordinate *> coordsPlaced;
-
 
 public:
     Board();

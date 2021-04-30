@@ -45,6 +45,7 @@ void Board::printBoard(){
             else{
                 //print out the tile
                 Tile *currTile = vectorBoard[i][j];
+                //std::cout << currTile->getColour() << currTile->getShape() << " Row: " << currTile->getRow() << " Col: " << currTile->getCol();
                 std::cout << currTile->getColour() << currTile->getShape();
             }
             if (j == maxCol-1) {
@@ -54,11 +55,6 @@ void Board::printBoard(){
         std::cout << std::endl;
     }
 
-    //Checks if stored correctly
-    for(auto &coord : coordsPlaced){
-        Tile * currTile = getTile(coord->getRow(), coord->getCol());
-        std::cout << "Tile: " << currTile->getColour() << currTile->getShape() << " Row: " << coord->getRow() << " Col: " << coord->getCol() << std::endl;
-    }
 }
 
 void Board::placeTile(int row, int col, Tile * tile){
@@ -106,9 +102,14 @@ void Board::resizeBoard(int row, int col){
         std::rotate(vectorBoard.rbegin(), vectorBoard.rbegin() + 1, vectorBoard.rend());
 
         // Shifts all coordinates down by one row
-        for(auto &coord : coordsPlaced){
-            coord->shiftRowDown();
+        for (row = minRowSize; row != maxRowSize; row++) {
+            for (col = minColSize; col != maxColSize; col++) {
+                if(vectorBoard[row][col] != nullptr) {
+                    vectorBoard[row][col]->shiftRowDown();
+                }
+            }
         }
+
     } 
     
     // if tile is added at the bottom
@@ -133,8 +134,12 @@ void Board::resizeBoard(int row, int col){
         }
         
         // Shifts all coordinates to the left by one col
-        for(auto &coord : coordsPlaced){
-            coord->shiftColLeft();
+        for (row = minRowSize; row != maxRowSize; row++) {
+            for (col = minColSize; col != maxColSize; col++) {
+                if(vectorBoard[row][col] != nullptr) {
+                    vectorBoard[row][col]->shiftColRight();
+                }
+            }
         }
 
         // std::vector<Tile *> temp;

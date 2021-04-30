@@ -25,6 +25,14 @@ void Tile::shiftRowDown() {
     row++;
 }
 
-void Tile::shiftColLeft() {
+void Tile::shiftColRight() {
     col++;
+}
+
+int Tile::getCol() {
+    return this->col;
+}
+
+int Tile::getRow() {
+    return this->row;
 }
