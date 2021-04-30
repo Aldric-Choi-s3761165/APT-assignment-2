@@ -55,6 +55,7 @@ void Board::printBoard(){
         }
         std::cout << std::endl;
     }
+    
 }
 
 void Board::placeTile(int row, int col, Tile * tile){
@@ -62,6 +63,7 @@ void Board::placeTile(int row, int col, Tile * tile){
     int maxColSize = getHorizontalSize();
     if(row < maxRowSize && col < maxColSize && row >= 0 && col >= 0){
         if(vectorBoard[row][col] == nullptr){
+            tile->setRowCol(row, col);
             // coordPlaced.push_back(new Coordinate(row, col));
             vectorBoard[row][col] = tile;
             //Checks if the tile placed is at the end of one of the sides of the board and resizes accdgly.
@@ -99,6 +101,14 @@ void Board::resizeBoard(int row, int col){
 
         //shift all down by 1
         std::rotate(vectorBoard.rbegin(), vectorBoard.rbegin() + 1, vectorBoard.rend());
+
+        for (row = minRowSize; row != maxRowSize; row++) {
+            for (col = minColSize; col != maxColSize; col++) {
+                if(vectorBoard[row][col] != nullptr) {
+                    vectorBoard[row][col]->shiftRowDown();
+                }
+            }
+        }
     } 
     
     // if tile is added at the bottom
@@ -120,6 +130,14 @@ void Board::resizeBoard(int row, int col){
         for(auto &row : vectorBoard){
             row.push_back(nullptr);
             std::rotate(row.rbegin(), row.rbegin() + 1, row.rend());
+        }
+
+        for (row = minRowSize; row != maxRowSize; row++) {
+            for (col = minColSize; col != maxColSize; col++) {
+                if(vectorBoard[row][col] != nullptr) {
+                    vectorBoard[row][col]->shiftColRight();
+                }
+            }
         }
         
 

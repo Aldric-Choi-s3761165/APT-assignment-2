@@ -7,6 +7,9 @@ int main(void) {
     std::cout << "Welcome to Qurikle!" << std::endl;
     std::cout << "-------------------" << std::endl;
     menu();
+
+    std::cout << "Goodbye" << std::endl;
+    return EXIT_SUCCESS;
 }
 
 void menu() {
@@ -52,14 +55,11 @@ void display() {
 bool checkValid(std::string in) {
     bool check = false;
 
-    if(!in.compare("1") || !in.compare("2")) {
+    if(!in.compare("1") || !in.compare("2") || !in.compare("4")) {
         check = true;
     }
     else if(!in.compare("3")) {
         credits();
-    }
-    else if(!in.compare("4")) {
-        quit();
     }
 
     return check;
@@ -164,9 +164,4 @@ void credits() {
     std::cout << "----------------------------------\n";
     display();
 
-}
-
-void quit() {
-    std::cout << "\nGoodbye\n";
-    exit (EXIT_SUCCESS);
 }
