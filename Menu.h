@@ -8,7 +8,6 @@ void menu();
 void newGame();
 void loadGame();
 void credits();
-void quit();
 bool checkValid(std::string in);
 void display();
 std::unique_ptr<GameEngine> newEngine();
