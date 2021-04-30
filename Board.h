@@ -6,8 +6,6 @@
 
 class Board {
 private:
-    int row;
-    int col;
     std::vector<std::vector<Tile *>> vectorBoard;
     // std:vector<Coordinate *> coordsPlaced;
 
