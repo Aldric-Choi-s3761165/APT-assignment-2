@@ -1,7 +1,19 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "Menu.h"
+#include "GameEngine.h"
+#include "Types.h"
+
+void menu();
+void newGame();
+void loadGame();
+void credits();
+void quit();
+bool checkValid(std::string in);
+void display();
+GameEngine* newEngine();
+bool nameValid(std::string in);
+bool loadValid(std::string in);
 
 int main(void) {
     std::cout << "Welcome to Qurikle!" << std::endl;
