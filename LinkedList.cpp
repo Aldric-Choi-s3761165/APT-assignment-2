@@ -23,6 +23,7 @@ void LinkedList::addNode(Tile* t) {
     length++;
 }
 
+// fix removeNode since first node needs to update head to next etc
 void LinkedList::removeNode(Tile* t) {
     Node* current = head;
     Node* prev = nullptr;
