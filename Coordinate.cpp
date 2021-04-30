@@ -18,7 +18,7 @@ int Coordinate::getCol(){
 }
 
 void Coordinate::shiftRowDown(){
-        row++;
+    row++;
 }
 
 void Coordinate::shiftColLeft(){
