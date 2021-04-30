@@ -20,8 +20,6 @@ public:
     int getHorizontalSize();
     int getVerticalSize();
 
-    int getRow();
-    int getCol();
     void getBoard(int row, int col);
     int setBoard(int row, int col);
 };
