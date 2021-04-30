@@ -139,7 +139,7 @@ bool nameValid(std::string in) {
 }
 
 std::unique_ptr<GameEngine> newEngine() {
-    std::unique_ptr<GameEngine> engine = std::make_unique<GameEngine>();
+    std::unique_ptr<GameEngine> engine = std::unique_ptr<GameEngine>(new GameEngine());
     return engine;
 }
 

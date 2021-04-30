@@ -3,6 +3,8 @@
 Tile::Tile(Colour colour, Shape shape){
     this->colour = colour;
     this->shape = shape;
+    row = -1;
+    col = -1;
 }
 
 Tile::~Tile(){

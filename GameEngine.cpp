@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include <iostream>
 #include <random>
+#include <memory>
 
 
 GameEngine::GameEngine() {
@@ -9,8 +10,8 @@ GameEngine::GameEngine() {
     // to the array, we could also use vectors of smart pointers but it
     // becomes messy, hence we will control the deletion of players
     
-    bag = std::make_unique<LinkedList>();
-    board = std::make_unique<Board>();
+    bag = std::unique_ptr<LinkedList>(new LinkedList());
+    board = std::unique_ptr<Board>(new Board());
 }
 
 GameEngine::~GameEngine() {
@@ -47,7 +48,7 @@ bool GameEngine::existingPlayer(std::string n, int s, std::string h) {
     return true;
 }
 
-void GameEngine::createBoard(int row, int col, std::string states) {
+void GameEngine::existingBoard(int row, int col, std::string states) {
 
 }
 
@@ -104,7 +105,7 @@ void GameEngine::setupGame() {
     // testing bag printing for comparisson with testing method
     std::cout << "Current Bag: " << std::endl;
     bag->printNodes();
-    std::cout << std:: endl;
+    std::cout << std::endl;
 }
 
 void GameEngine::testing() {
