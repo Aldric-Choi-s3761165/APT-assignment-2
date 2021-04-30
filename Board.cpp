@@ -66,7 +66,8 @@ void Board::placeTile(int row, int col, Tile * tile){
     int maxColSize = getHorizontalSize();
     if(row < maxRowSize && col < maxColSize && row >= 0 && col >= 0){
         if(vectorBoard[row][col] == nullptr){
-            coordsPlaced.push_back(new Coordinate(row, col));
+            //coordsPlaced.push_back(new Coordinate(row, col));
+            tile->setRowCol(row, col);
             vectorBoard[row][col] = tile;
             //Checks if the tile placed is at the end of one of the sides of the board and resizes accdgly.
             resizeBoard(row, col);

@@ -15,3 +15,16 @@ Colour Tile::getColour() {
 Shape Tile::getShape(){
     return shape;
 }
+
+void Tile::setRowCol(int row, int col) {
+    this->row = row;
+    this->col = col;
+}
+
+void Tile::shiftRowDown() {
+    row++;
+}
+
+void Tile::shiftColLeft() {
+    col++;
+}

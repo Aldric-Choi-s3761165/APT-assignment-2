@@ -16,9 +16,16 @@ public:
 
    char getColour();
    int getShape();
+
+   void setRowCol(int row, int col);
+   void shiftRowDown();
+   void shiftColLeft();
+
 private:
    Colour colour;
    Shape  shape;
+   int row;
+   int col;
 };
 
 #endif // TILE_H
