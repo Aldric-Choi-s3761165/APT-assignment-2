@@ -27,7 +27,7 @@ int Player::getScore() {
     return score;
 }
 
-LinkedList* Player::getPlayerhand() {
+LinkedList* Player::getPlayerHand() {
     return hand; // only shallow copy
 }
 
@@ -36,12 +36,10 @@ void Player::setPlayerScore(int score) {
 }
 
 void Player::displayTileHand() {
-    std::cout << "Tile Hand" << std::endl;
     hand->printNodes();
 }
 
 void Player::clearPlayerHand() {
-    std::cout << "Clear Hand" << std::endl;
     hand->removeAllNodes();
     hand = nullptr;
     

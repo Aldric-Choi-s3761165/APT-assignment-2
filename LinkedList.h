@@ -10,7 +10,8 @@ public:
     LinkedList();
     ~LinkedList();
     void addNode(Tile* t);
-    void removeNode(Tile* t);
+    void addBack(Tile* t);
+    Tile* removeNode(Colour c, Shape s);
     void removeAllNodes();
     void printNodes();
     int getLength();
@@ -18,6 +19,7 @@ public:
 
 private:
     Node* head;
+    Node* tail;
     int length;
 
 };

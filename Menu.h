@@ -11,9 +11,10 @@ void credits();
 bool checkValid(std::string in);
 void display();
 GameEngine* newEngine();
-bool nameValid(std::string in);
+bool nameValid(std::string in, bool operation);
 int loadValid(std::string in);
 int loadPlayers(GameEngine& engine, std::string in);
 int setupGame(GameEngine& engine, std::string in, int currentLine);
+void corruptFile();
 
 #endif // MENU_H

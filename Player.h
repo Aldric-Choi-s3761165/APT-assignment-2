@@ -13,7 +13,7 @@ public:
 
     std::string getName();
     int getScore();
-    LinkedList* getPlayerhand();
+    LinkedList* getPlayerHand();
 
     void setPlayerScore(int score);
 

@@ -19,27 +19,45 @@ LinkedList::~LinkedList() {
 
 void LinkedList::addNode(Tile* t) {
     Node* n = new Node(t, head);
-    this->head = n;
+    head = n;
     length++;
 }
 
-// fix removeNode since first node needs to update head to next etc
-void LinkedList::removeNode(Tile* t) {
+void LinkedList::addBack(Tile* t){
+    Node* n = new Node(t, nullptr);
+    Node* prev = head;
+    
+    if(prev != nullptr) {
+        while(prev->getNext() != nullptr) {
+            prev = prev->getNext();
+        }
+        prev->setNext(n);
+    }
+    else {
+        head = n;
+    }
+    length++;
+}
+
+Tile* LinkedList::removeNode(Colour c, Shape s) {
     Node* current = head;
     Node* prev = nullptr;
+    Tile* returnTile = nullptr;
 
-    while(current->getNext() != nullptr) {
-        prev = current;
-        current = current->getNext();
-
-        //fix check for checking value and colour instead of == since they value different addresses
-        if(current->getTile() == t)  {
+    for(int i = 0; i < length; i++) {
+        
+        if(current->getTile()->getColour() == c && current->getTile()->getShape() == s)  {
             prev->setNext(current->getNext());
+            returnTile = current->getTile();
             delete current;
             length--;
+            i = length;
         }
+        prev = current;
+        current = current->getNext();
     }
 
+    return returnTile;
 }
 
 void LinkedList::removeAllNodes() {
@@ -58,13 +76,19 @@ void LinkedList::removeAllNodes() {
 
 void LinkedList::printNodes() {
     Node* upto = head;
-
-    std::cout << "head->";
-    while(upto != nullptr) {
-        std::cout << "|" << upto->getTile()->getColour() << upto->getTile()->getShape() << "|-->";
+    
+    for(int i = 0; i < length - 1; i++) {
+        std::cout << upto->getTile()->getColour() << upto->getTile()->getShape() << ", ";
         upto = upto->getNext();
     }
-    std::cout << "null" << std::endl;
+    std::cout << upto->getTile()->getColour() << upto->getTile()->getShape() << std::endl;
+
+//     std::cout << "head->";
+//     while(upto != nullptr) {
+//         std::cout << "|" << upto->getTile()->getColour() << upto->getTile()->getShape() << "|-->";
+//         upto = upto->getNext();
+//     }
+//     std::cout << "null" << std::endl;
 }
 
 int LinkedList::getLength() {

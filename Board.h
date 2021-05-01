@@ -21,7 +21,7 @@ public:
     int getVerticalSize();
 
     void getBoard(int row, int col);
-    int setBoard(int row, int col);
+    void setBoard(int row, int col);
 };
 
 #endif // BOARD_H

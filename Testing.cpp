@@ -14,36 +14,41 @@ int main(void) {
 
     // test one at a time then increase the tests to see if they all work together correctly
     LinkedList* l = new LinkedList();
-    Player* p = new Player(0, "J");
-    GameEngine* e = new GameEngine();
-    Board* b = new Board();
+    //Player* p = new Player(0, "J");
+    //GameEngine* e = new GameEngine();
+    //Board* b = new Board();
 
     // test one at a time
     testLinkedList(*l);
-    testPlayers(*p);
-    testEngine(*e);
-    testBoard(*b);
+    //testPlayers(*p);
+    //testEngine(*e);
+    //testBoard(*b);
 
 
     // add these to test if deconstructors are the cause for segmentation fault
     
     delete l;
-    delete p;
-    delete e;
-    delete b;
+    //delete p;
+    //delete e;
+    //delete b;
     
 
     return EXIT_SUCCESS;
 }
 
 void testLinkedList(LinkedList& l) {
-    l.addNode(new Tile(RED, CIRCLE));
-    l.addNode(new Tile(YELLOW, SQUARE));
+    // l.addNode(new Tile(RED, CIRCLE));
+    // l.addNode(new Tile(YELLOW, SQUARE));
     l.addNode(new Tile(GREEN, DIAMOND));
     l.addNode(new Tile(BLUE, STAR_6));
 
-    std::cout << l.getLength() << std::endl;
-    std::cout << l.pop()->getColour() << l.pop()->getShape() << std::endl;
+    l.addBack(new Tile(RED, CIRCLE));
+    l.addBack(new Tile(YELLOW, SQUARE));
+    l.addBack(new Tile(GREEN, DIAMOND));
+    l.addBack(new Tile(BLUE, STAR_6));
+
+    //std::cout << l.getLength() << std::endl;
+    //std::cout << l.pop()->getColour() << l.pop()->getShape() << std::endl;
     l.printNodes();
     l.removeAllNodes();
 }
@@ -55,7 +60,7 @@ void testPlayers(Player& p) {
     p.addNode(new Tile(BLUE, STAR_6));
 
     p.displayTileHand();
-    p.getPlayerhand()->printNodes();
+    p.getPlayerHand()->printNodes();
 }
 
 void testEngine(GameEngine& e) {

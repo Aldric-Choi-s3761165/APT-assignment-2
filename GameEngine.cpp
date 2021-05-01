@@ -44,11 +44,67 @@ bool GameEngine::existingPlayer(int id, std::string name, int score, LinkedList*
 }
 
 void GameEngine::createBoard(int row, int col, std::string states) {
-
+    board->setBoard(row, col);
+    // setup states
 }
 
 void GameEngine::gameRun(int id) {
+    bool gameRun = true;
+    std::string input;
     
+    while(gameRun) {
+        display(id);
+        std::cin >> input;
+        getAction(input, id);
+        
+        // game logic
+        // check if winner
+    }
+
+    players[1]->getPlayerHand()->removeNode(RED, CIRCLE);
+    players[1]->displayTileHand();
+}
+
+void GameEngine::getAction(std::string line, int id){
+    if(line.size() == 14) {
+        // place action
+        Tile* t = players[id]->getPlayerHand()->removeNode(line[7], line[8]);
+        if(t != nullptr) {
+            board->placeTile(line[13], line[14], t);
+            players[id]->addNode(bag->pop());
+        }
+        else {
+            std::cout << "Tile does not exist in your hand" << std::endl;
+        }
+    }
+    else if(line.size() == 10) {
+        // replace action
+        Tile* t = players[id]->getPlayerHand()->removeNode(line[9], line[10]);
+        if(t != nullptr) {
+            bag->addBack(t);
+            players[id]->addNode(bag->pop());
+        }
+        else {
+            std::cout << "Tile does not exist in your hand" << std::endl;
+        }
+    }
+}
+
+void GameEngine::display(int id) {
+    Player* currPlayer = players[id - 1];
+
+    std::cout << currPlayer->getName() << ", it's your turn" << std::endl;
+    for(int i = 0; i < TOTAL_PLAYERS; i++) {
+        Player* player = players[i];
+        std::cout << "Score for " << player->getName() << ": " << players[i]->getScore() << std::endl;
+    }
+
+    board->printBoard();
+
+    std::cout << std::endl;
+    std::cout << "Your hand is" << std::endl;
+    currPlayer->displayTileHand();
+    std::cout << std::endl;
 }
 
 void GameEngine::setupGame() {
@@ -62,7 +118,7 @@ void GameEngine::setupGame() {
 
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < 6; j++){
-            for(int x = 0; x < 3; x++) {
+            for(int x = 0; x < 2; x++) {
                 Tile* tile = new Tile(colours[i], shapes[j]);
                 tempArray[counter] = tile;
                 counter++;
@@ -82,7 +138,11 @@ void GameEngine::setupGame() {
         }
     }
 
-    //Testing for the board
+}
+
+void GameEngine::testing() {
+    
+    // testing board in game engine
     board->printBoard();
     Tile * firstTile = bag->pop();
     board->placeTile(5, 3, firstTile);
@@ -101,9 +161,7 @@ void GameEngine::setupGame() {
     std::cout << "Current Bag: " << std::endl;
     bag->printNodes();
     std::cout << std:: endl;
-}
-
-void GameEngine::testing() {
+    
     for(int x = 1; x <= 2; x++) {
         std::cout << "Player Hand: " << x << std::endl;
         players[x - 1]->displayTileHand();

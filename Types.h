@@ -24,7 +24,7 @@
 #define TOTAL_STUDENTS 4
 
 // Total tiles for gameplay
-#define BAG_MAX_LIMIT 108
+#define BAG_MAX_LIMIT 72
 
 // Total tiles for each player
 #define PLAYER_HAND_LIMIT 6

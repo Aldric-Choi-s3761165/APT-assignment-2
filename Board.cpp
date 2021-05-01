@@ -179,3 +179,7 @@ int Board::getHorizontalSize(){
 int Board::getVerticalSize(){
     return vectorBoard.size();
 }
+
+void Board::setBoard(int row, int col) {
+    vectorBoard = std::vector<std::vector<Tile *>>(row, std::vector<Tile *> (col, nullptr));
+}

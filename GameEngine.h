@@ -18,6 +18,8 @@ public:
     void gameRun(int id);
     void setupGame();
     void testing();
+    void display(int id);
+    void getAction(std::string line, int id);
 
 private:
     LinkedList* bag;
