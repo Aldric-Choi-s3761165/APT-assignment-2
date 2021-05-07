@@ -29,4 +29,7 @@
 // Total tiles for each player
 #define PLAYER_HAND_LIMIT 6
 
+// Max Board Dimension
+#define MAX_BOARD_DIMENSION 26
+
 #endif // TYPES_H

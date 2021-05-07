@@ -6,6 +6,7 @@
 
 Board::Board(){
     vectorBoard = std::vector<std::vector<Tile *>>(6, std::vector<Tile *> (6, nullptr));
+    newGame = true;
     // std::vector<Tile *> temp;
     // temp.push_back(nullptr);
     // vectorBoard.push_back(temp);
@@ -58,7 +59,9 @@ void Board::printBoard(){
     
 }
 
-void Board::placeTile(char row, int col, Tile * tile){
+bool Board::placeTile(char row, int col, Tile * tile){
+    bool success = true;
+    
     char start = 'A';
     int rowCheck = 0;
 
@@ -74,16 +77,113 @@ void Board::placeTile(char row, int col, Tile * tile){
             i = maxRowSize;
         }
     }
+
+    if(newGame == false) {
+        //Checks if in range
+        if(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0){
+            //Check if the position is null
+            if(vectorBoard[rowCheck][col] == nullptr){
+                
+                Tile* leftOfTile = getTile(rowCheck-1, col);
+                Tile* rightOfTile = getTile(rowCheck+1, col);
+                Tile* aboveOfTile = getTile(rowCheck, col-1);
+                Tile* belowOfTile = getTile(rowCheck, col+1);
+
+                // Check whether beside the position has a tile
+                if(leftOfTile == nullptr && aboveOfTile == nullptr && rightOfTile == nullptr && belowOfTile == nullptr){
+                    std::cout << "INVALID: There is no tile beside the position you are placing." << std::endl;
+                    success = false;
+                }
+                else{
+                    if(leftOfTile != nullptr || rightOfTile != nullptr) {
+                        success = checkRowTiles(tile, leftOfTile, rightOfTile);
+                    }
+                    
+                    if(aboveOfTile != nullptr || belowOfTile != nullptr) {
+                        success = checkColTiles(tile, aboveOfTile, belowOfTile);
+                    }
+                }
+            }
+            else{
+                std::cout << "INVALID: Position already has a tile." << std::endl;
+                success = false;
+            }
+        }
+        else{
+            std::cout << "INVALID: Position out of Bound." << std::endl;
+            success = false;
+        }
+    }
+    else {
+        newGame = false;
+    }
     
-    if(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0){
-        if(vectorBoard[rowCheck][col] == nullptr){
+    if(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0 && success == true){
+        if( (rowCheck == 0 && (col == 0 || col == maxColSize -1)) || (rowCheck == maxColSize && (col == 0 || col == maxColSize -1)) ) {
+            std::cout << "INVALID: Cannot put in the edges of the board." << std::endl;
+            success = false;
+        }
+        else if(vectorBoard[rowCheck][col] == nullptr){
             tile->setRowCol(rowCheck, col);
             // coordPlaced.push_back(new Coordinate(rowCheck, col));
             vectorBoard[rowCheck][col] = tile;
-            //Checks if the tile placed is at the end of one of the sides of the board and resizes accdgly.
+            //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
             resizeBoard(rowCheck, col);
         }
+        else {
+            std::cout << "Must place tile on an empty position." << std::endl;
+            success = false;
+        }
     }
+    else{
+        std::cout << "INVALID: Position out of Bound." << std::endl;
+    }
+
+    if(success == true) {
+        // check score etc
+    }
+
+    return success;
+}
+
+bool Board::checkRowTiles(Tile* current, Tile* left, Tile* right) {
+    bool returnVal = true;
+
+    if(left != nullptr) {
+        if(current->getColour() != left->getColour() || current->getShape() == left->getShape()) {
+            std::cout << "INVALID: It should be the same colour and not the same shape." << std::endl;
+            returnVal = false;
+        }
+    }
+
+    if(right != nullptr) {
+        if(current->getColour() != right->getColour() || current->getShape() == right->getShape()) {
+            std::cout << "INVALID: It should be the same colour and not the same shape." << std::endl;
+            returnVal = false;
+        }
+    }
+
+    return returnVal;
+}
+
+bool Board::checkColTiles(Tile* current, Tile* above, Tile* below) {
+    bool returnVal = true;
+    
+    if(above != nullptr){
+        if(current->getShape() != above->getShape() || current->getColour() == above->getColour()){
+            std::cout << "INVALID: It should be the same sahpe and not the same colour." << std::endl;
+            returnVal = false;
+        }
+    }
+
+    if(below != nullptr){
+        if(current->getShape() != below->getShape() || current->getColour() == below->getColour()){
+            std::cout << "INVALID: It should be the same sahpe and not the same colour." << std::endl;
+            returnVal = false;
+        }
+    }
+
+    return returnVal;
 }
 
 Tile* Board::getTile(int row, int col){
@@ -104,7 +204,7 @@ void Board::resizeBoard(int row, int col){
     int maxColSize = getHorizontalSize()-1;
 
     // if tile is added at the top
-    if(row == minRowSize){
+    if(row == minRowSize && row < MAX_BOARD_DIMENSION){
         std::vector<Tile *> temp;
 
         // adds a new row at the top
@@ -123,10 +223,10 @@ void Board::resizeBoard(int row, int col){
                 }
             }
         }
-    } 
+    }
     
     // if tile is added at the bottom
-    else if(row == maxRowSize) {
+    else if(row == maxRowSize && row < MAX_BOARD_DIMENSION) {
         std::vector<Tile *> temp;
         
         // adds a new row at the bottom
@@ -137,7 +237,7 @@ void Board::resizeBoard(int row, int col){
     }
 
     // if tile is added at the left
-    else if(col == minColSize) {
+    else if(col == minColSize && col < MAX_BOARD_DIMENSION) {
 
         // add a col with nullptr each row at the front
         // move all tiles by one position to the left
@@ -153,36 +253,15 @@ void Board::resizeBoard(int row, int col){
                 }
             }
         }
-        
-
-        // std::vector<Tile *> temp;
-
-        // adds a new row at the left
-        // for(int i = 0; i < maxRowSize + 1; i++){
-        //     temp.push_back(nullptr);
-        // }
-        // vectorBoard.push_back(temp);
-
-        // // shofts all left by 1
-        // std::rotate(vectorBoard.rbegin(), vectorBoard.rbegin() + 1, vectorBoard.rend());
-
     }
 
     //if tile is added to the right
-    else if(col == maxColSize) {
+    else if(col == maxColSize && col < MAX_BOARD_DIMENSION) {
 
         // add a col with nullptr each row at the last
         for(auto &row : vectorBoard){
             row.push_back(nullptr);
         }
-
-        // std::vector<Tile *> temp;
-
-        // // adds a new row at the right
-        // for (int i = 0; i < maxRowSize + 1; i++) {
-        //     temp.push_back(nullptr);
-        // }
-        // vectorBoard.push_back(temp);
     }
 }
 
