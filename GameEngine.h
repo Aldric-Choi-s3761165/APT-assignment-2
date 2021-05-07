@@ -22,6 +22,10 @@ public:
     void getAction(std::string line, int id);
     void tileDoesntExist();
 
+    void gameResult(int id1, int id2);
+    void addScore(int id,int score);
+    int calculateScore(int row,int col);
+    int choosingWinner(int id1, int id2); 
 private:
     LinkedList* bag;
     Player* players[TOTAL_PLAYERS];

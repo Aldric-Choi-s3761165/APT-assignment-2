@@ -86,6 +86,8 @@ void GameEngine::getAction(std::string line, int id){
                         char y = line[12];
                         int x = std::stoi(std::string(1,line[13]));
                         board->placeTile(y, x, t);
+                        int z = t->getRow();
+                        addScore(id-1,calculateScore(z,x));
                         players[id - 1]->addNode(bag->pop());
                     }
                 }
@@ -130,7 +132,50 @@ void GameEngine::getAction(std::string line, int id){
         }
     }
 }
+void GameEngine:: gameResult(int id1, int id2){
+    Player* Player1 = players[id1 - 1];
+    Player* Player2 = players[id2 - 1];
+    int winnerID = choosingWinner(id1, id2);
+    Player* winnerPlayer = players[winnerID - 1];
+    std::cout <<"Game over"<< std::endl;
+    std::cout<<"Score for "<<Player1->getName()<<":"<<Player1->getScore()<< std::endl;
+    std::cout<<"Score for "<<Player2->getName()<<":"<<Player2->getScore()<< std::endl;
+    std::cout<<"Player "<<winnerPlayer->getName()<<" won!"<<std::endl;
+    std::cout << std::endl;
+    std::cout <<"Goodbye" <<std::endl;
 
+}
+void GameEngine::addScore(int id,int score)
+{
+    Player* currPlayer = players[id - 1];
+    int currScore = 0;
+    currScore = currPlayer->getScore() + score;
+    currPlayer->setScore(currScore);
+}
+
+int GameEngine:: calculateScore(int row, int col){
+    int tempScore=1;
+    //minus the current tile
+    tempScore+=board->countPlacedTileByCol(col)-1;
+    tempScore+=board->countPlacedTileByRow(row)-1; 
+    return tempScore;
+}
+int GameEngine:: choosingWinner(int id1, int id2){
+    Player* Player1 = players[id1 - 1];
+    Player* Player2 = players[id2 - 1];
+    int winnerID = 0;
+    if( Player1->getScore()>Player2->getScore()){
+        winnerID = Player1->getID();
+    }
+    else if(Player2->getScore()>Player1->getScore())
+    {
+         winnerID = Player2->getID();
+    }
+    // else{
+    //     return draw;
+    // }
+    return winnerID;
+}
 void GameEngine::tileDoesntExist() {
     std::cout << "Tile does not exist in your hand" << std::endl;
 }

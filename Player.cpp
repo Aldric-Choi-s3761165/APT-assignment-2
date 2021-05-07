@@ -19,6 +19,10 @@ Player::~Player() {
     delete hand;
 }
 
+int Player::getID(){
+    return id;
+}
+
 std::string Player::getName() {
     return name;
 }
@@ -31,7 +35,7 @@ LinkedList* Player::getPlayerHand() {
     return hand; // only shallow copy
 }
 
-void Player::setPlayerScore(int score) {
+void Player::setScore(int score) {
     this->score = score;
 }
 

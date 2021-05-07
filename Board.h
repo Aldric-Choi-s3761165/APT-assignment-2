@@ -20,6 +20,10 @@ public:
     int getHorizontalSize();
     int getVerticalSize();
 
+    int countPlacedTileByRow(int row);
+    int countPlacedTileByCol(int col);
+    bool emptyTileValidation(Tile *tile);
+
     void getBoard(int row, int col);
     void setBoard(int row, int col);
 };
