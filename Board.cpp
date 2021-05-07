@@ -97,10 +97,12 @@ bool Board::placeTile(char row, int col, Tile * tile){
                 else{
                     if(leftOfTile != nullptr || rightOfTile != nullptr) {
                         success = checkRowTiles(tile, leftOfTile, rightOfTile);
+                        std::cout << success << std::endl;
                     }
                     
                     if(aboveOfTile != nullptr || belowOfTile != nullptr) {
                         success = checkColTiles(tile, aboveOfTile, belowOfTile);
+                        std::cout << success << std::endl;
                     }
                 }
             }
@@ -113,9 +115,6 @@ bool Board::placeTile(char row, int col, Tile * tile){
             std::cout << "INVALID: Position out of Bound." << std::endl;
             success = false;
         }
-    }
-    else {
-        newGame = false;
     }
     
     if(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0 && success == true){
@@ -141,6 +140,10 @@ bool Board::placeTile(char row, int col, Tile * tile){
 
     if(success == true) {
         // check score etc
+    }
+
+    if(success == true && newGame == true) {
+        newGame = false;
     }
 
     return success;
@@ -171,14 +174,14 @@ bool Board::checkColTiles(Tile* current, Tile* above, Tile* below) {
     
     if(above != nullptr){
         if(current->getShape() != above->getShape() || current->getColour() == above->getColour()){
-            std::cout << "INVALID: It should be the same sahpe and not the same colour." << std::endl;
+            std::cout << "INVALID: It should be the same shape and not the same colour." << std::endl;
             returnVal = false;
         }
     }
 
     if(below != nullptr){
         if(current->getShape() != below->getShape() || current->getColour() == below->getColour()){
-            std::cout << "INVALID: It should be the same sahpe and not the same colour." << std::endl;
+            std::cout << "INVALID: It should be the same shape and not the same colour." << std::endl;
             returnVal = false;
         }
     }
