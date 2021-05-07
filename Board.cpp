@@ -59,9 +59,47 @@ void Board::printBoard(){
     
 }
 
+
+int Board::countPlacedTileByCol(int col){
+    int numberPlacedTile = 0;
+ 
+    int maxRowSize = getVerticalSize();
+
+    Tile *currTile = nullptr;
+
+    for(int currRow = 0; currRow < maxRowSize; currRow++){
+        currTile = getTile(currRow,col);
+        if(emptyTileValidation(currTile)){
+            numberPlacedTile++;
+        }
+    }
+    return numberPlacedTile;
+}
+int Board::countPlacedTileByRow(int row){
+    int numberPlacedTile = 0;
+ 
+    int maxColSize = getHorizontalSize();
+
+    Tile *currTile = nullptr;
+
+    for(int currCol = 0; currCol < maxColSize; currCol++){
+        currTile = getTile(row,currCol);
+        if(emptyTileValidation(currTile)){
+            numberPlacedTile++;
+        }       
+    }
+    return numberPlacedTile;
+
+}
+
+bool Board::emptyTileValidation(Tile*tile){
+    return true;
+}
+
 bool Board::placeTile(char row, int col, Tile * tile){
     bool success = true;
     
+
     char start = 'A';
     int rowCheck = 0;
 

@@ -72,6 +72,7 @@ void testEngine(GameEngine& e) {
 
     e.gameRun(0);
     e.testing();
+    //e.gameResult(1,2);
 }
 
 void testBoard(Board& b) {

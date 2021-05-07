@@ -95,6 +95,7 @@ bool GameEngine::getAction(std::string line, int id){
                         int x = std::stoi(std::string(1,line[13]));
                         if(board->placeTile(y, x, t)) {
                             players[id - 1]->addNode(bag->pop());
+                            addScore(id-1,calculateScore(z,x));
                             actionCompleted = true;
                         }
                         else {
@@ -104,6 +105,7 @@ bool GameEngine::getAction(std::string line, int id){
                     else {
                         players[id - 1]->addNode(t);
                         errors(2);
+
                     }
                 }
                 else {
@@ -151,6 +153,50 @@ bool GameEngine::getAction(std::string line, int id){
 
     return actionCompleted;
 }
+void GameEngine:: gameResult(int id1, int id2){
+    Player* Player1 = players[id1 - 1];
+    Player* Player2 = players[id2 - 1];
+    int winnerID = choosingWinner(id1, id2);
+    Player* winnerPlayer = players[winnerID - 1];
+    std::cout <<"Game over"<< std::endl;
+    std::cout<<"Score for "<<Player1->getName()<<":"<<Player1->getScore()<< std::endl;
+    std::cout<<"Score for "<<Player2->getName()<<":"<<Player2->getScore()<< std::endl;
+    std::cout<<"Player "<<winnerPlayer->getName()<<" won!"<<std::endl;
+    std::cout << std::endl;
+    std::cout <<"Goodbye" <<std::endl;
+
+}
+void GameEngine::addScore(int id,int score)
+{
+    Player* currPlayer = players[id - 1];
+    int currScore = 0;
+    currScore = currPlayer->getScore() + score;
+    currPlayer->setScore(currScore);
+}
+
+
+int GameEngine:: calculateScore(int row, int col){
+    int tempScore=1;
+    //minus the current tile
+    tempScore+=board->countPlacedTileByCol(col)-1;
+    tempScore+=board->countPlacedTileByRow(row)-1; 
+    return tempScore;
+}
+int GameEngine:: choosingWinner(int id1, int id2){
+    Player* Player1 = players[id1 - 1];
+    Player* Player2 = players[id2 - 1];
+    int winnerID = 0;
+    if( Player1->getScore()>Player2->getScore()){
+        winnerID = Player1->getID();
+    }
+    else if(Player2->getScore()>Player1->getScore())
+    {
+         winnerID = Player2->getID();
+    }
+    // else{
+    //     return draw;
+    // }
+    return winnerID;
 
 void GameEngine::errors(int error) {
     if(error == 1) {
@@ -160,6 +206,7 @@ void GameEngine::errors(int error) {
         std::cout << "Invalid Command" << std::endl;
     }
     
+
 }
 
 void GameEngine::display(int id) {

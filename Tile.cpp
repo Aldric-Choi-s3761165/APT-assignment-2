@@ -18,6 +18,14 @@ Shape Tile::getShape(){
     return shape;
 }
 
+int Tile::getRow(){
+    return col;
+}
+
+int Tile::getCol(){
+    return col;
+}
+
 void Tile::setRowCol(int row, int col) {
     this->row = row;
     this->col = col;

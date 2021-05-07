@@ -11,11 +11,12 @@ public:
     Player(int id, std::string name, int score, LinkedList* hand);
     ~Player();
 
+    int getID();
     std::string getName();
     int getScore();
     LinkedList* getPlayerHand();
 
-    void setPlayerScore(int score);
+    void setScore(int score);
 
     void displayTileHand();
     void clearPlayerHand();

@@ -17,6 +17,8 @@ public:
    char getColour();
    int getShape();
 
+   int getRow();
+   int getCol();
    void setRowCol(int row, int col);
    void shiftRowDown();
    void shiftColRight();
