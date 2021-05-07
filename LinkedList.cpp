@@ -43,7 +43,6 @@ Tile* LinkedList::getNode(Colour c, Shape s) {
     Node* current = head;
     Node* prev = nullptr;
     Tile* returnTile = nullptr;
-    std::cout << length << std::endl;
 
     for(int i = 0; i < length; i++) 
     {

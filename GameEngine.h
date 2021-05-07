@@ -19,8 +19,8 @@ public:
     void setupGame();
     void testing();
     void display(int id);
-    void getAction(std::string line, int id);
-    void tileDoesntExist();
+    bool getAction(std::string line, int id);
+    void errors(int error);
 
     void gameResult(int id1, int id2);
     void addScore(int id,int score);

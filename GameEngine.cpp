@@ -57,7 +57,14 @@ void GameEngine::gameRun(int id) {
         
         display(id);
         getline(std::cin, input);
-        getAction(input, id);
+        
+        // if command was completed successfully
+        if(getAction(input, id)) {
+            id++;
+            if(id > TOTAL_PLAYERS) {
+                id = 1;
+            }
+        }
         
         // game logic
         // check if winner
@@ -67,8 +74,9 @@ void GameEngine::gameRun(int id) {
     players[1]->displayTileHand();
 }
 
-void GameEngine::getAction(std::string line, int id){
+bool GameEngine::getAction(std::string line, int id){
 
+    bool actionCompleted = false;
     std::string stringCheck;
     if(line.size() == 14) {
         // place action
@@ -85,23 +93,32 @@ void GameEngine::getAction(std::string line, int id){
                     if (isdigit(line[13])) {
                         char y = line[12];
                         int x = std::stoi(std::string(1,line[13]));
-                        board->placeTile(y, x, t);
-                        int z = t->getRow();
-                        addScore(id-1,calculateScore(z,x));
-                        players[id - 1]->addNode(bag->pop());
+                        if(board->placeTile(y, x, t)) {
+                            players[id - 1]->addNode(bag->pop());
+                            addScore(id-1,calculateScore(z,x));
+                            actionCompleted = true;
+                        }
+                        else {
+                            players[id - 1]->addNode(t);
+                        }
+                    }
+                    else {
+                        players[id - 1]->addNode(t);
+                        errors(2);
+
                     }
                 }
                 else {
-                    tileDoesntExist();
+                    errors(1);
                 }
             }
             else 
             {
-                tileDoesntExist();
+                errors(1);
             }
         }
         else{
-            std::cout << "Invalid Command" << std::endl;
+            errors(2);
         }
         
     }
@@ -118,19 +135,23 @@ void GameEngine::getAction(std::string line, int id){
                 if(t != nullptr) {
                     bag->addBack(t);
                     players[id - 1]->addNode(bag->pop());
+                    actionCompleted = true;
                 }
                 else {
-                    tileDoesntExist();
+                    errors(1);
+                    players[id - 1]->addNode(t);
                 }
             }
             else {
-                tileDoesntExist();
+                errors(1);
             }
         }
         else{
-            std::cout << "Invalid Command" << std::endl;
+            errors(2);
         }
     }
+
+    return actionCompleted;
 }
 void GameEngine:: gameResult(int id1, int id2){
     Player* Player1 = players[id1 - 1];
@@ -152,6 +173,7 @@ void GameEngine::addScore(int id,int score)
     currScore = currPlayer->getScore() + score;
     currPlayer->setScore(currScore);
 }
+
 
 int GameEngine:: calculateScore(int row, int col){
     int tempScore=1;
@@ -175,14 +197,22 @@ int GameEngine:: choosingWinner(int id1, int id2){
     //     return draw;
     // }
     return winnerID;
-}
-void GameEngine::tileDoesntExist() {
-    std::cout << "Tile does not exist in your hand" << std::endl;
+
+void GameEngine::errors(int error) {
+    if(error == 1) {
+        std::cout << "Tile does not exist in your hand" << std::endl;
+    }
+    else if(error == 2) {
+        std::cout << "Invalid Command" << std::endl;
+    }
+    
+
 }
 
 void GameEngine::display(int id) {
     Player* currPlayer = players[id - 1];
 
+    std::cout << std::endl;
     std::cout << currPlayer->getName() << ", it's your turn" << std::endl;
     for(int i = 0; i < TOTAL_PLAYERS; i++) {
         Player* player = players[i];
