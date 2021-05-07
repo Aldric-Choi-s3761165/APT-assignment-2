@@ -95,7 +95,7 @@ bool GameEngine::getAction(std::string line, int id){
                         int x = std::stoi(std::string(1,line[13]));
                         if(board->placeTile(y, x, t)) {
                             players[id - 1]->addNode(bag->pop());
-                            addScore(id-1,calculateScore(z,x));
+                            //addScore(id-1,calculateScore(y,x));
                             actionCompleted = true;
                         }
                         else {
@@ -153,7 +153,7 @@ bool GameEngine::getAction(std::string line, int id){
 
     return actionCompleted;
 }
-void GameEngine:: gameResult(int id1, int id2){
+void GameEngine:: gameResult(int id1, int id2) {
     Player* Player1 = players[id1 - 1];
     Player* Player2 = players[id2 - 1];
     int winnerID = choosingWinner(id1, id2);
@@ -166,8 +166,7 @@ void GameEngine:: gameResult(int id1, int id2){
     std::cout <<"Goodbye" <<std::endl;
 
 }
-void GameEngine::addScore(int id,int score)
-{
+void GameEngine::addScore(int id,int score) {
     Player* currPlayer = players[id - 1];
     int currScore = 0;
     currScore = currPlayer->getScore() + score;
@@ -175,14 +174,15 @@ void GameEngine::addScore(int id,int score)
 }
 
 
-int GameEngine:: calculateScore(int row, int col){
+int GameEngine:: calculateScore(int row, int col) {
     int tempScore=1;
     //minus the current tile
     tempScore+=board->countPlacedTileByCol(col)-1;
     tempScore+=board->countPlacedTileByRow(row)-1; 
     return tempScore;
 }
-int GameEngine:: choosingWinner(int id1, int id2){
+
+int GameEngine:: choosingWinner(int id1, int id2) {
     Player* Player1 = players[id1 - 1];
     Player* Player2 = players[id2 - 1];
     int winnerID = 0;
@@ -197,6 +197,7 @@ int GameEngine:: choosingWinner(int id1, int id2){
     //     return draw;
     // }
     return winnerID;
+}
 
 void GameEngine::errors(int error) {
     if(error == 1) {
