@@ -122,10 +122,10 @@ bool Board::placeTile(char row, int col, Tile * tile){
             //Check if the position is null
             if(vectorBoard[rowCheck][col] == nullptr){
                 
-                Tile* leftOfTile = getTile(rowCheck-1, col);
-                Tile* rightOfTile = getTile(rowCheck+1, col);
-                Tile* aboveOfTile = getTile(rowCheck, col-1);
-                Tile* belowOfTile = getTile(rowCheck, col+1);
+                Tile* leftOfTile = getTile(rowCheck, col-1);
+                Tile* rightOfTile = getTile(rowCheck, col+1);
+                Tile* aboveOfTile = getTile(rowCheck-1, col);
+                Tile* belowOfTile = getTile(rowCheck+1, col);
 
                 // Check whether beside the position has a tile
                 if(leftOfTile == nullptr && aboveOfTile == nullptr && rightOfTile == nullptr && belowOfTile == nullptr){
@@ -135,12 +135,10 @@ bool Board::placeTile(char row, int col, Tile * tile){
                 else{
                     if(leftOfTile != nullptr || rightOfTile != nullptr) {
                         success = checkRowTiles(tile, leftOfTile, rightOfTile);
-                        std::cout << success << std::endl;
                     }
                     
                     if(aboveOfTile != nullptr || belowOfTile != nullptr) {
                         success = checkColTiles(tile, aboveOfTile, belowOfTile);
-                        std::cout << success << std::endl;
                     }
                 }
             }
@@ -171,9 +169,6 @@ bool Board::placeTile(char row, int col, Tile * tile){
             std::cout << "Must place tile on an empty position." << std::endl;
             success = false;
         }
-    }
-    else{
-        std::cout << "INVALID: Position out of Bound." << std::endl;
     }
 
     if(success == true) {
