@@ -1,4 +1,5 @@
 #include "Tile.h"
+#include <iostream>
 
 Tile::Tile(Colour colour, Shape shape){
     this->colour = colour;
@@ -19,7 +20,7 @@ Shape Tile::getShape(){
 }
 
 int Tile::getRow(){
-    return col;
+    return row;
 }
 
 int Tile::getCol(){

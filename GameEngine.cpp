@@ -78,7 +78,7 @@ bool GameEngine::getAction(std::string line, int id){
 
     bool actionCompleted = false;
     std::string stringCheck;
-    if(line.size() == 14) {
+    if(line.size() >= 14) {
         // place action
         
         stringCheck = line.substr(0, 5);
@@ -92,10 +92,13 @@ bool GameEngine::getAction(std::string line, int id){
                 if(t != nullptr) {
                     if (isdigit(line[13])) {
                         char y = line[12];
-                        int x = std::stoi(std::string(1,line[13]));
+                        int x = 0;
+                        std::string cut = line.substr(13, line.size() - 13);
+                        x = std::stoi(cut);
+                        
                         if(board->placeTile(y, x, t)) {
                             players[id - 1]->addNode(bag->pop());
-                            //addScore(id-1,calculateScore(y,x));
+                            checkScore(id, y, x);
                             actionCompleted = true;
                         }
                         else {
@@ -139,7 +142,6 @@ bool GameEngine::getAction(std::string line, int id){
                 }
                 else {
                     errors(1);
-                    players[id - 1]->addNode(t);
                 }
             }
             else {
@@ -153,51 +155,76 @@ bool GameEngine::getAction(std::string line, int id){
 
     return actionCompleted;
 }
-void GameEngine:: gameResult(int id1, int id2) {
-    Player* Player1 = players[id1 - 1];
-    Player* Player2 = players[id2 - 1];
-    int winnerID = choosingWinner(id1, id2);
-    Player* winnerPlayer = players[winnerID - 1];
+
+void GameEngine::checkScore(int id, char row, int col) {
+    
+    char start = 'A';
+    int rowCheck = 0;
+    int maxRowSize = board->getVerticalSize();
+
+    for(int i = 0; i < maxRowSize; i++) {
+        if(start != row) {
+            start++;
+            rowCheck++;
+        }
+        else {
+            i = maxRowSize;
+        }
+    }
+
+    int tempScore = board->calculateScore();
+    addScore(id, tempScore);
+
+    if(board->checkQuirkle()) {
+        std::cout << "QUIRKLE!!!" << std::endl;
+    }
+}
+
+void GameEngine::addScore(int id,int score) {
+    int currScore = players[id-1]->getScore() + score;
+    players[id-1]->setScore(currScore);
+}
+
+void GameEngine:: gameResult() {
+
+    int winnerID = 1;
+    bool draw = false;
+
     std::cout <<"Game over"<< std::endl;
-    std::cout<<"Score for "<<Player1->getName()<<":"<<Player1->getScore()<< std::endl;
-    std::cout<<"Score for "<<Player2->getName()<<":"<<Player2->getScore()<< std::endl;
-    std::cout<<"Player "<<winnerPlayer->getName()<<" won!"<<std::endl;
+
+    for(int i = 0; i < TOTAL_PLAYERS; i++) {
+        if(i + 1 != TOTAL_PLAYERS) {
+            if(players[winnerID - 1]->getScore() < players[i+1]->getScore()) {
+                winnerID = i + 2;
+            }
+            else if(players[winnerID - 1]->getScore() == players[i+1]->getScore()) {
+                draw = true;
+            }
+        }
+
+        std::cout << "Score for " << players[i]->getName() << ":" << players[i]->getScore() << std::endl;
+    }
+
+    if(draw == false) {
+        std::cout << "Player " << players[winnerID - 1]->getName() << " won!" << std::endl;
+    }
+    else {
+        int winningScore = players[winnerID - 1]->getScore();
+        std::string winners;
+        
+        for(int i = 0; i < TOTAL_PLAYERS; i++) {
+            if(players[i]->getScore() == winningScore) {
+                winners += players[i]->getName() + " ";
+            }
+        }
+        std::cout << "Players " << winners << " drew!" << std::endl;
+    }
+
     std::cout << std::endl;
     std::cout <<"Goodbye" <<std::endl;
 
 }
-void GameEngine::addScore(int id,int score) {
-    Player* currPlayer = players[id - 1];
-    int currScore = 0;
-    currScore = currPlayer->getScore() + score;
-    currPlayer->setScore(currScore);
-}
 
-
-int GameEngine:: calculateScore(int row, int col) {
-    int tempScore=1;
-    //minus the current tile
-    tempScore+=board->countPlacedTileByCol(col)-1;
-    tempScore+=board->countPlacedTileByRow(row)-1; 
-    return tempScore;
-}
-
-int GameEngine:: choosingWinner(int id1, int id2) {
-    Player* Player1 = players[id1 - 1];
-    Player* Player2 = players[id2 - 1];
-    int winnerID = 0;
-    if( Player1->getScore()>Player2->getScore()){
-        winnerID = Player1->getID();
-    }
-    else if(Player2->getScore()>Player1->getScore())
-    {
-         winnerID = Player2->getID();
-    }
-    // else{
-    //     return draw;
-    // }
-    return winnerID;
-}
 
 void GameEngine::errors(int error) {
     if(error == 1) {

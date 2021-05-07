@@ -59,46 +59,82 @@ void Board::printBoard(){
     
 }
 
+bool Board::checkQuirkle() {
+    int check = 0;
+    bool quirkleExists = false;
 
-int Board::countPlacedTileByCol(int col){
-    int numberPlacedTile = 0;
- 
-    int maxRowSize = getVerticalSize();
+    // checks below
+    for(int i = previouslyAdded[0]; i < getVerticalSize() && vectorBoard[i][previouslyAdded[1]] != nullptr; i++) {
+        check++;
+    }
+    
+    // checks above
+    for(int i = previouslyAdded[0] - 1; i > 0 && vectorBoard[i][previouslyAdded[1]] != nullptr; i--) {
+        check++;
+    }
 
-    Tile *currTile = nullptr;
+    if (check == 6) {
+        quirkleExists = true;
+    }
 
-    for(int currRow = 0; currRow < maxRowSize; currRow++){
-        currTile = getTile(currRow,col);
-        if(emptyTileValidation(currTile)){
-            numberPlacedTile++;
+    if(quirkleExists == false) {
+        check = 0;
+        // checks left and right
+        for(int i = previouslyAdded[1]; i < getHorizontalSize() && vectorBoard[previouslyAdded[0]][i] != nullptr; i++) {
+            check++;
+        }
+        for(int i = previouslyAdded[1] - 1; i > 0 && vectorBoard[previouslyAdded[0]][i] != nullptr; i--) {
+            check++;
+        }
+
+        if (check == 6) {
+            quirkleExists = true;
         }
     }
-    return numberPlacedTile;
+
+    return quirkleExists;
 }
-int Board::countPlacedTileByRow(int row){
-    int numberPlacedTile = 0;
+
+int Board::calculateScore() {
+
+    // col
+
+    // int numberPlacedTile = 0;
  
-    int maxColSize = getHorizontalSize();
+    // int maxRowSize = getVerticalSize();
 
-    Tile *currTile = nullptr;
+    // Tile *currTile = nullptr;
 
-    for(int currCol = 0; currCol < maxColSize; currCol++){
-        currTile = getTile(row,currCol);
-        if(emptyTileValidation(currTile)){
-            numberPlacedTile++;
-        }       
-    }
-    return numberPlacedTile;
+    // for(int currRow = 0; currRow < maxRowSize; currRow++){
+    //     currTile = getTile(currRow, previouslyAdded[1]);
+    //     if(emptyTileValidation(currTile)){
+    //         numberPlacedTile++;
+    //     }
+    // }
+    // return numberPlacedTile;
 
-}
 
-bool Board::emptyTileValidation(Tile*tile){
-    return true;
+    // // row
+
+    // int numberPlacedTile = 0;
+ 
+    // int maxColSize = getHorizontalSize();
+
+    // Tile *currTile = nullptr;
+
+    // for(int currCol = 0; currCol < maxColSize; currCol++){
+    //     currTile = getTile(previouslyAdded[0],currCol);
+    //     if(emptyTileValidation(currTile)){
+    //         numberPlacedTile++;
+    //     }       
+    // }
+    // return numberPlacedTile;
+
+    return 0;
 }
 
 bool Board::placeTile(char row, int col, Tile * tile){
     bool success = true;
-    
 
     char start = 'A';
     int rowCheck = 0;
@@ -159,11 +195,24 @@ bool Board::placeTile(char row, int col, Tile * tile){
             success = false;
         }
         else if(vectorBoard[rowCheck][col] == nullptr){
+            // check duplicate in row and cols
             tile->setRowCol(rowCheck, col);
-            // coordPlaced.push_back(new Coordinate(rowCheck, col));
-            vectorBoard[rowCheck][col] = tile;
-            //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
-            resizeBoard(rowCheck, col);
+            success = duplicate(tile, rowCheck, col);
+
+            if(success == true) {
+                // coordPlaced.push_back(new Coordinate(rowCheck, col));
+                vectorBoard[rowCheck][col] = tile;
+                // set the previous added so it can check the score for the player
+                previouslyAdded[0] = rowCheck;
+                previouslyAdded[1] = col;
+                //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
+                resizeBoard(rowCheck, col);
+            }
+            else {
+                std::cout << "Cannot have duplicate tile in the same lines." << std::endl;
+                tile->setRowCol(-1, -1);
+            }
+            
         }
         else {
             std::cout << "Must place tile on an empty position." << std::endl;
@@ -180,6 +229,79 @@ bool Board::placeTile(char row, int col, Tile * tile){
     }
 
     return success;
+}
+
+bool Board::duplicate(Tile* tile, int row, int col) {
+    std::cout << "Duplicate Method" << std::endl;
+    bool noDuplicates = true;
+    Tile* tiles[6];
+    int tilesCounter = 0;
+
+    // checks right
+    for(int i = tile->getCol() + 1; i < getVerticalSize() && vectorBoard[tile->getRow()][i] != nullptr; i++) {
+        if(tilesCounter < 6) {
+            tiles[tilesCounter] = vectorBoard[tile->getRow()][i];
+        }
+        tilesCounter++;
+    }
+    
+    // checks left
+    for(int i = tile->getCol() - 1; i > 0 && vectorBoard[tile->getRow()][i] != nullptr; i--) {
+        if(tilesCounter < 6) {
+            tiles[tilesCounter] = vectorBoard[tile->getRow()][i];
+        }
+        tilesCounter++;
+    }
+    
+    if(tilesCounter < 6) {
+        for(int x = 0; x < tilesCounter; x++) {
+            if(tile->getShape() == tiles[x]->getShape()) {
+                noDuplicates = false;
+                std::cout << "2" << std::endl;
+            }
+        }
+    }
+    else {
+        noDuplicates = false;
+    }
+    
+    if(noDuplicates == true) {
+        for(int i = 0; i < tilesCounter; i++) {
+            tiles[i] = nullptr;
+        }
+        tilesCounter = 0;
+
+        // below
+        for(int i = tile->getRow() + 1; i < getHorizontalSize() && vectorBoard[i][tile->getCol()] != nullptr; i++) {
+            if(tilesCounter < 6){
+                tiles[tilesCounter] = vectorBoard[i][tile->getCol()];
+            }
+            tilesCounter++;
+        }
+
+        // above
+        for(int i = tile->getRow() - 1; i > 0 && vectorBoard[i][tile->getCol()] != nullptr; i--) {
+            if(tilesCounter < 6){
+                tiles[tilesCounter] = vectorBoard[i][tile->getCol()];
+            }
+            tilesCounter++;
+        }
+
+        if(tilesCounter < 6) {
+            for(int x = 0; x < tilesCounter; x++) {
+                if(tile->getColour() == tiles[x]->getColour()) {
+                    std::cout << "3" << std::endl;
+                    noDuplicates = false;
+                }
+            }
+        }
+        else {
+            noDuplicates = false;
+        }
+        
+    }
+
+    return noDuplicates;
 }
 
 bool Board::checkRowTiles(Tile* current, Tile* left, Tile* right) {
@@ -240,7 +362,7 @@ void Board::resizeBoard(int row, int col){
     int maxColSize = getHorizontalSize()-1;
 
     // if tile is added at the top
-    if(row == minRowSize && row < MAX_BOARD_DIMENSION){
+    if(row == minRowSize && maxRowSize < MAX_BOARD_DIMENSION){
         std::vector<Tile *> temp;
 
         // adds a new row at the top
@@ -256,13 +378,16 @@ void Board::resizeBoard(int row, int col){
             for (col = minColSize; col != maxColSize; col++) {
                 if(vectorBoard[row][col] != nullptr) {
                     vectorBoard[row][col]->shiftRowDown();
+                    vectorBoard[row][col]->setRowCol(row+1, col);
                 }
             }
         }
+        previouslyAdded[0] += 1;
+
     }
     
     // if tile is added at the bottom
-    else if(row == maxRowSize && row < MAX_BOARD_DIMENSION) {
+    else if(row == maxRowSize && maxRowSize < MAX_BOARD_DIMENSION) {
         std::vector<Tile *> temp;
         
         // adds a new row at the bottom
@@ -273,7 +398,7 @@ void Board::resizeBoard(int row, int col){
     }
 
     // if tile is added at the left
-    else if(col == minColSize && col < MAX_BOARD_DIMENSION) {
+    else if(col == minColSize && maxColSize < MAX_BOARD_DIMENSION) {
 
         // add a col with nullptr each row at the front
         // move all tiles by one position to the left
@@ -286,13 +411,15 @@ void Board::resizeBoard(int row, int col){
             for (col = minColSize; col != maxColSize; col++) {
                 if(vectorBoard[row][col] != nullptr) {
                     vectorBoard[row][col]->shiftColRight();
+                    vectorBoard[row][col]->setRowCol(row, col+1);
                 }
             }
         }
+        previouslyAdded[1] += 1;
     }
 
     //if tile is added to the right
-    else if(col == maxColSize && col < MAX_BOARD_DIMENSION) {
+    else if(col == maxColSize && maxColSize < MAX_BOARD_DIMENSION) {
 
         // add a col with nullptr each row at the last
         for(auto &row : vectorBoard){

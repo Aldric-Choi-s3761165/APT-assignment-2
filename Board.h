@@ -8,6 +8,7 @@ class Board {
 private:
     std::vector<std::vector<Tile *>> vectorBoard;
     bool newGame;
+    int previouslyAdded[2];
     // std:vector<Coordinate *> coordsPlaced;
 
 
@@ -21,15 +22,15 @@ public:
     int getHorizontalSize();
     int getVerticalSize();
 
-    int countPlacedTileByRow(int row);
-    int countPlacedTileByCol(int col);
-    bool emptyTileValidation(Tile *tile);
-
     void getBoard(int row, int col);
     void setBoard(int row, int col);
 
     bool checkRowTiles(Tile* current, Tile* left, Tile* right);
     bool checkColTiles(Tile* current, Tile* above, Tile* below);
+    bool duplicate(Tile* tile, int row, int col);
+
+    bool checkQuirkle();
+    int calculateScore();
 };
 
 #endif // BOARD_H

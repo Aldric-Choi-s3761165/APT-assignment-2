@@ -352,6 +352,10 @@ bool nameValid(std::string in, bool operation) {
         }
     }
 
+    if(nameLength == 0) {
+        check = false;
+    }
+
     if(check == false) {
         std::cout << "Name is not valid!" << std::endl; 
     }
