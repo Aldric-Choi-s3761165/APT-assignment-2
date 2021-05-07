@@ -20,6 +20,7 @@ public:
     void testing();
     void display(int id);
     void getAction(std::string line, int id);
+    void tileDoesntExist();
 
 private:
     LinkedList* bag;

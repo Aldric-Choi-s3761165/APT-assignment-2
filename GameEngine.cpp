@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include <iostream>
 #include <random>
+#include <cstring>
 
 GameEngine::GameEngine() {
     bag = new LinkedList();
@@ -53,41 +54,85 @@ void GameEngine::gameRun(int id) {
     std::string input;
     
     while(gameRun) {
+        
         display(id);
-        std::cin >> input;
+        getline(std::cin, input);
         getAction(input, id);
         
         // game logic
         // check if winner
     }
 
-    players[1]->getPlayerHand()->removeNode(RED, CIRCLE);
+    //players[1]->getPlayerHand()->removeNode(RED, CIRCLE);
     players[1]->displayTileHand();
 }
 
 void GameEngine::getAction(std::string line, int id){
+
+    std::string stringCheck;
     if(line.size() == 14) {
         // place action
-        Tile* t = players[id]->getPlayerHand()->removeNode(line[7], line[8]);
-        if(t != nullptr) {
-            board->placeTile(line[13], line[14], t);
-            players[id]->addNode(bag->pop());
+        
+        stringCheck = line.substr(0, 5);
+        if(!(stringCheck.compare("place"))) {
+            
+            if(isalpha(line[6]) && isdigit(line[7])) {
+                char colour = line[6];
+                int shape = std::stoi(std::string(1,line[7]));
+                Tile* t = players[id - 1]->getPlayerHand()->getNode(colour, shape);
+
+                if(t != nullptr) {
+                    if (isdigit(line[13])) {
+                        char y = line[12];
+                        int x = std::stoi(std::string(1,line[13]));
+                        board->placeTile(y, x, t);
+                        players[id - 1]->addNode(bag->pop());
+                    }
+                }
+                else {
+                    tileDoesntExist();
+                }
+            }
+            else 
+            {
+                tileDoesntExist();
+            }
         }
-        else {
-            std::cout << "Tile does not exist in your hand" << std::endl;
+        else{
+            std::cout << "Invalid Command" << std::endl;
         }
+        
     }
     else if(line.size() == 10) {
         // replace action
-        Tile* t = players[id]->getPlayerHand()->removeNode(line[9], line[10]);
-        if(t != nullptr) {
-            bag->addBack(t);
-            players[id]->addNode(bag->pop());
+        
+        stringCheck = line.substr(0, 7);
+        if(!(stringCheck.compare("replace"))) {
+            if(isalpha(line[8]) && isdigit(line[9])) {
+                char colour = line[8];
+                int shape = std::stoi(std::string(1,line[9]));
+                Tile* t = players[id - 1]->getPlayerHand()->getNode(colour, shape);
+
+                if(t != nullptr) {
+                    bag->addBack(t);
+                    players[id - 1]->addNode(bag->pop());
+                }
+                else {
+                    tileDoesntExist();
+                }
+            }
+            else {
+                tileDoesntExist();
+            }
         }
-        else {
-            std::cout << "Tile does not exist in your hand" << std::endl;
+        else{
+            std::cout << "Invalid Command" << std::endl;
         }
     }
+}
+
+void GameEngine::tileDoesntExist() {
+    std::cout << "Tile does not exist in your hand" << std::endl;
 }
 
 void GameEngine::display(int id) {

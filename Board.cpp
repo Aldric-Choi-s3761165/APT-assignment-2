@@ -58,16 +58,30 @@ void Board::printBoard(){
     
 }
 
-void Board::placeTile(int row, int col, Tile * tile){
+void Board::placeTile(char row, int col, Tile * tile){
+    char start = 'A';
+    int rowCheck = 0;
+
     int maxRowSize = getVerticalSize();
     int maxColSize = getHorizontalSize();
-    if(row < maxRowSize && col < maxColSize && row >= 0 && col >= 0){
-        if(vectorBoard[row][col] == nullptr){
-            tile->setRowCol(row, col);
-            // coordPlaced.push_back(new Coordinate(row, col));
-            vectorBoard[row][col] = tile;
+
+    for(int i = 0; i < maxRowSize; i++) {
+        if(start != row) {
+            start++;
+            rowCheck++;
+        }
+        else {
+            i = maxRowSize;
+        }
+    }
+    
+    if(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0){
+        if(vectorBoard[rowCheck][col] == nullptr){
+            tile->setRowCol(rowCheck, col);
+            // coordPlaced.push_back(new Coordinate(rowCheck, col));
+            vectorBoard[rowCheck][col] = tile;
             //Checks if the tile placed is at the end of one of the sides of the board and resizes accdgly.
-            resizeBoard(row, col);
+            resizeBoard(rowCheck, col);
         }
     }
 }

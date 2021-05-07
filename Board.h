@@ -15,7 +15,7 @@ public:
     ~Board();
     void printBoard();
     void resizeBoard(int row, int col);
-    void placeTile(int row, int col, Tile * tile);
+    void placeTile(char row, int col, Tile * tile);
     Tile* getTile(int row, int col);
     int getHorizontalSize();
     int getVerticalSize();

@@ -39,22 +39,32 @@ void LinkedList::addBack(Tile* t){
     length++;
 }
 
-Tile* LinkedList::removeNode(Colour c, Shape s) {
+Tile* LinkedList::getNode(Colour c, Shape s) {
     Node* current = head;
     Node* prev = nullptr;
     Tile* returnTile = nullptr;
+    std::cout << length << std::endl;
 
-    for(int i = 0; i < length; i++) {
-        
-        if(current->getTile()->getColour() == c && current->getTile()->getShape() == s)  {
-            prev->setNext(current->getNext());
+    for(int i = 0; i < length; i++) 
+    {
+        if(current->getTile()->getColour() == c && current->getTile()->getShape() == s)  
+        {
+            if(prev == nullptr) {
+                head = current->getNext();
+            }
+            else {
+                prev->setNext(current->getNext());
+            }
+            
             returnTile = current->getTile();
-            delete current;
             length--;
             i = length;
         }
-        prev = current;
-        current = current->getNext();
+        else {
+            prev = current;
+            current = current->getNext();
+        }
+        
     }
 
     return returnTile;

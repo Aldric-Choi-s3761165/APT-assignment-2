@@ -19,7 +19,7 @@ void menu() {
     std::string input = "-1";
     while(valid == false) {
         std::cout << "> ";
-        std::cin >> input;
+        getline(std::cin, input);
         valid = checkValid(input);
     }
 
@@ -63,7 +63,7 @@ void newGame() {
 
     for(int i = 1; i <= TOTAL_PLAYERS; i++) {
         std::cout << "Enter a name for player " << i << " (uppercase characters only)\n" << "> ";
-        std::cin >> input;
+        getline(std::cin, input);
         if(nameValid(input, false) == true) {
             engine->newPlayer(i, input);
         }
@@ -75,7 +75,7 @@ void newGame() {
     }
     std::cout << "Let's Play!" << std::endl;
 
-    engine->gameRun(0);
+    engine->gameRun(1);
 
     //engine->testing();
 }
@@ -89,7 +89,7 @@ void loadGame() {
 
     while(check == -1) {
         std::cout << "Enter the filename from which load a game\n" << "> ";
-        std::cin >> input;
+        getline(std::cin, input);
         check = loadValid(input);
     }
 
