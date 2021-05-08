@@ -17,9 +17,11 @@ public:
     void createBoard(int row, int col, std::string states);
     void gameRun(int id);
     void setupGame();
+    void testing();
+    int getPlayerId(std::string name);
+    void newBag(LinkedList* bag);
 
 private:
-    void testing();
     void display(int id);
     bool getAction(std::string line, int id);
     void errors(int error);

@@ -64,7 +64,7 @@ void newGame() {
     for(int i = 1; i <= TOTAL_PLAYERS; i++) {
         std::cout << "Enter a name for player " << i << " (uppercase characters only)\n" << "> ";
         getline(std::cin, input);
-        if(nameValid(input, false) == true) {
+        if(nameValid(input, false, *engine) == true) {
             engine->newPlayer(i, input);
         }
         else {
@@ -103,9 +103,13 @@ void loadGame() {
     if(check == 1 || check == 2) {
         currentLine = loadPlayers(*engine, directory);
         int id = setupGame(*engine, directory, currentLine);
+        
+        if(id == 0) {
+            corruptFile();
+        }
 
         std::cout << "\nQwirkle game successfully loaded" << std::endl;
-        //engine->gameRun(id);
+        engine->gameRun(id);
     }
 }
 
@@ -187,11 +191,12 @@ int loadPlayers(GameEngine& engine, std::string in) {
             // line 1 of each player loop contains the player name
             // check whether name is valid then set it
             if(lineCounter == 1) {
-                if(nameValid(text, true) == false) {
+                if(nameValid(text, true, engine) == false) {
                     corruptFile();
                 }
 
                 playerName = text;
+                playerName.erase(std::prev(playerName.end()));
             }
 
             // line 2 of each player loop contains the score
@@ -207,7 +212,6 @@ int loadPlayers(GameEngine& engine, std::string in) {
 
                 text = std::string(1,c);
                 score = std::stoi(text);
-                
             }
 
             else if(lineCounter == 3) {
@@ -217,6 +221,7 @@ int loadPlayers(GameEngine& engine, std::string in) {
                 int shape = -1;
                 bool order = false;
                 bool ready = false;
+                int counter = 0;
 
                 for (int i = 0; text[i]; i++) {
                     
@@ -225,7 +230,7 @@ int loadPlayers(GameEngine& engine, std::string in) {
                         order = true;
                     }
                     else if(isdigit(text[i]) && text[i] != ',' && order == true) {
-                        shape = text[i];
+                        shape = std::stoi(std::string(1,text[i]));
                         ready = true;
                     }
                     else if(text[i] == ',' && ready == true) {
@@ -236,6 +241,10 @@ int loadPlayers(GameEngine& engine, std::string in) {
                     else if(ready == false && order == false) {
                         corruptFile();
                     }
+                    counter = i;
+                }
+                if(text[counter+1] == false && ready == true) {
+                    hand->addNode(new Tile(colour, shape));
                 }
 
                 engine.existingPlayer(playerID, playerName, score, hand);
@@ -256,6 +265,7 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
     int line = 1;
     std::string text;
     LinkedList* bag = new LinkedList();
+    int beginningPlayerID = 0;
 
     // loop the file till we get to the line 
     // we finished at previously with loadPlayers()
@@ -268,16 +278,14 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
         if(line == currentLine + 1) {
 
             if(text.size() != 4 || text[1] != ',' || !(isdigit(text[0])) || !(isdigit(text[2]))) {
-                std::cout << "Error1" << std::endl;
                 corruptFile();
             }
 
-            int row = text[0];
-            int col = text[2];
+            int row = std::stoi(std::string(1,text[0]));
+            int col = std::stoi(std::string(1,text[2]));
             getline(file, text);
 
             if(file.eof()) {
-                std::cout << "Error2" << std::endl;
                 corruptFile();
             }
 
@@ -287,42 +295,48 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
             line++;
         }
         else if(line == currentLine + 3) {
-            
             char colour = '%';
             int shape = -1;
             bool order = false;
             bool ready = false;
+            int counter = 0;
 
             for (int i = 0; text[i]; i++) {
                 
                 if(isupper(text[i]) && isalpha(text[i]) && text[i] != ',' && order == false) {
-                    std::cout << text[i];
                     colour = text[i];
                     order = true;
                 }
                 else if(isdigit(text[i]) && text[i] != ',' && order == true) {
-                    std::cout << text[i];
-                    shape = text[i];
+                    shape = std::stoi(std::string(1,text[i]));
                     ready = true;
                 }
                 else if(text[i] == ',' && ready == true) {
-                    std::cout << text[i];
                     bag->addNode(new Tile(colour, shape));
                     order = false;
                     ready = false;
                 }
                 else if(ready == false && order == false) {
-                    std::cout << "Error3" << std::endl;
                     corruptFile();
-                }     
+                }
+                
+                counter = i;  
             }
+            
+            if(text[counter+1] == false && ready == true) {
+                bag->addNode(new Tile(colour, shape));
+            }
+
+            engine.newBag(bag);
+            
         }
         else if(line == currentLine + 4) {
             
+            std::string playerName = text;
+            beginningPlayerID = engine.getPlayerId(playerName);
         }
         else {
             std::cout << text << std::endl;
-            std::cout << "Error4" << std::endl;
             corruptFile();
         }
 
@@ -330,12 +344,12 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
     }
 
     file.close();
-    return 0;
+    return beginningPlayerID;
 }
 
 // check whether the given name is valid for both new game and load game
 // for load game it checks whether the name was altered
-bool nameValid(std::string in, bool operation) {
+bool nameValid(std::string in, bool operation, GameEngine& engine) {
     bool check = true;
     int nameLength = in.length();
     
@@ -358,6 +372,13 @@ bool nameValid(std::string in, bool operation) {
 
     if(check == false) {
         std::cout << "Name is not valid!" << std::endl; 
+    }
+
+    if(check == true) {
+        if(engine.getPlayerId(in) != 0){
+            std::cout << "There is already an existing name." << std::endl;
+            check = false;
+        }
     }
 
     return check;

@@ -48,6 +48,67 @@ bool GameEngine::existingPlayer(int id, std::string name, int score, LinkedList*
 void GameEngine::createBoard(int row, int col, std::string states) {
     board->setBoard(row, col);
     // setup states
+    Colour colour = '%';
+    Shape shape = -1;
+    char boardRow = '%';
+    int boardCol = -1;
+    
+    int order = 0;
+    bool ready = false;
+    int counter = 0;
+
+    bool tilePlaced = true;
+    
+    for (int i = 0; states[i]; i++) {
+                    
+        if(isupper(states[i]) && isalpha(states[i]) && states[i] != ',' && order == 0) {
+            colour = states[i];
+            order = 1;
+        }
+        else if(isdigit(states[i]) && states[i] != ',' && order == 1) {
+            shape = std::stoi(std::string(1, states[i]));
+            order = 2;
+        }
+        else if(states[i] == '@' && order == 2) {
+            order = 3;
+        }
+        else if(isupper(states[i]) && isalpha(states[i]) && states[i] != ',' && order == 3) {
+            boardRow = states[i];
+            order = 4;
+        }
+        else if(isdigit(states[i]) && states[i] != ',' && order == 4) {
+            boardCol = std::stoi(std::string(1,states[i]));
+            order = 5;
+            ready = true;
+        }
+        else if(states[i] == ',' && ready == true && order == 5) {
+            tilePlaced = board->placeTile(boardRow, boardCol, new Tile(colour, shape));
+            order = 0;
+            ready = false;
+        }
+        else if(ready == false && order != 0) {
+            throw std::runtime_error("Load game board states have been modified");
+        }
+
+        if(tilePlaced == false) {
+            throw std::runtime_error("Load game board states have been modified");
+        }
+
+        counter = i;
+    }
+
+    if(states[counter+1] == false && ready == true) {
+        tilePlaced = board->placeTile(boardRow, boardCol, new Tile(colour, shape));
+        if(tilePlaced == false) {
+            throw std::runtime_error("Load game board states have been modified");
+        }
+    }
+
+}
+
+void GameEngine::newBag(LinkedList* bag) {
+    delete this->bag;
+    this->bag = bag;
 }
 
 void GameEngine::gameRun(int id) {
@@ -303,6 +364,21 @@ void GameEngine::setupGame() {
         }
     }
 
+}
+
+int GameEngine::getPlayerId(std::string name) {
+    int playerID = 0;
+
+    for(int i = 0; i < TOTAL_PLAYERS; i++) {
+        if(players[i] != nullptr) {
+            if(!(name.compare(players[i]->getName()))) {
+                playerID = players[i]->getID();
+                i = TOTAL_PLAYERS;
+            }
+        }
+    }
+
+    return playerID;
 }
 
 void GameEngine::testing() {

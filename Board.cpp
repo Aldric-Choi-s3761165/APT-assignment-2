@@ -194,9 +194,17 @@ bool Board::placeTile(char row, int col, Tile * tile){
         }
     }
     
-    if(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0 && success == true){
-        if( (rowCheck == 0 && (col == 0 || col == maxColSize -1)) || (rowCheck == maxColSize && (col == 0 || col == maxColSize -1)) ) {
-            std::cout << "INVALID: Cannot put in the edges of the board." << std::endl;
+    
+    if(success == true){
+        if(!(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0)) {
+            std::cout << "INVALID: Position out of Bound." << std::endl;
+            success = false;
+        }
+        else if( ((rowCheck == 0 && (col == 0 || col == maxColSize -1)) || 
+            (rowCheck == maxRowSize - 1  && (col == 0 || col == maxColSize -1)))
+            && newGame == true ) {
+                
+            std::cout << "INVALID: Cannot place in edge during start of game." << std::endl;
             success = false;
         }
         else if(vectorBoard[rowCheck][col] == nullptr){
@@ -225,10 +233,6 @@ bool Board::placeTile(char row, int col, Tile * tile){
         }
     }
 
-    if(success == true) {
-        // check score etc
-    }
-
     if(success == true && newGame == true) {
         newGame = false;
     }
@@ -237,7 +241,6 @@ bool Board::placeTile(char row, int col, Tile * tile){
 }
 
 bool Board::duplicate(Tile* tile, int row, int col) {
-    std::cout << "Duplicate Method" << std::endl;
     bool noDuplicates = true;
     Tile* tiles[6];
     int tilesCounter = 0;
@@ -262,7 +265,6 @@ bool Board::duplicate(Tile* tile, int row, int col) {
         for(int x = 0; x < tilesCounter; x++) {
             if(tile->getShape() == tiles[x]->getShape()) {
                 noDuplicates = false;
-                std::cout << "2" << std::endl;
             }
         }
     }
@@ -295,7 +297,6 @@ bool Board::duplicate(Tile* tile, int row, int col) {
         if(tilesCounter < 6) {
             for(int x = 0; x < tilesCounter; x++) {
                 if(tile->getColour() == tiles[x]->getColour()) {
-                    std::cout << "3" << std::endl;
                     noDuplicates = false;
                 }
             }
@@ -367,7 +368,7 @@ void Board::resizeBoard(int row, int col){
     int maxColSize = getHorizontalSize()-1;
 
     // if tile is added at the top
-    if(row == minRowSize && maxRowSize < MAX_BOARD_DIMENSION){
+    if(row == minRowSize && maxRowSize < MAX_BOARD_DIMENSION - 1){
         std::vector<Tile *> temp;
 
         // adds a new row at the top
@@ -392,7 +393,7 @@ void Board::resizeBoard(int row, int col){
     }
     
     // if tile is added at the bottom
-    else if(row == maxRowSize && maxRowSize < MAX_BOARD_DIMENSION) {
+    else if(row == maxRowSize && maxRowSize < MAX_BOARD_DIMENSION - 1) {
         std::vector<Tile *> temp;
         
         // adds a new row at the bottom
@@ -403,7 +404,7 @@ void Board::resizeBoard(int row, int col){
     }
 
     // if tile is added at the left
-    else if(col == minColSize && maxColSize < MAX_BOARD_DIMENSION) {
+    else if(col == minColSize && maxColSize < MAX_BOARD_DIMENSION - 1) {
 
         // add a col with nullptr each row at the front
         // move all tiles by one position to the left
@@ -424,7 +425,7 @@ void Board::resizeBoard(int row, int col){
     }
 
     //if tile is added to the right
-    else if(col == maxColSize && maxColSize < MAX_BOARD_DIMENSION) {
+    else if(col == maxColSize && maxColSize < MAX_BOARD_DIMENSION - 1) {
 
         // add a col with nullptr each row at the last
         for(auto &row : vectorBoard){
