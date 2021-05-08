@@ -31,6 +31,9 @@ public:
 
     bool checkQuirkle();
     int calculateScore();
+
+    int checkQuirkleVertical();
+    int checkQuirkleHorizontal();
 };
 
 #endif // BOARD_H

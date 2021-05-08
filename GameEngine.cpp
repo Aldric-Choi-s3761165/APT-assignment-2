@@ -6,6 +6,7 @@
 GameEngine::GameEngine() {
     bag = new LinkedList();
     board = new Board();
+    gameRunning = true;
 }
 
 GameEngine::~GameEngine() {
@@ -50,10 +51,10 @@ void GameEngine::createBoard(int row, int col, std::string states) {
 }
 
 void GameEngine::gameRun(int id) {
-    bool gameRun = true;
+    
     std::string input;
     
-    while(gameRun) {
+    while(gameRunning) {
         
         display(id);
         getline(std::cin, input);
@@ -65,9 +66,7 @@ void GameEngine::gameRun(int id) {
                 id = 1;
             }
         }
-        
-        // game logic
-        // check if winner
+
     }
 
     //players[1]->getPlayerHand()->removeNode(RED, CIRCLE);
@@ -97,7 +96,9 @@ bool GameEngine::getAction(std::string line, int id){
                         x = std::stoi(cut);
                         
                         if(board->placeTile(y, x, t)) {
-                            players[id - 1]->addNode(bag->pop());
+                            if(bag->getLength() > 0) {
+                                players[id - 1]->addNode(bag->pop());
+                            }
                             checkScore(id, y, x);
                             actionCompleted = true;
                         }
@@ -133,15 +134,20 @@ bool GameEngine::getAction(std::string line, int id){
             if(isalpha(line[8]) && isdigit(line[9])) {
                 char colour = line[8];
                 int shape = std::stoi(std::string(1,line[9]));
-                Tile* t = players[id - 1]->getPlayerHand()->getNode(colour, shape);
+                if(bag->getLength() > 0) {
+                    Tile* t = players[id - 1]->getPlayerHand()->getNode(colour, shape);
 
-                if(t != nullptr) {
-                    bag->addBack(t);
-                    players[id - 1]->addNode(bag->pop());
-                    actionCompleted = true;
+                    if(t != nullptr) {
+                        bag->addBack(t);
+                        players[id - 1]->addNode(bag->pop());
+                        actionCompleted = true;
+                    }
+                    else {
+                        errors(1);
+                    }
                 }
                 else {
-                    errors(1);
+                    errors(3);
                 }
             }
             else {
@@ -178,6 +184,12 @@ void GameEngine::checkScore(int id, char row, int col) {
     if(board->checkQuirkle()) {
         std::cout << "QUIRKLE!!!" << std::endl;
     }
+
+    if(players[id-1]->getPlayerHand()->getLength() == 0) {
+        gameResult();
+    }
+
+    //std::cout << "Temp: " << tempScore << ", Current: " << players[id-1]->getScore() << std::endl;
 }
 
 void GameEngine::addScore(int id,int score) {
@@ -223,6 +235,7 @@ void GameEngine:: gameResult() {
     std::cout << std::endl;
     std::cout <<"Goodbye" <<std::endl;
 
+    gameRunning = false;
 }
 
 
@@ -233,7 +246,9 @@ void GameEngine::errors(int error) {
     else if(error == 2) {
         std::cout << "Invalid Command" << std::endl;
     }
-    
+    else if(error == 3) {
+        std::cout << "Bag has no more tiles" << std::endl;
+    }
 
 }
 

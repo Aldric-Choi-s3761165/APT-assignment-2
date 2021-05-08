@@ -32,6 +32,7 @@ private:
     LinkedList* bag;
     Player* players[TOTAL_PLAYERS];
     Board* board;
+    bool gameRunning;
     
 };
 

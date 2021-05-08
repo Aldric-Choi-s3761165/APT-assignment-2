@@ -59,19 +59,42 @@ void Board::printBoard(){
     
 }
 
-bool Board::checkQuirkle() {
+int Board::checkQuirkleVertical() {
     int check = 0;
-    bool quirkleExists = false;
 
-    // checks below
     for(int i = previouslyAdded[0]; i < getVerticalSize() && vectorBoard[i][previouslyAdded[1]] != nullptr; i++) {
         check++;
     }
     
-    // checks above
+    
     for(int i = previouslyAdded[0] - 1; i > 0 && vectorBoard[i][previouslyAdded[1]] != nullptr; i--) {
         check++;
     }
+
+    return check;
+}
+
+int Board::checkQuirkleHorizontal() {
+    int check = 0;
+
+    for(int i = previouslyAdded[1]; i < getHorizontalSize() && vectorBoard[previouslyAdded[0]][i] != nullptr; i++) {
+        check++;
+    }
+    for(int i = previouslyAdded[1] - 1; i > 0 && vectorBoard[previouslyAdded[0]][i] != nullptr; i--) {
+        check++;
+    }
+
+    return check;
+}
+
+
+
+bool Board::checkQuirkle() {
+    int check = 0;
+    bool quirkleExists = false;
+
+    // checks above and below
+    check = checkQuirkleVertical();
 
     if (check == 6) {
         quirkleExists = true;
@@ -79,13 +102,9 @@ bool Board::checkQuirkle() {
 
     if(quirkleExists == false) {
         check = 0;
+        
         // checks left and right
-        for(int i = previouslyAdded[1]; i < getHorizontalSize() && vectorBoard[previouslyAdded[0]][i] != nullptr; i++) {
-            check++;
-        }
-        for(int i = previouslyAdded[1] - 1; i > 0 && vectorBoard[previouslyAdded[0]][i] != nullptr; i--) {
-            check++;
-        }
+        check = checkQuirkleHorizontal();
 
         if (check == 6) {
             quirkleExists = true;
@@ -97,40 +116,26 @@ bool Board::checkQuirkle() {
 
 int Board::calculateScore() {
 
-    // col
+    int vertical = checkQuirkleVertical();
+    int horizontal = checkQuirkleHorizontal();
+    int bonus = 0;
+    int returnValue;
 
-    // int numberPlacedTile = 0;
- 
-    // int maxRowSize = getVerticalSize();
+    if(vertical == 6) {
+        bonus += 6;
+    }
+    
+    if(horizontal == 6) {
+        bonus += 6;
+    }
 
-    // Tile *currTile = nullptr;
+    returnValue = vertical + horizontal + bonus;
 
-    // for(int currRow = 0; currRow < maxRowSize; currRow++){
-    //     currTile = getTile(currRow, previouslyAdded[1]);
-    //     if(emptyTileValidation(currTile)){
-    //         numberPlacedTile++;
-    //     }
-    // }
-    // return numberPlacedTile;
+    if(vertical == 1 || horizontal == 1) {
+        returnValue--;
+    }
 
-
-    // // row
-
-    // int numberPlacedTile = 0;
- 
-    // int maxColSize = getHorizontalSize();
-
-    // Tile *currTile = nullptr;
-
-    // for(int currCol = 0; currCol < maxColSize; currCol++){
-    //     currTile = getTile(previouslyAdded[0],currCol);
-    //     if(emptyTileValidation(currTile)){
-    //         numberPlacedTile++;
-    //     }       
-    // }
-    // return numberPlacedTile;
-
-    return 0;
+    return returnValue;
 }
 
 bool Board::placeTile(char row, int col, Tile * tile){
