@@ -2,6 +2,7 @@
 #include <iostream>
 #include <random>
 #include <cstring>
+#include <fstream>
 
 GameEngine::GameEngine() {
     bag = new LinkedList();
@@ -118,29 +119,36 @@ void GameEngine::gameRun(int id) {
     while(gameRunning) {
         
         display(id);
+        std::cout << "> ";
         getline(std::cin, input);
         
-        // if command was completed successfully
-        if(getAction(input, id)) {
-            id++;
-            if(id > TOTAL_PLAYERS) {
-                id = 1;
+        if(std::cin) {
+            // if command was completed successfully
+            if(getAction(input, id)) {
+                id++;
+                if(id > TOTAL_PLAYERS) {
+                    id = 1;
+                }
             }
+        }
+        else {
+            std::cout << "^D\n" << std::endl;
+            gameRunning = false;
         }
 
     }
 
-    //players[1]->getPlayerHand()->removeNode(RED, CIRCLE);
-    players[1]->displayTileHand();
 }
 
 bool GameEngine::getAction(std::string line, int id){
 
     bool actionCompleted = false;
+    bool invalidAction = true;
     std::string stringCheck;
+
     if(line.size() >= 14) {
         // place action
-        
+        invalidAction = false;
         stringCheck = line.substr(0, 5);
         if(!(stringCheck.compare("place"))) {
             
@@ -183,13 +191,15 @@ bool GameEngine::getAction(std::string line, int id){
             }
         }
         else{
-            errors(2);
+            invalidAction = true;
         }
         
     }
-    else if(line.size() == 10) {
+
+    if(line.size() == 10 && invalidAction == true) {
         // replace action
         
+        invalidAction = false;
         stringCheck = line.substr(0, 7);
         if(!(stringCheck.compare("replace"))) {
             if(isalpha(line[8]) && isdigit(line[9])) {
@@ -216,8 +226,42 @@ bool GameEngine::getAction(std::string line, int id){
             }
         }
         else{
-            errors(2);
+            invalidAction = true;
         }
+    }
+
+    if(line.size() >= 4 && invalidAction == true) {
+        invalidAction = false;
+        stringCheck = line.substr(0, 5);
+        bool spaceExists = false;
+
+        if(!(stringCheck.compare("save "))) {
+            if(line.size() > 5) {
+                std::string fileName = line.substr(5, line.size() - 4);
+                for(int i = 0; fileName[i]; i++) {
+                    if(isspace(fileName[i])) {
+                        spaceExists = true;
+                    }
+                }
+
+                if(spaceExists == false) {
+                    saveFile(fileName, id);
+                }
+                else {
+                    errors(4);
+                }
+            }
+            else {
+                std::cout << "No filename given" << std::endl;
+            }
+        }
+        else {
+            invalidAction = true;
+        }
+    }
+
+    if(invalidAction == true) {
+        errors(2);
     }
 
     return actionCompleted;
@@ -252,7 +296,6 @@ void GameEngine::checkScore(int id, char row, int col) {
         gameResult();
     }
 
-    //std::cout << "Temp: " << tempScore << ", Current: " << players[id-1]->getScore() << std::endl;
 }
 
 void GameEngine::addScore(int id,int score) {
@@ -312,6 +355,9 @@ void GameEngine::errors(int error) {
     else if(error == 3) {
         std::cout << "Bag has no more tiles" << std::endl;
     }
+    else if (error == 4){
+        std::cout << "Invalid filename. There should be no spaces." << std::endl;
+    }
 
 }
 
@@ -368,6 +414,7 @@ void GameEngine::setupGame() {
 
 int GameEngine::getPlayerId(std::string name) {
     int playerID = 0;
+    
 
     for(int i = 0; i < TOTAL_PLAYERS; i++) {
         if(players[i] != nullptr) {
@@ -379,6 +426,28 @@ int GameEngine::getPlayerId(std::string name) {
     }
 
     return playerID;
+}
+
+void GameEngine::saveFile(std::string fileName, int id) {
+    std::string directory = "saves/" + fileName;
+    std::ofstream saveFile(directory, std::ofstream::out);
+    std::string name;
+    //saveFile.open(fileName);
+
+    for(int i = 0; i < TOTAL_PLAYERS; i++) {
+        saveFile << players[i]->getName() << std::endl;
+        saveFile << players[i]->getScore() << std::endl;
+        saveFile << players[i]->getPlayerHand()->savingNodes() << std::endl;
+
+        if(players[i]->getID() == id) {
+            name = players[i]->getName();
+        }
+    }
+
+    saveFile << board->getVerticalSize() << "," << board->getHorizontalSize() << std::endl;
+    saveFile << board->getPlaceTileOrder()->printingNodesWithCoordinates(",") << std::endl;
+    saveFile << bag->savingNodes() << std::endl;
+    saveFile << name;
 }
 
 void GameEngine::testing() {

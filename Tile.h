@@ -14,11 +14,12 @@ public:
    Tile(Colour colour,Shape shape);
    ~Tile();
 
-   char getColour();
-   int getShape();
+   Colour getColour();
+   Shape getShape();
 
    int getRow();
    int getCol();
+   Colour getCharColour(int row);
    
    void setRowCol(int row, int col);
    void shiftRowDown();

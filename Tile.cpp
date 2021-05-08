@@ -27,6 +27,23 @@ int Tile::getCol(){
     return col;
 }
 
+Colour Tile::getCharColour(int row) {
+    char letter = 'A';
+    int checkRow = row;
+
+    for(int i = 0; i < row; i++) {
+        if(letter != checkRow) {
+            letter++;
+            checkRow++;
+        }
+        else {
+            i = row;
+        }
+    }    
+
+    return letter;
+}
+
 void Tile::setRowCol(int row, int col) {
     this->row = row;
     this->col = col;

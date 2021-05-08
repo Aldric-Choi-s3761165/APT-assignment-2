@@ -3,6 +3,7 @@
 
 #include "Node.h"
 #include "Tile.h"
+#include <string>
 
 class LinkedList {
 
@@ -18,9 +19,13 @@ public:
     void removeAllNodes();
 
     void printNodes();
+    std::string savingNodes();
     int getLength();
+    std::string printingNodesWithCoordinates(std::string space);
     
 private:
+    std::string printingNodes(std::string space);
+    
     Node* head;
     Node* tail;
     int length;

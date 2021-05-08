@@ -62,8 +62,7 @@ Tile* LinkedList::getNode(Colour c, Shape s) {
         else {
             prev = current;
             current = current->getNext();
-        }
-        
+        } 
     }
 
     return returnTile;
@@ -84,20 +83,47 @@ void LinkedList::removeAllNodes() {
 }
 
 void LinkedList::printNodes() {
-    Node* upto = head;
-    
-    for(int i = 0; i < length - 1; i++) {
-        std::cout << upto->getTile()->getColour() << upto->getTile()->getShape() << ", ";
-        upto = upto->getNext();
-    }
-    std::cout << upto->getTile()->getColour() << upto->getTile()->getShape() << std::endl;
+    std::cout << printingNodes(", ") << std::endl;
+}
 
-//     std::cout << "head->";
-//     while(upto != nullptr) {
-//         std::cout << "|" << upto->getTile()->getColour() << upto->getTile()->getShape() << "|-->";
-//         upto = upto->getNext();
-//     }
-//     std::cout << "null" << std::endl;
+std::string LinkedList::savingNodes() {
+    return printingNodes(",");
+}
+
+std::string LinkedList::printingNodes(std::string space) {
+    Node* upto = head;
+    std::string printing;
+    
+    if(head != nullptr) {
+        for(int i = 0; i < length - 1; i++) {
+            printing = printing + upto->getTile()->getColour() + std::to_string(upto->getTile()->getShape()) + space;
+            upto = upto->getNext();
+        }
+        
+        printing = printing + upto->getTile()->getColour() + std::to_string(upto->getTile()->getShape()); 
+    }
+
+    return printing;
+}
+
+std::string LinkedList::printingNodesWithCoordinates(std::string space) {
+    Node* upto = head;
+    std::string printing;
+    
+    if(head != nullptr) {
+        for(int i = 0; i < length - 1; i++) {
+            
+            printing = printing + upto->getTile()->getColour() + std::to_string(upto->getTile()->getShape()) + "@" 
+            + upto->getTile()->getCharColour(upto->getTile()->getRow()) + std::to_string(upto->getTile()->getCol()) + space;
+            
+            upto = upto->getNext();
+        }
+        
+        printing = printing + upto->getTile()->getColour() + std::to_string(upto->getTile()->getShape()) + "@" 
+        + upto->getTile()->getCharColour(upto->getTile()->getRow()) + std::to_string(upto->getTile()->getCol()); 
+    }
+
+    return printing;
 }
 
 int LinkedList::getLength() {

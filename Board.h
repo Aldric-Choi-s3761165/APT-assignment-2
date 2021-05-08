@@ -2,7 +2,7 @@
 #define BOARD_H 
 #include "Tile.h"
 #include <vector>
-
+#include "LinkedList.h"
 
 class Board {
 
@@ -21,6 +21,8 @@ public:
     int getHorizontalSize();
     int getVerticalSize();
 
+    LinkedList* getPlaceTileOrder();
+
 private:
     void resizeBoard(int row, int col);
     Tile* getTile(int row, int col);
@@ -37,6 +39,7 @@ private:
     std::vector<std::vector<Tile *>> vectorBoard;
     bool newGame;
     int previouslyAdded[2];
+    LinkedList* placeTileOrder;
     // std:vector<Coordinate *> coordsPlaced;
 
 };

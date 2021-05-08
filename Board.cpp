@@ -4,9 +4,11 @@
 #include <algorithm>
 
 
+
 Board::Board(){
     vectorBoard = std::vector<std::vector<Tile *>>(6, std::vector<Tile *> (6, nullptr));
     newGame = true;
+    placeTileOrder = new LinkedList();
     // std::vector<Tile *> temp;
     // temp.push_back(nullptr);
     // vectorBoard.push_back(temp);
@@ -220,6 +222,7 @@ bool Board::placeTile(char row, int col, Tile * tile){
                 previouslyAdded[1] = col;
                 //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
                 resizeBoard(rowCheck, col);
+                placeTileOrder->addBack(tile);
             }
             else {
                 std::cout << "Cannot have duplicate tile in the same lines." << std::endl;
@@ -444,4 +447,8 @@ int Board::getVerticalSize(){
 
 void Board::setBoard(int row, int col) {
     vectorBoard = std::vector<std::vector<Tile *>>(row, std::vector<Tile *> (col, nullptr));
+}
+
+LinkedList* Board::getPlaceTileOrder(){
+    return placeTileOrder;
 }

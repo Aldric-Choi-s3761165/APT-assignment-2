@@ -29,6 +29,7 @@ private:
     void addScore(int id,int score);
     int calculateScore(int row,int col);
     void checkScore(int id, char y, int x);
+    void saveFile(std::string fileName, int id);
     
     LinkedList* bag;
     Player* players[TOTAL_PLAYERS];

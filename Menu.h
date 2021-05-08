@@ -11,7 +11,7 @@ void credits();
 bool checkValid(std::string in);
 void display();
 GameEngine* newEngine();
-bool nameValid(std::string in, bool operation, GameEngine& engine);
+bool nameValid(std::string in, GameEngine& engine);
 int loadValid(std::string in);
 int loadPlayers(GameEngine& engine, std::string in);
 int setupGame(GameEngine& engine, std::string in, int currentLine);

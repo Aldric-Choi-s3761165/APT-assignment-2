@@ -7,6 +7,7 @@ int main(void) {
     std::cout << "Welcome to Qurikle!" << std::endl;
     std::cout << "-------------------" << std::endl;
     menu();
+    std::cout << "Goodbye" << std::endl;
 
     return EXIT_SUCCESS;
 }
@@ -20,27 +21,28 @@ void menu() {
     while(valid == false) {
         std::cout << "> ";
         getline(std::cin, input);
-        valid = checkValid(input);
+        if(std::cin) {
+            valid = checkValid(input);
+        }
+        else {
+            valid = true;
+        }
     }
 
+    std::cout << std::endl;
     if(input.compare("-1")) {
-        
-        std::cout << "\n";
 
         if(!input.compare("1")) {
             newGame();
-    }
+        }
         else if(!input.compare("2")) {
             loadGame();
         }
-        else if(!input.compare("4")) {
-            std::cout << "Goodbye" << std::endl;
-        }
     }
-    else {
+    else if(std::cin) {
         throw std::runtime_error("An error has occured");
     }
-    
+
 }
 
 void display() {
@@ -57,6 +59,7 @@ void display() {
 void newGame() {
     GameEngine* engine = newEngine();
     engine->setupGame();
+    bool eof = false;
 
     std::cout << "Starting a New Game \n" << std::endl;
     std::string input;
@@ -64,20 +67,30 @@ void newGame() {
     for(int i = 1; i <= TOTAL_PLAYERS; i++) {
         std::cout << "Enter a name for player " << i << " (uppercase characters only)\n" << "> ";
         getline(std::cin, input);
-        if(nameValid(input, false, *engine) == true) {
-            engine->newPlayer(i, input);
+
+        if(std::cin) {
+            if(nameValid(input, *engine) == true) {
+                engine->newPlayer(i, input);
+            }
+            else {
+                i--;
+            }
+            
+            std::cout << "\n";
         }
         else {
-            i--;
+            i = TOTAL_PLAYERS + 1;
+            eof = true;
+            std::cout << "^D\n" << std::endl;
         }
         
-        std::cout << "\n";
     }
-    std::cout << "Let's Play!" << std::endl;
 
-    engine->gameRun(1);
-
-    //engine->testing();
+    if(eof == false) {
+        std::cout << "Let's Play!" << std::endl;
+        engine->gameRun(1);
+        //engine->testing();
+    }
 }
 
 void loadGame() {
@@ -90,7 +103,27 @@ void loadGame() {
     while(check == -1) {
         std::cout << "Enter the filename from which load a game\n" << "> ";
         getline(std::cin, input);
-        check = loadValid(input);
+        bool spaceExists = false;
+
+        if(std::cin) {
+            for(int i = 0; input[i]; i++) {
+                if(isspace(input[i])) {
+                    spaceExists = true;
+                }
+            }
+
+            if(input == "") {
+                spaceExists = true;
+            }
+
+            if(spaceExists == false) {
+                check = loadValid(input);
+            }
+        }
+        else {
+            check = -2;
+            std::cout << "^D\n" << std::endl;
+        }
     }
 
     if(check == 1){
@@ -105,6 +138,7 @@ void loadGame() {
         int id = setupGame(*engine, directory, currentLine);
         
         if(id == 0) {
+            std::cout << "8" << std::endl;
             corruptFile();
         }
 
@@ -191,12 +225,16 @@ int loadPlayers(GameEngine& engine, std::string in) {
             // line 1 of each player loop contains the player name
             // check whether name is valid then set it
             if(lineCounter == 1) {
-                if(nameValid(text, true, engine) == false) {
+                playerName = "";
+                for(int i = 0; text[i] && int(text[i]) != 13 ; i++) {
+                    playerName = playerName + text[i];
+                    // std::cout << int(text[i]) << std::endl;
+                }
+
+                if(nameValid(playerName, engine) == false) {
                     corruptFile();
                 }
 
-                playerName = text;
-                playerName.erase(std::prev(playerName.end()));
             }
 
             // line 2 of each player loop contains the score
@@ -205,8 +243,8 @@ int loadPlayers(GameEngine& engine, std::string in) {
             else if(lineCounter == 2) {
                 //parse int
                 char c = text[0];
-                // > 2 since it include '\n' 
-                if(!(isdigit(c)) || text.size() != 2) {
+
+                if(!(isdigit(c))) {
                     corruptFile();
                 }
 
@@ -275,10 +313,19 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
     }
 
     while(getline(file, text)) {
-        if(line == currentLine + 1) {
-
-            if(text.size() != 4 || text[1] != ',' || !(isdigit(text[0])) || !(isdigit(text[2]))) {
+        if(line == currentLine + 1) {            
+            if(text.size() < 3 && text.size() > 4) {
                 corruptFile();
+            }
+            else {
+                if(text[1] != ',' || !(isdigit(text[0])) || !(isdigit(text[2]))) {
+                    if(text.size() == 4 && !(int(text[3]) == 13)) {
+                        corruptFile();
+                    }
+                    else if(text.size() == 3) {
+                        corruptFile();
+                    }
+                }
             }
 
             int row = std::stoi(std::string(1,text[0]));
@@ -331,12 +378,10 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
             
         }
         else if(line == currentLine + 4) {
-            
             std::string playerName = text;
             beginningPlayerID = engine.getPlayerId(playerName);
         }
         else {
-            std::cout << text << std::endl;
             corruptFile();
         }
 
@@ -349,15 +394,9 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
 
 // check whether the given name is valid for both new game and load game
 // for load game it checks whether the name was altered
-bool nameValid(std::string in, bool operation, GameEngine& engine) {
+bool nameValid(std::string in, GameEngine& engine) {
     bool check = true;
     int nameLength = in.length();
-    
-    // operation set to true if nameValid check was called from load
-    // since the in string contains '\n' at the end we must ignore this
-    if(operation == true) {
-        nameLength--;
-    }
 
     for(int i = 0; i < nameLength; i++) {
         if(std::isupper(in[i]) == false || std::isalpha(in[i]) == false) {
