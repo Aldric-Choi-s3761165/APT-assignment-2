@@ -186,6 +186,8 @@ void GameEngine::checkScore(int id, char row, int col) {
     }
 
     if(players[id-1]->getPlayerHand()->getLength() == 0) {
+        // player who uses all cards gets bonus 6 points and game ends
+        addScore(id, 6);
         gameResult();
     }
 

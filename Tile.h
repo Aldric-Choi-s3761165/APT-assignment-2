@@ -19,6 +19,7 @@ public:
 
    int getRow();
    int getCol();
+   
    void setRowCol(int row, int col);
    void shiftRowDown();
    void shiftColRight();

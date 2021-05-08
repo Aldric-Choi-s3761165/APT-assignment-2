@@ -11,12 +11,15 @@ public:
     ~LinkedList();
     void addNode(Tile* t);
     void addBack(Tile* t);
+
+    // get node takes the node out of linkedlist
     Tile* getNode(Colour c, Shape s);
+    Tile* pop();
     void removeAllNodes();
+
     void printNodes();
     int getLength();
-    Tile* pop();
-
+    
 private:
     Node* head;
     Node* tail;

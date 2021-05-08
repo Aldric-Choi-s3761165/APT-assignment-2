@@ -17,18 +17,17 @@ public:
     void createBoard(int row, int col, std::string states);
     void gameRun(int id);
     void setupGame();
+
+private:
     void testing();
     void display(int id);
     bool getAction(std::string line, int id);
     void errors(int error);
-
     void gameResult();
     void addScore(int id,int score);
     int calculateScore(int row,int col);
     void checkScore(int id, char y, int x);
-
-
-private:
+    
     LinkedList* bag;
     Player* players[TOTAL_PLAYERS];
     Board* board;
