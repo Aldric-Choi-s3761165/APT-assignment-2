@@ -1,0 +1,258 @@
+Welcome to Qurikle!
+-------------------
+Menu
+---- 
+1. New Game 
+2. Load Game 
+3. Credits (Show student information) 
+4. Quit 
+
+> 
+Enter the filename from which load a game
+> 
+Qwirkle game successfully loaded
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|  |  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y3, P6, B1, O2, R2, Y2
+
+> 
+JACQ, it's your turn
+Score for JOSH: 12
+Score for JACQ: 6
+   0  1  2  3  4  5  6  
+  ----------------------
+A |  |  |  |  |  |  |  |
+B |  |  |  |B4|B6|B5|  |
+C |  |  |  |R4|  |G5|  |
+D |  |Y3|Y1|Y4|Y2|  |  |
+E |  |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |  |
+
+Your hand is
+O3, B2, Y4, O6, P3, P2
+
+> 
+JOSH, it's your turn
+Score for JOSH: 12
+Score for JACQ: 10
+   0  1  2  3  4  5  6  
+  ----------------------
+A |  |  |  |  |  |  |  |
+B |  |  |B2|B4|B6|B5|  |
+C |  |  |  |R4|  |G5|  |
+D |  |Y3|Y1|Y4|Y2|  |  |
+E |  |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |  |
+
+Your hand is
+P5, P6, B1, O2, R2, Y2
+
+> 
+JACQ, it's your turn
+Score for JOSH: 17
+Score for JACQ: 10
+   0  1  2  3  4  5  6  
+  ----------------------
+A |  |  |  |  |  |  |  |
+B |  |B1|B2|B4|B6|B5|  |
+C |  |  |  |R4|  |G5|  |
+D |  |Y3|Y1|Y4|Y2|  |  |
+E |  |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |  |
+
+Your hand is
+G6, O3, Y4, O6, P3, P2
+
+> 
+JOSH, it's your turn
+Score for JOSH: 17
+Score for JACQ: 12
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |B1|B2|B4|B6|B5|  |  |
+C |  |  |  |R4|  |G5|G6|  |
+D |  |Y3|Y1|Y4|Y2|  |  |  |
+E |  |  |  |P4|  |  |  |  |
+F |  |  |  |  |  |  |  |  |
+
+Your hand is
+P5, P6, O2, R2, Y2
+
+> Bag has no more tiles
+
+JOSH, it's your turn
+Score for JOSH: 17
+Score for JACQ: 12
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |B1|B2|B4|B6|B5|  |  |
+C |  |  |  |R4|  |G5|G6|  |
+D |  |Y3|Y1|Y4|Y2|  |  |  |
+E |  |  |  |P4|  |  |  |  |
+F |  |  |  |  |  |  |  |  |
+
+Your hand is
+P5, P6, O2, R2, Y2
+
+> 
+JACQ, it's your turn
+Score for JOSH: 20
+Score for JACQ: 12
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |P5|  |  |
+C |  |B1|B2|B4|B6|B5|  |  |
+D |  |  |  |R4|  |G5|G6|  |
+E |  |Y3|Y1|Y4|Y2|  |  |  |
+F |  |  |  |P4|  |  |  |  |
+G |  |  |  |  |  |  |  |  |
+
+Your hand is
+O3, Y4, O6, P3, P2
+
+> 
+JOSH, it's your turn
+Score for JOSH: 20
+Score for JACQ: 14
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |P5|P3|  |
+C |  |B1|B2|B4|B6|B5|  |  |
+D |  |  |  |R4|  |G5|G6|  |
+E |  |Y3|Y1|Y4|Y2|  |  |  |
+F |  |  |  |P4|  |  |  |  |
+G |  |  |  |  |  |  |  |  |
+
+Your hand is
+P6, O2, R2, Y2
+
+> 
+JACQ, it's your turn
+Score for JOSH: 23
+Score for JACQ: 14
+   0  1  2  3  4  5  6  7  8  
+  ----------------------------
+A |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |P5|P3|P6|  |
+C |  |B1|B2|B4|B6|B5|  |  |  |
+D |  |  |  |R4|  |G5|G6|  |  |
+E |  |Y3|Y1|Y4|Y2|  |  |  |  |
+F |  |  |  |P4|  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+O3, Y4, O6, P2
+
+> 
+JOSH, it's your turn
+Score for JOSH: 23
+Score for JACQ: 16
+   0  1  2  3  4  5  6  7  8  
+  ----------------------------
+A |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |O3|  |  |
+C |  |  |  |  |  |P5|P3|P6|  |
+D |  |B1|B2|B4|B6|B5|  |  |  |
+E |  |  |  |R4|  |G5|G6|  |  |
+F |  |Y3|Y1|Y4|Y2|  |  |  |  |
+G |  |  |  |P4|  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+O2, R2, Y2
+
+> 
+JACQ, it's your turn
+Score for JOSH: 25
+Score for JACQ: 16
+   0  1  2  3  4  5  6  7  8  
+  ----------------------------
+A |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |O3|  |  |
+C |  |  |O2|  |  |P5|P3|P6|  |
+D |  |B1|B2|B4|B6|B5|  |  |  |
+E |  |  |  |R4|  |G5|G6|  |  |
+F |  |Y3|Y1|Y4|Y2|  |  |  |  |
+G |  |  |  |P4|  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+Y4, O6, P2
+
+> 
+JOSH, it's your turn
+Score for JOSH: 25
+Score for JACQ: 18
+   0  1  2  3  4  5  6  7  8  
+  ----------------------------
+A |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |O3|  |  |
+C |  |  |O2|  |  |P5|P3|P6|  |
+D |  |B1|B2|B4|B6|B5|  |O6|  |
+E |  |  |  |R4|  |G5|G6|  |  |
+F |  |Y3|Y1|Y4|Y2|  |  |  |  |
+G |  |  |  |P4|  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+R2, Y2
+
+> 
+JACQ, it's your turn
+Score for JOSH: 28
+Score for JACQ: 18
+   0  1  2  3  4  5  6  7  8  
+  ----------------------------
+A |  |  |  |  |  |  |  |  |  |
+B |  |  |Y2|  |  |  |O3|  |  |
+C |  |  |O2|  |  |P5|P3|P6|  |
+D |  |B1|B2|B4|B6|B5|  |O6|  |
+E |  |  |  |R4|  |G5|G6|  |  |
+F |  |Y3|Y1|Y4|Y2|  |  |  |  |
+G |  |  |  |P4|  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+Y4, P2
+
+> 
+JOSH, it's your turn
+Score for JOSH: 28
+Score for JACQ: 20
+   0  1  2  3  4  5  6  7  8  
+  ----------------------------
+A |  |  |  |  |  |  |  |  |  |
+B |  |Y4|Y2|  |  |  |O3|  |  |
+C |  |  |O2|  |  |P5|P3|P6|  |
+D |  |B1|B2|B4|B6|B5|  |O6|  |
+E |  |  |  |R4|  |G5|G6|  |  |
+F |  |Y3|Y1|Y4|Y2|  |  |  |  |
+G |  |  |  |P4|  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+R2
+
+> 
+Game over
+Score for JOSH: 38
+Score for JACQ: 20
+Player JOSH won!
+
+Goodbye

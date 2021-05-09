@@ -139,7 +139,6 @@ void loadGame() {
         int id = setupGame(*engine, directory, currentLine);
         
         if(id == 0) {
-            std::cout << "8" << std::endl;
             corruptFile();
         }
 
@@ -245,13 +244,13 @@ int loadPlayers(GameEngine& engine, std::string in) {
             // as the check, checks char of line[0] whether it is digit and sets score to it
             else if(lineCounter == 2) {
                 //parse int
-                char c = text[0];
 
-                if(!(isdigit(c))) {
-                    corruptFile();
+                for(int i = 0; text[i] && int(text[i]) != 13; i++) {
+                    if(!(isdigit(text[i]))) {
+                        corruptFile();
+                    }
                 }
-
-                text = std::string(1,c);
+                
                 score = std::stoi(text);
             }
 
@@ -317,22 +316,35 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
 
     while(getline(file, text)) {
         if(line == currentLine + 1) {            
-            if(text.size() < 3 && text.size() > 4) {
-                corruptFile();
-            }
-            else {
-                if(text[1] != ',' || !(isdigit(text[0])) || !(isdigit(text[2]))) {
-                    if(text.size() == 4 && !(int(text[3]) == 13)) {
+            
+            std::string rowCheck = "";
+            std::string colCheck = "";
+            bool commaCheck = false;
+
+            for(int i = 0; text[i] && int(text[i]) != 13 ; i++) {
+                if(commaCheck == false) {
+                    if(isdigit(text[i])) {
+                        rowCheck = rowCheck + text[i];
+                    }
+                    else if(text[i] == ',') {
+                        commaCheck = true;
+                    }
+                    else {
                         corruptFile();
                     }
-                    else if(text.size() == 3) {
+                }
+                else {
+                    if(isdigit(text[i])) {
+                        colCheck = colCheck + text[i];
+                    }
+                    else {
                         corruptFile();
                     }
                 }
             }
 
-            int row = std::stoi(std::string(1,text[0]));
-            int col = std::stoi(std::string(1,text[2]));
+            int row = std::stoi(rowCheck);
+            int col = std::stoi(colCheck);
             getline(file, text);
 
             if(file.eof()) {

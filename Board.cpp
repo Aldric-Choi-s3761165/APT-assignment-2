@@ -223,9 +223,13 @@ bool Board::placeTile(char row, int col, Tile * tile){
                 // set the previous added so it can check the score for the player
                 previouslyAdded[0] = rowCheck;
                 previouslyAdded[1] = col;
+                
+                //Tile* t = new Tile(tile->getColour(), tile->getShape());
+                //t->setRowCol(rowCheck, col);
+                placeTileOrder->addBack(tile);
                 //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
                 resizeBoard(rowCheck, col);
-                placeTileOrder->addBack(tile);
+                
             }
             else {
                 std::cout << "Cannot have duplicate tile in the same lines." << std::endl;
@@ -370,8 +374,8 @@ Tile* Board::getTile(int row, int col){
 void Board::resizeBoard(int row, int col){
     int minRowSize = 0;
     int minColSize = 0;
-    int maxRowSize = getVerticalSize()-1;
-    int maxColSize = getHorizontalSize()-1;
+    int maxRowSize = getVerticalSize() - 1;
+    int maxColSize = getHorizontalSize() - 1;
 
     // if tile is added at the top
     if(row == minRowSize && maxRowSize < MAX_BOARD_DIMENSION - 1){
@@ -386,11 +390,10 @@ void Board::resizeBoard(int row, int col){
         //shift all down by 1
         std::rotate(vectorBoard.rbegin(), vectorBoard.rbegin() + 1, vectorBoard.rend());
 
-        for (row = minRowSize; row != maxRowSize; row++) {
-            for (col = minColSize; col != maxColSize; col++) {
+        for (row = minRowSize; row != maxRowSize + 1; row++) {
+            for (col = minColSize; col != maxColSize + 1; col++) {
                 if(vectorBoard[row][col] != nullptr) {
                     vectorBoard[row][col]->shiftRowDown();
-                    vectorBoard[row][col]->setRowCol(row+1, col);
                 }
             }
         }
@@ -419,11 +422,10 @@ void Board::resizeBoard(int row, int col){
             std::rotate(row.rbegin(), row.rbegin() + 1, row.rend());
         }
 
-        for (row = minRowSize; row != maxRowSize; row++) {
-            for (col = minColSize; col != maxColSize; col++) {
+        for (row = minRowSize; row != maxRowSize + 1; row++) {
+            for (col = minColSize; col != maxColSize + 1; col++) {
                 if(vectorBoard[row][col] != nullptr) {
                     vectorBoard[row][col]->shiftColRight();
-                    vectorBoard[row][col]->setRowCol(row, col+1);
                 }
             }
         }

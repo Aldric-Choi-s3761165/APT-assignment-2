@@ -1,0 +1,11 @@
+2
+saves/test6
+place Y1 at D0
+place Y1 at A0
+place Y1 at A2
+place Y1 A2
+place Y1 at D5
+place Y2 at D5
+replace Y2
+save
+save e f

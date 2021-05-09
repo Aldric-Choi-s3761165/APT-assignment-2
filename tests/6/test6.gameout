@@ -1,0 +1,185 @@
+Welcome to Qurikle!
+-------------------
+Menu
+---- 
+1. New Game 
+2. Load Game 
+3. Credits (Show student information) 
+4. Quit 
+
+> 
+Enter the filename from which load a game
+> 
+Qwirkle game successfully loaded
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> INVALID: It should be the same colour and not the same shape.
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> INVALID: There is no tile beside the position you are placing.
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> INVALID: It should be the same shape and not the same colour.
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> Invalid Command
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> Cannot have duplicate tile in the same lines.
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> Tile does not exist in your hand
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> Tile does not exist in your hand
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> Invalid Command
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> Invalid filename. There should be no spaces.
+
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  
+  -------------------
+A |  |  |  |  |  |  |
+B |  |  |B4|B6|B5|  |
+C |  |  |R4|  |G5|  |
+D |  |Y1|Y4|Y2|Y5|  |
+E |  |  |P4|  |  |  |
+F |  |  |  |  |  |  |
+
+Your hand is
+Y1, P6, B1, O2, R5, Y5
+
+> ^D
+
+Goodbye

@@ -72,8 +72,8 @@ void GameEngine::createBoard(int row, int col, std::string states) {
 
     bool tilePlaced = true;
     
-    for (int i = 0; states[i]; i++) {
-                    
+    for (int i = 0; states[i] && int(states[i]) != 13; i++) {
+        
         if(isupper(states[i]) && isalpha(states[i]) && states[i] != ',' && order == 0) {
             colour = states[i];
             order = 1;
@@ -113,6 +113,7 @@ void GameEngine::createBoard(int row, int col, std::string states) {
     if(states[counter+1] == false && ready == true) {
         tilePlaced = board->placeTile(boardRow, boardCol, new Tile(colour, shape));
         if(tilePlaced == false) {
+            std::cout << "3" << std::endl;
             throw std::runtime_error("Load game board states have been modified");
         }
     }
@@ -320,7 +321,7 @@ void GameEngine:: gameResult() {
     int winnerID = 1;
     bool draw = false;
 
-    std::cout <<"Game over"<< std::endl;
+    std::cout <<"\nGame over"<< std::endl;
 
     for(int i = 0; i < TOTAL_PLAYERS; i++) {
         if(i + 1 != TOTAL_PLAYERS) {
@@ -332,7 +333,7 @@ void GameEngine:: gameResult() {
             }
         }
 
-        std::cout << "Score for " << players[i]->getName() << ":" << players[i]->getScore() << std::endl;
+        std::cout << "Score for " << players[i]->getName() << ": " << players[i]->getScore() << std::endl;
     }
 
     if(draw == false) {
@@ -340,18 +341,20 @@ void GameEngine:: gameResult() {
     }
     else {
         int winningScore = players[winnerID - 1]->getScore();
-        std::string winners;
+        std::string winners = "";
         
         for(int i = 0; i < TOTAL_PLAYERS; i++) {
             if(players[i]->getScore() == winningScore) {
-                winners += players[i]->getName() + " ";
+                if(winners != "") {
+                    winners += " & ";
+                }
+                winners += players[i]->getName();
             }
         }
         std::cout << "Players " << winners << " drew!" << std::endl;
     }
 
     std::cout << std::endl;
-    std::cout <<"Goodbye" <<std::endl;
 
     gameRunning = false;
 }
@@ -460,6 +463,10 @@ void GameEngine::saveFile(std::string fileName, int id) {
     saveFile << board->getPlaceTileOrder()->printingNodesWithCoordinates(",") << std::endl;
     saveFile << bag->savingNodes() << std::endl;
     saveFile << name;
+
+    std::cout << "\nGame successfully saved" << std::endl;
+
+    saveFile.close();
 }
 
 void GameEngine::testing() {

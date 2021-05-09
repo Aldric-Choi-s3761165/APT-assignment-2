@@ -1,0 +1,33 @@
+Welcome to Qurikle!
+-------------------
+Menu
+---- 
+1. New Game 
+2. Load Game 
+3. Credits (Show student information) 
+4. Quit 
+
+> 
+Enter the filename from which load a game
+> 
+Qwirkle game successfully loaded
+
+JACQ, it's your turn
+Score for JOSH: 14
+Score for JACQ: 8
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |  |  |Y5|Y4|Y3|  |
+C |  |  |B4|B6|B5|  |  |  |
+D |  |  |R4|  |G5|  |  |  |
+E |  |Y1|Y4|Y2|  |  |  |  |
+F |  |  |P4|  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |
+
+Your hand is
+P2, P3, O6, B2, O3, G2
+
+> ^D
+
+Goodbye
