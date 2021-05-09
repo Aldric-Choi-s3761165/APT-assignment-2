@@ -89,8 +89,9 @@ void newGame() {
     if(eof == false) {
         std::cout << "Let's Play!" << std::endl;
         engine->gameRun(1);
-        //engine->testing();
     }
+
+    delete engine;
 }
 
 void loadGame() {
@@ -145,6 +146,8 @@ void loadGame() {
         std::cout << "\nQwirkle game successfully loaded" << std::endl;
         engine->gameRun(id);
     }
+
+    delete engine;
 }
 
 // return a new GameEngine, shared by both new and load game

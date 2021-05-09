@@ -8,10 +8,22 @@ GameEngine::GameEngine() {
     bag = new LinkedList();
     board = new Board();
     gameRunning = true;
+
+    // initialize each array pos to nullptr else an error
+    // will occur when getting a player if the array is uninitialized
+    for(int i = 0; i < TOTAL_PLAYERS; i++) {
+        players[i] = nullptr;
+    }
 }
 
 GameEngine::~GameEngine() {
-    bag = nullptr;
+    delete bag;
+    delete board;
+    for(int i = 0; i < TOTAL_PLAYERS; i++) {
+        if(players[i] != nullptr) {
+            delete players[i];
+        }
+    }
 }
 
 // precondition; id is valid above 0 and hasn't already been added

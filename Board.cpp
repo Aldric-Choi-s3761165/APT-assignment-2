@@ -15,7 +15,10 @@ Board::Board(){
 }
 
 Board::~Board(){
-
+    // placeTileOrder contains all of board hence
+    // all vectorBoard tiles will also delete
+    delete placeTileOrder;
+    
 }
 
 void Board::printBoard(){
