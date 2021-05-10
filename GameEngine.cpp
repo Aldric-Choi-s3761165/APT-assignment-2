@@ -243,6 +243,16 @@ bool GameEngine::getAction(std::string line, int id){
         }
     }
 
+    if(invalidAction == false) {
+        // after replace or place commands we must now reset skip states for all players
+        // as each player that skipped previously may have an option on the next turn
+        for(int i = 0; i < TOTAL_PLAYERS; i++) {
+            if(players[i] != nullptr) {
+                players[i]->setSkip(false);
+            }
+        }
+    }
+
     if(line.size() >= 4 && invalidAction == true) {
         invalidAction = false;
         stringCheck = line.substr(0, 5);
@@ -267,6 +277,24 @@ bool GameEngine::getAction(std::string line, int id){
             else {
                 std::cout << "No filename given" << std::endl;
             }
+        }
+        else if(!(stringCheck.compare("skip"))) {
+            players[id - 1]->setSkip(true);
+            bool end = true;
+            for(int i = 0; i < TOTAL_PLAYERS; i++) {
+                if(players[i] != nullptr) {
+                    if(players[i]->getSkip() == false) {
+                        end = false;
+                        i = TOTAL_PLAYERS;
+                    }
+                }
+            }
+
+            if(end) {
+                gameResult();
+            }
+
+            actionCompleted = true;
         }
         else {
             invalidAction = true;

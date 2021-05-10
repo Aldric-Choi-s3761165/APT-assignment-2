@@ -23,11 +23,15 @@ public:
 
     void addNode(Tile* t);
 
+    void setSkip(bool skip);
+    bool getSkip();
+
 private:
     int id;
     std::string name;
     int score;
     LinkedList* hand;
+    bool skip;
 
 };
 

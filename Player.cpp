@@ -6,6 +6,7 @@ Player::Player(int id, std::string name) {
     this->name = name;
     this->score = 0;
     this->hand = new LinkedList();
+    this->skip = false;
 }
 
 Player::Player(int id, std::string name, int score, LinkedList* hand) {
@@ -13,6 +14,7 @@ Player::Player(int id, std::string name, int score, LinkedList* hand) {
     this->name = name;
     this->score = score;
     this->hand = hand;
+    this->skip = false;
 }
 
 Player::~Player() {
@@ -52,3 +54,12 @@ void Player::clearPlayerHand() {
 void Player::addNode(Tile* t) {
     this->hand->addNode(t);
 }
+
+void Player::setSkip(bool skip) {
+    this->skip = skip;
+}
+
+bool Player::getSkip() {
+    return this->skip;
+}
+

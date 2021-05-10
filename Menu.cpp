@@ -347,7 +347,7 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
             int col = std::stoi(colCheck);
             getline(file, text);
 
-            if(file.eof() || row > 26 || col > 26) {
+            if(file.eof() || row > MAX_BOARD_DIMENSION || col > MAX_BOARD_DIMENSION) {
                 corruptFile();
             }
 
