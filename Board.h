@@ -12,7 +12,7 @@ public:
 
     void printBoard();
     
-    bool placeTile(char row, int col, Tile * tile);
+    bool placeTile(char row, int col, Tile * tile, bool loadSave);
     void setBoard(int row, int col);
 
     bool checkQuirkle();
@@ -28,19 +28,20 @@ private:
     Tile* getTile(int row, int col);
 
     // methods for checking if tile placement is valid
-    bool checkRowTiles(Tile* current, Tile* left, Tile* right);
-    bool checkColTiles(Tile* current, Tile* above, Tile* below);
+    bool checkRowTiles(Tile* current, Tile* left, Tile* right, bool dontPrint);
+    bool checkColTiles(Tile* current, Tile* above, Tile* below, bool dontPrint);
     bool duplicate(Tile* tile, int row, int col);
 
     // checking for quirkle as well as used for calculating scores
     int checkQuirkleVertical();
     int checkQuirkleHorizontal();
+
+    void errors(int error, bool dontPrint);
     
     std::vector<std::vector<Tile *>> vectorBoard;
     bool newGame;
     int previouslyAdded[2];
     LinkedList* placeTileOrder;
-    // std:vector<Coordinate *> coordsPlaced;
 
 };
 

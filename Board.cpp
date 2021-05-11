@@ -139,7 +139,8 @@ int Board::calculateScore() {
     return returnValue;
 }
 
-bool Board::placeTile(char row, int col, Tile * tile){
+bool Board::placeTile(char row, int col, Tile * tile, bool loadSave){
+    
     bool success = true;
 
     char start = 'A';
@@ -172,28 +173,28 @@ bool Board::placeTile(char row, int col, Tile * tile){
 
                 // Check whether beside the position has a tile
                 if(leftOfTile == nullptr && aboveOfTile == nullptr && rightOfTile == nullptr && belowOfTile == nullptr){
-                    std::cout << "INVALID: There is no tile beside the position you are placing." << std::endl;
+                    errors(1, loadSave);
                     success = false;
                 }
                 else{
                     // Check the tiles of the line
                     if(leftOfTile != nullptr || rightOfTile != nullptr) {
-                        success = checkRowTiles(tile, leftOfTile, rightOfTile);
+                        success = checkRowTiles(tile, leftOfTile, rightOfTile, loadSave);
                     }
                     
                     // Check the tiles of the line
                     if(aboveOfTile != nullptr || belowOfTile != nullptr) {
-                        success = checkColTiles(tile, aboveOfTile, belowOfTile);
+                        success = checkColTiles(tile, aboveOfTile, belowOfTile, loadSave);
                     }
                 }
             }
-            else{
-                std::cout << "INVALID: Position already has a tile." << std::endl;
+            else {
+                errors(2, loadSave);
                 success = false;
             }
         }
         else{
-            std::cout << "INVALID: Position out of Bound." << std::endl;
+            errors(3, loadSave);
             success = false;
         }
     }
@@ -201,13 +202,13 @@ bool Board::placeTile(char row, int col, Tile * tile){
     
     if(success == true){
         if(!(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0)) {
-            std::cout << "INVALID: Position out of Bound." << std::endl;
+            errors(3, loadSave);
             success = false;
         }
         else if( ((rowCheck == 0 && (col == 0 || col == maxColSize -1)) || 
             (rowCheck == maxRowSize - 1  && (col == 0 || col == maxColSize -1)))
             && newGame == true ) {
-            std::cout << "INVALID: Cannot place in edge during start of game." << std::endl;
+            errors(4, loadSave);
             success = false;
         }
         else if(vectorBoard[rowCheck][col] == nullptr){
@@ -223,17 +224,20 @@ bool Board::placeTile(char row, int col, Tile * tile){
                 placeTileOrder->addBack(tile);
 
                 //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
-                resizeBoard(rowCheck, col);
+
+                if(loadSave == false) {
+                    resizeBoard(rowCheck, col);
+                }
                 
             }
             else {
-                std::cout << "Cannot have duplicate tile in the same lines." << std::endl;
+                errors(5, loadSave);
                 tile->setRowCol(-1, -1);
             }
             
         }
         else {
-            std::cout << "Must place tile on an empty position." << std::endl;
+            errors(6, loadSave);
             success = false;
         }
     }
@@ -317,19 +321,19 @@ bool Board::duplicate(Tile* tile, int row, int col) {
     return noDuplicates;
 }
 
-bool Board::checkRowTiles(Tile* current, Tile* left, Tile* right) {
+bool Board::checkRowTiles(Tile* current, Tile* left, Tile* right, bool dontPrint) {
     bool returnVal = true;
 
     if(left != nullptr) {
         if(current->getColour() != left->getColour() || current->getShape() == left->getShape()) {
-            std::cout << "INVALID: It should be the same colour and not the same shape." << std::endl;
+            errors(7, dontPrint);
             returnVal = false;
         }
     }
 
     if(right != nullptr) {
         if(current->getColour() != right->getColour() || current->getShape() == right->getShape()) {
-            std::cout << "INVALID: It should be the same colour and not the same shape." << std::endl;
+            errors(7, dontPrint);
             returnVal = false;
         }
     }
@@ -337,19 +341,19 @@ bool Board::checkRowTiles(Tile* current, Tile* left, Tile* right) {
     return returnVal;
 }
 
-bool Board::checkColTiles(Tile* current, Tile* above, Tile* below) {
+bool Board::checkColTiles(Tile* current, Tile* above, Tile* below, bool dontPrint) {
     bool returnVal = true;
     
     if(above != nullptr){
         if(current->getShape() != above->getShape() || current->getColour() == above->getColour()){
-            std::cout << "INVALID: It should be the same shape and not the same colour." << std::endl;
+            errors(8, dontPrint);
             returnVal = false;
         }
     }
 
     if(below != nullptr){
         if(current->getShape() != below->getShape() || current->getColour() == below->getColour()){
-            std::cout << "INVALID: It should be the same shape and not the same colour." << std::endl;
+            errors(8, dontPrint);
             returnVal = false;
         }
     }
@@ -453,4 +457,33 @@ void Board::setBoard(int row, int col) {
 
 LinkedList* Board::getPlaceTileOrder(){
     return placeTileOrder;
+}
+
+void Board::errors(int error, bool dontPrint) {
+    if(dontPrint == false) {
+        if(error == 1) {
+            std::cout << "INVALID: There is no tile beside the position you are placing." << std::endl;
+        }
+        else if(error == 2) {
+            std::cout << "INVALID: Position already has a tile." << std::endl;
+        }
+        else if(error == 3) {
+            std::cout << "INVALID: Position out of Bound." << std::endl;
+        }
+        else if(error == 4) {
+            std::cout << "INVALID: Cannot place in edge during start of game." << std::endl;
+        }
+        else if(error == 5) {
+            std::cout << "Cannot have duplicate tile in the same lines." << std::endl;
+        }
+        else if(error == 6) {
+            std::cout << "Must place tile on an empty position." << std::endl;
+        }
+        else if(error == 7) {
+            std::cout << "INVALID: It should be the same colour and not the same shape." << std::endl;
+        }
+        else if(error == 8) {
+            std::cout << "INVALID: It should be the same shape and not the same colour." << std::endl;
+        }
+    }
 }

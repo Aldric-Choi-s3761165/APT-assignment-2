@@ -69,9 +69,18 @@ void GameEngine::createBoard(int row, int col, std::string states) {
     int order = 0;
     bool ready = false;
     int counter = 0;
+    int rowCheck = 0;
 
-    bool tilePlaced = true;
-    
+    bool completed = false;
+
+    // create array of tiles to be placed into the bag
+    Tile* loadTiles[BAG_MAX_LIMIT];
+    int loadTilesCounter = 0;
+
+    for(int i = 0; i < BAG_MAX_LIMIT; i++) {
+        loadTiles[i] = nullptr;
+    }
+
     for (int i = 0; states[i] && int(states[i]) != ASCII_CARRIAGE; i++) {
         
         if(isupper(states[i]) && isalpha(states[i]) && states[i] != ',' && order == 0) {
@@ -87,6 +96,20 @@ void GameEngine::createBoard(int row, int col, std::string states) {
         }
         else if(isupper(states[i]) && isalpha(states[i]) && states[i] != ',' && order == 3) {
             boardRow = states[i];
+
+            char start = 'A';
+            rowCheck = 0;
+
+            for(int i = 0; i < board->getVerticalSize(); i++) {
+                if(start != boardRow) {
+                    start++;
+                    rowCheck++;
+                }
+                else {
+                    i = board->getVerticalSize();
+                }
+            }
+
             order = 4;
         }
         else if(isdigit(states[i]) && states[i] != ',' && order == 4) {
@@ -95,26 +118,58 @@ void GameEngine::createBoard(int row, int col, std::string states) {
             ready = true;
         }
         else if(states[i] == ',' && ready == true && order == 5) {
-            tilePlaced = board->placeTile(boardRow, boardCol, new Tile(colour, shape));
             order = 0;
             ready = false;
+            Tile* t = new Tile(colour, shape);
+
+            t->setRowCol(rowCheck, boardCol);
+            loadTiles[loadTilesCounter] = t;
+            loadTilesCounter++;
         }
         else if(ready == false && order != 0) {
-            throw std::runtime_error("Load game board states have been modified");
-        }
-
-        if(tilePlaced == false) {
             throw std::runtime_error("Load game board states have been modified");
         }
 
         counter = i;
     }
 
-    if(states[counter+1] == false && ready == true) {
-        tilePlaced = board->placeTile(boardRow, boardCol, new Tile(colour, shape));
-        if(tilePlaced == false) {
-            std::cout << "3" << std::endl;
+    if(ready == true) {
+        Tile* t = new Tile(colour, shape);
+        t->setRowCol(rowCheck, boardCol);
+        loadTiles[loadTilesCounter] = t;
+        loadTilesCounter++;
+    }
+
+    // reset counter used previously for counting a stuck loop (hence, one isnt placeable)
+    counter = loadTilesCounter;
+    bool tilePlaced = false;
+    while(completed == false) {
+        int previousCounter = counter;
+
+        for(int i = 0; i < loadTilesCounter; i++) {
+            if(loadTiles[i] != nullptr) {
+                int row = loadTiles[i]->getRow();
+                int col = loadTiles[i]->getCol();
+                if(row > 0 && row < board->getVerticalSize() && col > 0 && col < board->getHorizontalSize()) {
+                    tilePlaced = board->placeTile(loadTiles[i]->getCharColour(row), loadTiles[i]->getCol(), loadTiles[i], false);
+                    if(tilePlaced) {
+                        loadTiles[i] = nullptr;
+                        counter--;
+                        tilePlaced = false;
+                    }
+                }
+                else {
+                    throw std::runtime_error("Load game board states have been modified");
+                }
+            }
+        }
+
+        if(previousCounter == counter) {
             throw std::runtime_error("Load game board states have been modified");
+        }
+
+        if(counter == 0) {
+            completed = true;
         }
     }
 
@@ -177,7 +232,7 @@ bool GameEngine::getAction(std::string line, int id){
                         std::string cut = line.substr(13, line.size() - 13);
                         x = std::stoi(cut);
                         
-                        if(board->placeTile(y, x, t)) {
+                        if(board->placeTile(y, x, t, false)) {
                             if(bag->getLength() > 0) {
                                 players[id - 1]->addNode(bag->pop());
                             }
@@ -494,36 +549,4 @@ void GameEngine::saveFile(std::string fileName, int id) {
     std::cout << "\nGame successfully saved" << std::endl;
 
     saveFile.close();
-}
-
-void GameEngine::testing() {
-    
-    // testing board in game engine
-    board->printBoard();
-    Tile * firstTile = bag->pop();
-    board->placeTile(5, 3, firstTile);
-    board->printBoard();
-    Tile * secondTile = bag->pop();
-    board->placeTile(3, 5, secondTile);
-    board->printBoard();    
-    Tile * thirdTile = bag->pop();
-    board->placeTile(0, 2, thirdTile);
-    board->printBoard();
-    Tile * fourthTile = bag->pop();
-    board->placeTile(2, 0, fourthTile);
-    board->printBoard();
-
-    // testing bag printing for comparisson with testing method
-    std::cout << "Current Bag: " << std::endl;
-    bag->printNodes();
-    std::cout << std:: endl;
-    
-    for(int x = 1; x <= 2; x++) {
-        std::cout << "Player Hand: " << x << std::endl;
-        players[x - 1]->displayTileHand();
-        std::cout << std::endl;
-    }
-
-    std::cout << "Current Bag: " << std::endl;
-    bag->printNodes();
 }
