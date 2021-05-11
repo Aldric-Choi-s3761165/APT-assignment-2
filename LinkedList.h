@@ -27,7 +27,6 @@ private:
     std::string printingNodes(std::string space);
     
     Node* head;
-    Node* tail;
     int length;
 
 };

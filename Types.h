@@ -29,7 +29,13 @@
 // Total tiles for each player
 #define PLAYER_HAND_LIMIT 6
 
+// Initial board size
+#define INITIAL_BOARD_SIZE 6
+
 // Max Board Dimension
 #define MAX_BOARD_DIMENSION 26
+
+// Define the extra ASCII that windows generate when a load file is manually made
+#define ASCII_CARRIAGE 13
 
 #endif // TYPES_H

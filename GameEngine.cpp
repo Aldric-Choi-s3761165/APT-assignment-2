@@ -72,7 +72,7 @@ void GameEngine::createBoard(int row, int col, std::string states) {
 
     bool tilePlaced = true;
     
-    for (int i = 0; states[i] && int(states[i]) != 13; i++) {
+    for (int i = 0; states[i] && int(states[i]) != ASCII_CARRIAGE; i++) {
         
         if(isupper(states[i]) && isalpha(states[i]) && states[i] != ',' && order == 0) {
             colour = states[i];
@@ -457,7 +457,6 @@ void GameEngine::setupGame() {
 
 int GameEngine::getPlayerId(std::string name) {
     int playerID = 0;
-    
 
     for(int i = 0; i < TOTAL_PLAYERS; i++) {
         if(players[i] != nullptr) {

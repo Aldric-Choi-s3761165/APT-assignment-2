@@ -6,19 +6,15 @@
 
 
 Board::Board(){
-    vectorBoard = std::vector<std::vector<Tile *>>(6, std::vector<Tile *> (6, nullptr));
+    vectorBoard = std::vector<std::vector<Tile *>>(INITIAL_BOARD_SIZE, std::vector<Tile *> (INITIAL_BOARD_SIZE, nullptr));
     newGame = true;
     placeTileOrder = new LinkedList();
-    // std::vector<Tile *> temp;
-    // temp.push_back(nullptr);
-    // vectorBoard.push_back(temp);
 }
 
 Board::~Board(){
     // placeTileOrder contains all of board hence
     // all vectorBoard tiles will also delete
     delete placeTileOrder;
-    
 }
 
 void Board::printBoard(){
@@ -51,8 +47,9 @@ void Board::printBoard(){
                 std::cout << "  ";
             } 
             else{
-                //print out the tile
+                // place the tile on the board
                 Tile *currTile = vectorBoard[i][j];
+                // print out the tile
                 std::cout << currTile->getColour() << currTile->getShape();
             }
             if (j == maxCol-1) {
@@ -70,8 +67,6 @@ int Board::checkQuirkleVertical() {
     for(int i = previouslyAdded[0]; i < getVerticalSize() && vectorBoard[i][previouslyAdded[1]] != nullptr; i++) {
         check++;
     }
-    
-    
     for(int i = previouslyAdded[0] - 1; i > 0 && vectorBoard[i][previouslyAdded[1]] != nullptr; i--) {
         check++;
     }
@@ -125,12 +120,13 @@ int Board::calculateScore() {
     int horizontal = checkQuirkleHorizontal();
     int bonus = 0;
     int returnValue;
+    int const Qwirkle = 6;
 
-    if(vertical == 6) {
+    if(vertical == Qwirkle) {
         bonus += 6;
     }
     
-    if(horizontal == 6) {
+    if(horizontal == Qwirkle) {
         bonus += 6;
     }
 
@@ -152,6 +148,7 @@ bool Board::placeTile(char row, int col, Tile * tile){
     int maxRowSize = getVerticalSize();
     int maxColSize = getHorizontalSize();
 
+    //Changes the char row into an int so the board will know the size
     for(int i = 0; i < maxRowSize; i++) {
         if(start != row) {
             start++;
@@ -179,10 +176,12 @@ bool Board::placeTile(char row, int col, Tile * tile){
                     success = false;
                 }
                 else{
+                    // Check the tiles of the line
                     if(leftOfTile != nullptr || rightOfTile != nullptr) {
                         success = checkRowTiles(tile, leftOfTile, rightOfTile);
                     }
                     
+                    // Check the tiles of the line
                     if(aboveOfTile != nullptr || belowOfTile != nullptr) {
                         success = checkColTiles(tile, aboveOfTile, belowOfTile);
                     }
@@ -208,7 +207,6 @@ bool Board::placeTile(char row, int col, Tile * tile){
         else if( ((rowCheck == 0 && (col == 0 || col == maxColSize -1)) || 
             (rowCheck == maxRowSize - 1  && (col == 0 || col == maxColSize -1)))
             && newGame == true ) {
-                
             std::cout << "INVALID: Cannot place in edge during start of game." << std::endl;
             success = false;
         }
@@ -218,15 +216,12 @@ bool Board::placeTile(char row, int col, Tile * tile){
             success = duplicate(tile, rowCheck, col);
 
             if(success == true) {
-                // coordPlaced.push_back(new Coordinate(rowCheck, col));
                 vectorBoard[rowCheck][col] = tile;
                 // set the previous added so it can check the score for the player
                 previouslyAdded[0] = rowCheck;
                 previouslyAdded[1] = col;
-                
-                //Tile* t = new Tile(tile->getColour(), tile->getShape());
-                //t->setRowCol(rowCheck, col);
                 placeTileOrder->addBack(tile);
+
                 //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
                 resizeBoard(rowCheck, col);
                 
@@ -255,7 +250,7 @@ bool Board::duplicate(Tile* tile, int row, int col) {
     Tile* tiles[6];
     int tilesCounter = 0;
 
-    // checks right
+    // checks tiles to the right of the current tile
     for(int i = tile->getCol() + 1; i < getVerticalSize() && vectorBoard[tile->getRow()][i] != nullptr; i++) {
         if(tilesCounter < 6) {
             tiles[tilesCounter] = vectorBoard[tile->getRow()][i];
@@ -263,14 +258,15 @@ bool Board::duplicate(Tile* tile, int row, int col) {
         tilesCounter++;
     }
     
-    // checks left
+    // checks tiles to the left of the current tile
     for(int i = tile->getCol() - 1; i > 0 && vectorBoard[tile->getRow()][i] != nullptr; i--) {
         if(tilesCounter < 6) {
             tiles[tilesCounter] = vectorBoard[tile->getRow()][i];
         }
         tilesCounter++;
     }
-    
+
+    // Checks whether if the line has already 6 tiles
     if(tilesCounter < 6) {
         for(int x = 0; x < tilesCounter; x++) {
             if(tile->getShape() == tiles[x]->getShape()) {
@@ -288,7 +284,7 @@ bool Board::duplicate(Tile* tile, int row, int col) {
         }
         tilesCounter = 0;
 
-        // below
+        // checks tiles below the current tile
         for(int i = tile->getRow() + 1; i < getHorizontalSize() && vectorBoard[i][tile->getCol()] != nullptr; i++) {
             if(tilesCounter < 6){
                 tiles[tilesCounter] = vectorBoard[i][tile->getCol()];
@@ -296,7 +292,7 @@ bool Board::duplicate(Tile* tile, int row, int col) {
             tilesCounter++;
         }
 
-        // above
+        // checks tiles above the current tile
         for(int i = tile->getRow() - 1; i > 0 && vectorBoard[i][tile->getCol()] != nullptr; i--) {
             if(tilesCounter < 6){
                 tiles[tilesCounter] = vectorBoard[i][tile->getCol()];
@@ -304,6 +300,7 @@ bool Board::duplicate(Tile* tile, int row, int col) {
             tilesCounter++;
         }
 
+        // Checks whether if the line has already 6 tiles
         if(tilesCounter < 6) {
             for(int x = 0; x < tilesCounter; x++) {
                 if(tile->getColour() == tiles[x]->getColour()) {

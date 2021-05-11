@@ -228,7 +228,7 @@ int loadPlayers(GameEngine& engine, std::string in) {
             // check whether name is valid then set it
             if(lineCounter == 1) {
                 playerName = "";
-                for(int i = 0; text[i] && int(text[i]) != 13 ; i++) {
+                for(int i = 0; text[i] && int(text[i]) != ASCII_CARRIAGE; i++) {
                     playerName = playerName + text[i];
                     // std::cout << int(text[i]) << std::endl;
                 }
@@ -245,7 +245,7 @@ int loadPlayers(GameEngine& engine, std::string in) {
             else if(lineCounter == 2) {
                 //parse int
 
-                for(int i = 0; text[i] && int(text[i]) != 13; i++) {
+                for(int i = 0; text[i] && int(text[i]) != ASCII_CARRIAGE; i++) {
                     if(!(isdigit(text[i]))) {
                         corruptFile();
                     }
@@ -321,7 +321,7 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
             std::string colCheck = "";
             bool commaCheck = false;
 
-            for(int i = 0; text[i] && int(text[i]) != 13 ; i++) {
+            for(int i = 0; text[i] && int(text[i]) != ASCII_CARRIAGE ; i++) {
                 if(commaCheck == false) {
                     if(isdigit(text[i])) {
                         rowCheck = rowCheck + text[i];
