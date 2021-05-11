@@ -542,9 +542,12 @@ void GameEngine::saveFile(std::string fileName, int id) {
     }
 
     saveFile << board->getVerticalSize() << "," << board->getHorizontalSize() << std::endl;
-    saveFile << board->getPlaceTileOrder()->printingNodesWithCoordinates(",") << std::endl;
+    LinkedList* tiles = board->getAllTiles();
+    saveFile << tiles->printingNodesWithCoordinates(",") << std::endl;
     saveFile << bag->savingNodes() << std::endl;
     saveFile << name;
+
+    delete tiles;
 
     std::cout << "\nGame successfully saved" << std::endl;
 

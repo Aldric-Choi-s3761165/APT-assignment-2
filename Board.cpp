@@ -8,13 +8,12 @@
 Board::Board(){
     vectorBoard = std::vector<std::vector<Tile *>>(INITIAL_BOARD_SIZE, std::vector<Tile *> (INITIAL_BOARD_SIZE, nullptr));
     newGame = true;
-    placeTileOrder = new LinkedList();
+    //placeTileOrder = new LinkedList();
 }
 
 Board::~Board(){
     // placeTileOrder contains all of board hence
     // all vectorBoard tiles will also delete
-    delete placeTileOrder;
 }
 
 void Board::printBoard(){
@@ -221,7 +220,6 @@ bool Board::placeTile(char row, int col, Tile * tile, bool loadSave){
                 // set the previous added so it can check the score for the player
                 previouslyAdded[0] = rowCheck;
                 previouslyAdded[1] = col;
-                placeTileOrder->addBack(tile);
 
                 //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
 
@@ -455,8 +453,20 @@ void Board::setBoard(int row, int col) {
     vectorBoard = std::vector<std::vector<Tile *>>(row, std::vector<Tile *> (col, nullptr));
 }
 
-LinkedList* Board::getPlaceTileOrder(){
-    return placeTileOrder;
+LinkedList* Board::getAllTiles(){
+    LinkedList* allTiles = new LinkedList();
+
+    for(int x = 0; x < getHorizontalSize(); x++) {
+        for(int y = 0; y < getVerticalSize(); y++) {
+            if(vectorBoard[x][y] != nullptr) {
+                Tile* t = new Tile(vectorBoard[x][y]->getColour(), vectorBoard[x][y]->getShape());
+                t->setRowCol(vectorBoard[x][y]->getRow(), vectorBoard[x][y]->getCol());
+                allTiles->addBack(t);
+            }
+        }
+    }
+
+    return allTiles;
 }
 
 void Board::errors(int error, bool dontPrint) {

@@ -21,7 +21,7 @@ public:
     int getHorizontalSize();
     int getVerticalSize();
 
-    LinkedList* getPlaceTileOrder();
+    LinkedList* getAllTiles();
 
 private:
     void resizeBoard(int row, int col);
@@ -41,7 +41,7 @@ private:
     std::vector<std::vector<Tile *>> vectorBoard;
     bool newGame;
     int previouslyAdded[2];
-    LinkedList* placeTileOrder;
+    //LinkedList* placeTileOrder;
 
 };
 
