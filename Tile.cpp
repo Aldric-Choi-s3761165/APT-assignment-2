@@ -48,11 +48,3 @@ void Tile::setRowCol(int row, int col) {
     this->row = row;
     this->col = col;
 }
-
-void Tile::shiftRowDown() {
-    row++;
-}
-
-void Tile::shiftColRight() {
-    col++;
-} 

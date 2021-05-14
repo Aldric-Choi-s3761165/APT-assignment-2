@@ -24,7 +24,6 @@ public:
     LinkedList* getAllTiles();
 
 private:
-    void resizeBoard(int row, int col);
     Tile* getTile(int row, int col);
 
     // methods for checking if tile placement is valid
@@ -38,7 +37,7 @@ private:
 
     void errors(int error, bool dontPrint);
     
-    std::vector<std::vector<Tile *>> vectorBoard;
+    std::vector<std::vector<Tile *> > vectorBoard;
     bool newGame;
     int previouslyAdded[2];
     //LinkedList* placeTileOrder;
