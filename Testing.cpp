@@ -76,13 +76,13 @@ void testEngine(GameEngine& e) {
 
 void testBoard(Board& b) {
     b.printBoard();
-    b.placeTile(2, 2, new Tile(RED, CIRCLE));
+    b.placeTile(2, 2, new Tile(RED, CIRCLE), false);
     b.printBoard();
-    b.placeTile(0, 1, new Tile(YELLOW, SQUARE));
+    b.placeTile(0, 1, new Tile(YELLOW, SQUARE), false);
     b.printBoard();
-    b.placeTile(5, 3, new Tile(GREEN, DIAMOND));
+    b.placeTile(5, 3, new Tile(GREEN, DIAMOND), false);
     b.printBoard();
-    b.placeTile(4, 4, new Tile(BLUE, STAR_6));
+    b.placeTile(4, 4, new Tile(BLUE, STAR_6), false);
     b.printBoard();
 
     std::cout << b.getHorizontalSize() << b.getVerticalSize() << std::endl;

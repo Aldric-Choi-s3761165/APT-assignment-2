@@ -2,8 +2,8 @@
 #include <iostream>
 
 LinkedList::LinkedList() {
-    head = nullptr;
-    length = 0;
+    this->head = nullptr;
+    this->length = 0;
 }
 
 LinkedList::~LinkedList() {

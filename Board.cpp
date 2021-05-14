@@ -8,12 +8,16 @@
 Board::Board(){
     vectorBoard = std::vector<std::vector<Tile *>>(INITIAL_BOARD_SIZE, std::vector<Tile *> (INITIAL_BOARD_SIZE, nullptr));
     newGame = true;
-    //placeTileOrder = new LinkedList();
 }
 
 Board::~Board(){
-    // placeTileOrder contains all of board hence
-    // all vectorBoard tiles will also delete
+    for(int x = 0; x < getVerticalSize(); x++) {
+        for(int y = 0; y < getHorizontalSize(); y++) {
+            if(vectorBoard[x][y] != nullptr) {
+                delete vectorBoard[x][y];
+            }
+        }
+    }
 }
 
 void Board::printBoard(){
