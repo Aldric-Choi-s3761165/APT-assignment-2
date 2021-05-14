@@ -24,7 +24,6 @@ public:
     LinkedList* getAllTiles();
 
 private:
-    void resizeBoard(int row, int col);
     Tile* getTile(int row, int col);
 
     // methods for checking if tile placement is valid
