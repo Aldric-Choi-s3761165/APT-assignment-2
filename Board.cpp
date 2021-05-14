@@ -461,11 +461,11 @@ void Board::setBoard(int row, int col) {
 LinkedList* Board::getAllTiles(){
     LinkedList* allTiles = new LinkedList();
 
-    for(int x = 0; x < getHorizontalSize(); x++) {
-        for(int y = 0; y < getVerticalSize(); y++) {
-            if(vectorBoard[y][x] != nullptr) {
-                Tile* t = new Tile(vectorBoard[y][x]->getColour(), vectorBoard[y][x]->getShape());
-                t->setRowCol(vectorBoard[y][x]->getRow(), vectorBoard[y][x]->getCol());
+    for(int x = 0; x < getVerticalSize(); x++) {
+        for(int y = 0; y < getHorizontalSize(); y++) {
+            if(vectorBoard[x][y] != nullptr) {
+                Tile* t = new Tile(vectorBoard[x][y]->getColour(), vectorBoard[x][y]->getShape());
+                t->setRowCol(vectorBoard[x][y]->getRow(), vectorBoard[x][y]->getCol());
                 allTiles->addBack(t);
             }
         }
