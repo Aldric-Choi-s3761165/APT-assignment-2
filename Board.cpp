@@ -6,7 +6,7 @@
 
 
 Board::Board(){
-    vectorBoard = std::vector<std::vector<Tile *>>(INITIAL_BOARD_SIZE, std::vector<Tile *> (INITIAL_BOARD_SIZE, nullptr));
+    vectorBoard = std::vector<std::vector<Tile *> >(INITIAL_BOARD_SIZE, std::vector<Tile *> (INITIAL_BOARD_SIZE, nullptr));
     newGame = true;
 }
 
@@ -143,7 +143,6 @@ int Board::calculateScore() {
 }
 
 bool Board::placeTile(char row, int col, Tile * tile, bool loadSave){
-    
     bool success = true;
 
     char start = 'A';
@@ -369,7 +368,7 @@ int Board::getVerticalSize(){
 }
 
 void Board::setBoard(int row, int col) {
-    vectorBoard = std::vector<std::vector<Tile *>>(row, std::vector<Tile *> (col, nullptr));
+    vectorBoard = std::vector<std::vector<Tile *> >(row, std::vector<Tile *> (col, nullptr));
 }
 
 LinkedList* Board::getAllTiles(){

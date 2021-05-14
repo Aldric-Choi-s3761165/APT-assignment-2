@@ -37,7 +37,7 @@ private:
 
     void errors(int error, bool dontPrint);
     
-    std::vector<std::vector<Tile *>> vectorBoard;
+    std::vector<std::vector<Tile *> > vectorBoard;
     bool newGame;
     int previouslyAdded[2];
     //LinkedList* placeTileOrder;

@@ -10,15 +10,28 @@ Menu
 > 
 Enter the filename from which load a game
 > INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
+INVALID: There is no tile beside the position you are placing.
 
 Qwirkle game successfully loaded
 
-JOSH, it's your turn
-Score for JOSH: 8
-Score for JACQ: 6
+JACQ, it's your turn
+Score for JOSH: 14
+Score for JACQ: 8
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
-A |  |  |  |  |  |  |  |  |  |  |  |  |
+A |  |  |  |  |Y5|Y4|Y3|  |  |  |  |  |
 B |  |  |B4|B6|B5|  |  |  |  |  |  |  |
 C |  |  |R4|  |G5|  |  |  |  |  |  |  |
 D |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
@@ -32,7 +45,7 @@ K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
-Y5, R5, O2, B1, P6, Y3
+P2, P3, O6, B2, O3, G2
 
 > ^D
 

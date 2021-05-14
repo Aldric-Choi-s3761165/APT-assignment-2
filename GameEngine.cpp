@@ -150,7 +150,7 @@ void GameEngine::createBoard(int row, int col, std::string states) {
             if(loadTiles[i] != nullptr) {
                 int row = loadTiles[i]->getRow();
                 int col = loadTiles[i]->getCol();
-                if(row > 0 && row < board->getVerticalSize() && col > 0 && col < board->getHorizontalSize()) {
+                if(row >= 0 && row < board->getVerticalSize() && col >= 0 && col < board->getHorizontalSize()) {
                     tilePlaced = board->placeTile(loadTiles[i]->getCharColour(row), loadTiles[i]->getCol(), loadTiles[i], false);
                     if(tilePlaced) {
                         loadTiles[i] = nullptr;
