@@ -64,6 +64,7 @@ void GameEngine::createBoard(int row, int col, std::string states) {
     Colour colour = '%';
     Shape shape = -1;
     char boardRow = '%';
+    std::string boardColStr;
     int boardCol = -1;
     
     int order = 0;
@@ -113,18 +114,18 @@ void GameEngine::createBoard(int row, int col, std::string states) {
             order = 4;
         }
         else if(isdigit(states[i]) && states[i] != ',' && order == 4) {
-            boardCol = std::stoi(std::string(1,states[i]));
-            order = 5;
+            boardColStr += std::string(1,states[i]);
             ready = true;
         }
-        else if(states[i] == ',' && ready == true && order == 5) {
+        else if(states[i] == ',' && ready == true && order == 4) {
+            boardCol = std::stoi(boardColStr);
             order = 0;
             ready = false;
             Tile* t = new Tile(colour, shape);
-
             t->setRowCol(rowCheck, boardCol);
             loadTiles[loadTilesCounter] = t;
             loadTilesCounter++;
+            boardColStr = "";
         }
         else if(ready == false && order != 0) {
             throw std::runtime_error("Load game board states have been modified");
@@ -135,6 +136,7 @@ void GameEngine::createBoard(int row, int col, std::string states) {
 
     if(ready == true) {
         Tile* t = new Tile(colour, shape);
+        boardCol = std::stoi(boardColStr);
         t->setRowCol(rowCheck, boardCol);
         loadTiles[loadTilesCounter] = t;
         loadTilesCounter++;
@@ -151,7 +153,7 @@ void GameEngine::createBoard(int row, int col, std::string states) {
                 int row = loadTiles[i]->getRow();
                 int col = loadTiles[i]->getCol();
                 if(row >= 0 && row < board->getVerticalSize() && col >= 0 && col < board->getHorizontalSize()) {
-                    tilePlaced = board->placeTile(loadTiles[i]->getCharColour(row), loadTiles[i]->getCol(), loadTiles[i], false);
+                    tilePlaced = board->placeTile(loadTiles[i]->getCharColour(row), loadTiles[i]->getCol(), loadTiles[i], true);
                     if(tilePlaced) {
                         loadTiles[i] = nullptr;
                         counter--;
@@ -226,10 +228,17 @@ bool GameEngine::getAction(std::string line, int id){
                 Tile* t = players[id - 1]->getPlayerHand()->getNode(colour, shape);
 
                 if(t != nullptr) {
-                    if (isdigit(line[13])) {
+                    std::string cut = line.substr(13, line.size() - 13);
+                    bool incorrect = false;
+                    for(int i = 0; cut[i]; i++) {
+                        if(!(isdigit(cut[i]))) {
+                            incorrect = true;
+                        }
+                    }
+
+                    if (isalpha(line[12]) && incorrect == false) {
                         char y = line[12];
                         int x = 0;
-                        std::string cut = line.substr(13, line.size() - 13);
                         x = std::stoi(cut);
                         
                         if(board->placeTile(y, x, t, false)) {
@@ -448,7 +457,7 @@ void GameEngine:: gameResult() {
 
 void GameEngine::errors(int error) {
     if(error == 1) {
-        std::cout << "Tile does not exist in your hand" << std::endl;
+        std::cout << "Tile does not exist in your hand or command typed incorrectly\nMake sure your command contains no extra spaces" << std::endl;
     }
     else if(error == 2) {
         std::cout << "Invalid Command" << std::endl;
