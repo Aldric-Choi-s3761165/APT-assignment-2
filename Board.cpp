@@ -462,9 +462,9 @@ LinkedList* Board::getAllTiles(){
 
     for(int x = 0; x < getHorizontalSize(); x++) {
         for(int y = 0; y < getVerticalSize(); y++) {
-            if(vectorBoard[x][y] != nullptr) {
-                Tile* t = new Tile(vectorBoard[x][y]->getColour(), vectorBoard[x][y]->getShape());
-                t->setRowCol(vectorBoard[x][y]->getRow(), vectorBoard[x][y]->getCol());
+            if(vectorBoard[y][x] != nullptr) {
+                Tile* t = new Tile(vectorBoard[y][x]->getColour(), vectorBoard[y][x]->getShape());
+                t->setRowCol(vectorBoard[y][x]->getRow(), vectorBoard[y][x]->getCol());
                 allTiles->addBack(t);
             }
         }

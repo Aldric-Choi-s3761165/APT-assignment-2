@@ -529,7 +529,6 @@ void GameEngine::saveFile(std::string fileName, int id) {
     std::string directory = "saves/" + fileName;
     std::ofstream saveFile(directory, std::ofstream::out);
     std::string name;
-    //saveFile.open(fileName);
 
     for(int i = 0; i < TOTAL_PLAYERS; i++) {
         saveFile << players[i]->getName() << std::endl;
