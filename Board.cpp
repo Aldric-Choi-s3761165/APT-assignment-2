@@ -202,18 +202,19 @@ bool Board::placeTile(char row, int col, Tile * tile, bool loadSave){
         }
     }
     
-    
     if(success == true){
         if(!(rowCheck < maxRowSize && col < maxColSize && rowCheck >= 0 && col >= 0)) {
             errors(3, loadSave);
             success = false;
         }
+        /*
         else if( ((rowCheck == 0 && (col == 0 || col == maxColSize -1)) || 
             (rowCheck == maxRowSize - 1  && (col == 0 || col == maxColSize -1)))
             && newGame == true ) {
             errors(4, loadSave);
             success = false;
-        }
+        } 
+        */
         else if(vectorBoard[rowCheck][col] == nullptr){
             // check duplicate in row and cols
             tile->setRowCol(rowCheck, col);
@@ -228,7 +229,7 @@ bool Board::placeTile(char row, int col, Tile * tile, bool loadSave){
                 //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
 
                 if(loadSave == false) {
-                    resizeBoard(rowCheck, col);
+                    // resizeBoard(rowCheck, col);
                 }
                 
             }

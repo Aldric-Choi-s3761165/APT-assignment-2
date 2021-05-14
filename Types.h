@@ -30,7 +30,7 @@
 #define PLAYER_HAND_LIMIT 6
 
 // Initial board size
-#define INITIAL_BOARD_SIZE 6
+#define INITIAL_BOARD_SIZE 12
 
 // Max Board Dimension
 #define MAX_BOARD_DIMENSION 26

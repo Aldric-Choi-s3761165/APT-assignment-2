@@ -1,16 +1,16 @@
 2
 saves/test2
 place Y3 at D0
-place B2 at B2
-place B1 at B1
-place G6 at C6
+place B2 at B1
+place B1 at B0
+place G6 at C5
 replace P5
-place P5 at A5
-place P3 at B6
-place P6 at B7
-place O3 at A6
-place O2 at C2
-place O6 at D7
-place Y2 at B2
-place Y4 at B1
-place R2 at A2
+place P5 at A4
+place P3 at A5
+place P6 at A6
+place O3 at E0
+place O2 at A1
+place O6 at D5
+place O4 at F2
+place G4 at G2
+place G3 at G1

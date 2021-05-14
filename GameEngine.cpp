@@ -401,6 +401,9 @@ void GameEngine::addScore(int id,int score) {
 
 void GameEngine:: gameResult() {
 
+    std::cout << std::endl;
+    board->printBoard();
+
     int winnerID = 1;
     bool draw = false;
 
