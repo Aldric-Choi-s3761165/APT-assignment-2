@@ -402,16 +402,16 @@ void Board::errors(int error, bool dontPrint) {
             std::cout << "INVALID: Cannot place in edge during start of game." << std::endl;
         }
         else if(error == 5) {
-            std::cout << "Cannot have duplicate tile in the same lines." << std::endl;
+            std::cout << "INVALID: Cannot have duplicate tile in the same lines." << std::endl;
         }
         else if(error == 6) {
-            std::cout << "Must place tile on an empty position." << std::endl;
+            std::cout << "INVALID: Must place tile on an empty position." << std::endl;
         }
         else if(error == 7) {
-            std::cout << "INVALID: It should be the same colour and not the same shape." << std::endl;
+            std::cout << "INVALID: It should be the same colour and not the same shape.\nMake sure no duplicates in same line as well." << std::endl;
         }
         else if(error == 8) {
-            std::cout << "INVALID: It should be the same shape and not the same colour." << std::endl;
+            std::cout << "INVALID: It should be the same shape and not the same colour.\nMake sure no duplicates in same line as well." << std::endl;
         }
     }
 }
