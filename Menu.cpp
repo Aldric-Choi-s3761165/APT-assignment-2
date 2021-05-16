@@ -4,7 +4,7 @@
 #include "Menu.h"
 
 int main(void) {
-    std::cout << "Welcome to Qurikle!" << std::endl;
+    std::cout << "Welcome to Qwrikle!" << std::endl;
     std::cout << "-------------------" << std::endl;
     menu();
     std::cout << "Goodbye" << std::endl;

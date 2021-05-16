@@ -408,10 +408,10 @@ void Board::errors(int error, bool dontPrint) {
             std::cout << "INVALID: Must place tile on an empty position." << std::endl;
         }
         else if(error == 7) {
-            std::cout << "INVALID: It should be the same colour and not the same shape.\nMake sure no duplicates in same line as well." << std::endl;
+            std::cout << "INVALID: It should be the same colour and not the same shape.\nMake sure no same colour in same line as well." << std::endl;
         }
         else if(error == 8) {
-            std::cout << "INVALID: It should be the same shape and not the same colour.\nMake sure no duplicates in same line as well." << std::endl;
+            std::cout << "INVALID: It should be the same shape and not the same colour.\nMake sure no same shape in same line as well." << std::endl;
         }
     }
 }

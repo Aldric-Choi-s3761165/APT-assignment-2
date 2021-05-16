@@ -457,16 +457,16 @@ void GameEngine:: gameResult() {
 
 void GameEngine::errors(int error) {
     if(error == 1) {
-        std::cout << "Tile does not exist in your hand or command typed incorrectly\nMake sure your command contains no extra spaces" << std::endl;
+        std::cout << "INVALID: Tile does not exist in your hand or command typed incorrectly\nMake sure your command contains no extra spaces" << std::endl;
     }
     else if(error == 2) {
-        std::cout << "Invalid Command" << std::endl;
+        std::cout << "INVALID: Invalid Command" << std::endl;
     }
     else if(error == 3) {
-        std::cout << "Bag has no more tiles" << std::endl;
+        std::cout << "INVALID: Bag has no more tiles" << std::endl;
     }
     else if (error == 4){
-        std::cout << "Invalid filename. There should be no spaces." << std::endl;
+        std::cout << "INVALID: Invalid filename. There should be no spaces." << std::endl;
     }
 
 }

@@ -1,4 +1,4 @@
-Welcome to Qurikle!
+Welcome to Qwrikle!
 -------------------
 Menu
 ---- 
@@ -34,6 +34,7 @@ Your hand is
 Y1, P6, B1, O2, R5, Y5
 
 > INVALID: It should be the same colour and not the same shape.
+Make sure no duplicates in same line as well.
 
 JOSH, it's your turn
 Score for JOSH: 8
@@ -80,6 +81,7 @@ Your hand is
 Y1, P6, B1, O2, R5, Y5
 
 > INVALID: It should be the same shape and not the same colour.
+Make sure no duplicates in same line as well.
 
 JOSH, it's your turn
 Score for JOSH: 8
@@ -125,7 +127,7 @@ L |  |  |  |  |  |  |  |  |  |  |  |  |
 Your hand is
 Y1, P6, B1, O2, R5, Y5
 
-> Cannot have duplicate tile in the same lines.
+> INVALID: Cannot have duplicate tile in the same lines.
 
 JOSH, it's your turn
 Score for JOSH: 8
@@ -148,7 +150,8 @@ L |  |  |  |  |  |  |  |  |  |  |  |  |
 Your hand is
 Y1, P6, B1, O2, R5, Y5
 
-> Tile does not exist in your hand
+> Tile does not exist in your hand or command typed incorrectly
+Make sure your command contains no extra spaces
 
 JOSH, it's your turn
 Score for JOSH: 8
@@ -171,7 +174,8 @@ L |  |  |  |  |  |  |  |  |  |  |  |  |
 Your hand is
 Y1, P6, B1, O2, R5, Y5
 
-> Tile does not exist in your hand
+> Tile does not exist in your hand or command typed incorrectly
+Make sure your command contains no extra spaces
 
 JOSH, it's your turn
 Score for JOSH: 8
