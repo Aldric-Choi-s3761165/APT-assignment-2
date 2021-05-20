@@ -206,6 +206,14 @@ bool Board::placeTile(char row, int col, Tile * tile, bool loadSave){
             errors(3, loadSave);
             success = false;
         }
+
+        // else if( ((rowCheck == 0 && (col == 0 || col == maxColSize -1)) || 
+        //     (rowCheck == maxRowSize - 1  && (col == 0 || col == maxColSize -1)))
+        //     && newGame == true ) {
+        //     errors(4, loadSave);
+        //     success = false;
+        // }
+
         else if(vectorBoard[rowCheck][col] == nullptr){
             // check duplicate in row and cols
             tile->setRowCol(rowCheck, col);
@@ -216,6 +224,12 @@ bool Board::placeTile(char row, int col, Tile * tile, bool loadSave){
                 // set the previous added so it can check the score for the player
                 previouslyAdded[0] = rowCheck;
                 previouslyAdded[1] = col;
+
+                //Checks if the tile placed is at the end of one of the sides of the board and resizes accordingly.
+
+                if(loadSave == false) {
+                    resizeBoard(rowCheck, col);
+                }
             }
             else {
                 errors(5, loadSave);
@@ -234,6 +248,119 @@ bool Board::placeTile(char row, int col, Tile * tile, bool loadSave){
     }
 
     return success;
+}
+
+void Board::resizeBoard(int row, int col){
+    int minRowSize = 0;
+    int minColSize = 0;
+    int maxRowSize = getVerticalSize() - 1;
+    int maxColSize = getHorizontalSize() - 1;
+
+    // if tile is added at the top
+    if(row == minRowSize && maxRowSize < MAX_BOARD_DIMENSION - 1){
+        addRowAbove(row, col);
+
+        if(col == minColSize && maxColSize < MAX_BOARD_DIMENSION -1){
+            addColLeft(row, col);
+        }
+
+        else if(col == maxColSize && maxColSize < MAX_BOARD_DIMENSION -1){
+            addColRight(row, col);
+        }
+    }
+
+    // if tile is added at the bottom
+    else if(row == maxRowSize && maxRowSize < MAX_BOARD_DIMENSION - 1) {
+        addRowBelow(row, col);
+
+        if(col == minColSize && maxColSize < MAX_BOARD_DIMENSION -1){
+            addColLeft(row, col);
+        }
+
+        else if(col == maxColSize && maxColSize < MAX_BOARD_DIMENSION -1){
+            addColRight(row, col);
+        }
+    }
+
+    // if tile is added at the left
+    else if(col == minColSize && maxColSize < MAX_BOARD_DIMENSION - 1) {
+        addColLeft(row, col);        
+    }
+
+    //if tile is added to the right
+    else if(col == maxColSize && maxColSize < MAX_BOARD_DIMENSION - 1) {
+        addColRight(row, col);
+    }
+}
+
+void Board::addRowAbove(int row, int col){
+    int minRowSize = 0;
+    int minColSize = 0;
+    int maxRowSize = getVerticalSize() - 1;
+    int maxColSize = getHorizontalSize() - 1;
+
+    std::vector<Tile *> temp;
+
+    // adds a new row at the top
+    for(int i = 0; i < maxColSize + 1; i++){
+        temp.push_back(nullptr);
+    }
+    vectorBoard.push_back(temp);
+
+    //shift all down by 1
+    std::rotate(vectorBoard.rbegin(), vectorBoard.rbegin() + 1, vectorBoard.rend());
+
+    for (row = minRowSize; row != maxRowSize + 1; row++) {
+        for (col = minColSize; col != maxColSize + 1; col++) {
+            if(vectorBoard[row][col] != nullptr) {
+                vectorBoard[row][col]->shiftRowDown();
+            }
+        }
+    }
+    previouslyAdded[0] += 1;
+}
+
+void Board::addRowBelow(int row, int col){
+    int maxColSize = getHorizontalSize() - 1;
+
+    std::vector<Tile *> temp;
+
+    // adds a new row at the bottom
+    for (int i = 0; i < maxColSize + 1; i++) {
+        temp.push_back(nullptr);
+    }
+    vectorBoard.push_back(temp);
+}
+
+void Board::addColLeft(int row, int col){
+    int minRowSize = 0;
+    int minColSize = 0;
+    int maxRowSize = getVerticalSize() - 1;
+    int maxColSize = getHorizontalSize() - 1;
+
+    // add a col with nullptr each row at the front
+    // move all tiles by one position to the left
+    for(auto &row : vectorBoard){
+        row.push_back(nullptr);
+        std::rotate(row.rbegin(), row.rbegin() + 1, row.rend());
+    }
+
+    for (row = minRowSize; row != maxRowSize + 1; row++) {
+        for (col = minColSize; col != maxColSize + 1; col++) {
+            if(vectorBoard[row][col] != nullptr) {
+                vectorBoard[row][col]->shiftColRight();
+            }
+        }
+    }
+    previouslyAdded[1] += 1;
+}
+
+void Board::addColRight(int row, int col){
+
+    // add a col with nullptr each row at the last
+    for(auto &row : vectorBoard){
+        row.push_back(nullptr);
+    }
 }
 
 bool Board::duplicate(Tile* tile, int row, int col) {

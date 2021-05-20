@@ -42,6 +42,12 @@ private:
     int previouslyAdded[2];
     //LinkedList* placeTileOrder;
 
+    void resizeBoard(int row, int col);
+    void addRowAbove(int row, int col);
+    void addRowBelow(int row, int col);
+    void addColLeft(int row, int col);
+    void addColRight(int row, int col);
+
 };
 
 #endif // BOARD_Hh

@@ -22,6 +22,8 @@ public:
    Colour getCharColour(int row);
    
    void setRowCol(int row, int col);
+   void shiftRowDown();
+   void shiftColRight();
 
 private:
    Colour colour;
