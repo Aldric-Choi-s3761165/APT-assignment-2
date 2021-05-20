@@ -307,6 +307,27 @@ bool GameEngine::getAction(std::string line, int id){
         }
     }
 
+    if(line.size() == 4){
+        stringCheck = line.substr(0, 4);
+        if(!(stringCheck.compare("help"))) {
+            std::cout << "\n- These are the commands you can use:" << std::endl;
+            std::cout << "• Note 1: There should be no extra spaces in the commands."<< std::endl;
+            std::cout << "• Note 2: The board resizes when you put it on the edge" << std::endl;
+            std::cout << "• To place a tile: Type 'place <Tile> at <Position on Board>' e.g. place G5 at A3" << std::endl;
+            std::cout << "• To replace a tile you dont want in your hand: Type 'replace <Tile>' e.g. replace C3" << std::endl;
+            std::cout << "• If you do not have any valid tiles to place in your hand: Type 'skip'" << std::endl;
+            std::cout << "• To save the game: Type 'save' then filname e.g. 'save filename'" << std::endl;
+            std::cout << "• To end the game without saving: type 'ctrl+d'\n"<< std::endl;
+
+            std::cout << "\n- Game Rules:" << std::endl;
+            std::cout << "• There can only be 6 tiles per row or column of tiles" << std::endl;
+            std::cout << "• You can put the same colour in the same row but not on the same column" << std::endl;
+            std::cout << "• You can put the same shape in the same column but not on the same row" << std::endl;
+            
+            invalidAction = false;
+        }
+    }
+
     if(invalidAction == false) {
         // after replace or place commands we must now reset skip states for all players
         // as each player that skipped previously may have an option on the next turn
@@ -475,6 +496,7 @@ void GameEngine::display(int id) {
     Player* currPlayer = players[id - 1];
 
     std::cout << std::endl;
+    std::cout << "If you are unsure of the commands or gameplay, please type 'help'" << std::endl;
     std::cout << currPlayer->getName() << ", it's your turn" << std::endl;
     for(int i = 0; i < TOTAL_PLAYERS; i++) {
         Player* player = players[i];
