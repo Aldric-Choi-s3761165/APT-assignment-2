@@ -1,0 +1,129 @@
+Welcome to Qwrikle!
+-------------------
+Menu
+---- 
+1. New Game 
+2. Load Game 
+3. Credits (Show student information) 
+4. Quit 
+
+> 
+Enter the filename from which load a game
+> 
+Qwirkle game successfully loaded
+
+If you are unsure of the commands or gameplay, please type 'help'
+B, it's your turn
+Score for A: 8
+Score for B: 5
+Score for C: 6
+   0  1  2  3  4  5  6  
+  ----------------------
+A |  |  |  |  |  |  |  |
+B |  |B1|B6|B3|B2|  |  |
+C |  |  |P6|P3|  |  |  |
+D |  |  |  |Y3|  |  |  |
+E |  |  |  |  |  |  |  |
+F |  |  |  |  |  |  |  |
+
+Your hand is
+P3, B5, O2, G3, B5, P2
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+C, it's your turn
+Score for A: 8
+Score for B: 10
+Score for C: 6
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |B5|B1|B6|B3|B2|  |  |
+C |  |  |  |P6|P3|  |  |  |
+D |  |  |  |  |Y3|  |  |  |
+E |  |  |  |  |  |  |  |  |
+F |  |  |  |  |  |  |  |  |
+
+Your hand is
+B3, G1, Y5, P1, G6, G1
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+A, it's your turn
+Score for A: 8
+Score for B: 10
+Score for C: 8
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |G1|  |  |  |  |  |
+C |  |B5|B1|B6|B3|B2|  |  |
+D |  |  |  |P6|P3|  |  |  |
+E |  |  |  |  |Y3|  |  |  |
+F |  |  |  |  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |
+
+Your hand is
+Y5, P1, R4, P2, O3, P4
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+B, it's your turn
+Score for A: 14
+Score for B: 10
+Score for C: 8
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |G1|  |  |  |  |  |
+C |  |B5|B1|B6|B3|B2|  |  |
+D |  |  |P1|P6|P3|  |  |  |
+E |  |  |  |  |Y3|  |  |  |
+F |  |  |  |  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |
+
+Your hand is
+R2, P3, O2, G3, B5, P2
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+C, it's your turn
+Score for A: 14
+Score for B: 12
+Score for C: 8
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |G1|  |  |P2|  |  |
+C |  |B5|B1|B6|B3|B2|  |  |
+D |  |  |P1|P6|P3|  |  |  |
+E |  |  |  |  |Y3|  |  |  |
+F |  |  |  |  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |
+
+Your hand is
+R1, B3, Y5, P1, G6, G1
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+A, it's your turn
+Score for A: 14
+Score for B: 12
+Score for C: 12
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |R1|  |  |  |  |  |
+C |  |  |G1|  |  |P2|  |  |
+D |  |B5|B1|B6|B3|B2|  |  |
+E |  |  |P1|P6|P3|  |  |  |
+F |  |  |  |  |Y3|  |  |  |
+G |  |  |  |  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |
+
+Your hand is
+G6, Y5, R4, P2, O3, P4
+
+> ^D
+
+Goodbye

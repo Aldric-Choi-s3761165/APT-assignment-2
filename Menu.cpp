@@ -56,6 +56,20 @@ void display() {
     << std::endl;
 }
 
+bool playersValid(std::string in) {
+    bool check = false;
+
+    if(in.length() != 1){
+        check = false;
+    }
+
+    if(!in.compare("2") || !in.compare("3") || !in.compare("4")) {
+        check = true;
+    }
+
+    return check;
+}
+
 void newGame() {
     GameEngine* engine = newEngine();
     engine->setupGame();
@@ -64,7 +78,30 @@ void newGame() {
     std::cout << "Starting a New Game \n" << std::endl;
     std::string input;
 
-    for(int i = 1; i <= TOTAL_PLAYERS; i++) {
+    bool valid = false;
+
+    while(valid == false) {
+        std::cout << "Please enter number of people playing: \n" << "> ";
+        getline(std::cin, input);
+        if(std::cin) {
+            if(playersValid(input) == true){
+                total_players = std::stoi(input);
+                valid = true;
+                std::cout << "\n";
+            }
+            else{
+                std::cout << "\n";
+                std::cout << "Number of players should be between 2 and 4." << std::endl; 
+            }
+        }
+        else {
+            eof = true;
+            valid = true;
+            std::cout << "^D\n" << std::endl;
+        }
+    }
+
+    for(int i = 1; i <= total_players; i++) {
         std::cout << "Enter a name for player " << i << " (uppercase characters only)\n" << "> ";
         getline(std::cin, input);
 
@@ -79,7 +116,7 @@ void newGame() {
             std::cout << "\n";
         }
         else {
-            i = TOTAL_PLAYERS + 1;
+            i = total_players + 1;
             eof = true;
             std::cout << "^D\n" << std::endl;
         }
@@ -215,15 +252,24 @@ int loadPlayers(GameEngine& engine, std::string in) {
     int totalLineNum = 0;
     std::ifstream file(in);
 
+    getline(file, text);
+    for(int i = 0; text[i] && int(text[i]) != ASCII_CARRIAGE; i++) {
+        if(!(isdigit(text[i]))) {
+            corruptFile();
+        }
+    }
+        
+    total_players = std::stoi(text);
+    totalLineNum++;
+        
     // loop each line until we finish with all players in the save file
     while(getline(file, text))
-    {
+    {   
         // loop until we finish with all players
         // each save file contains 3 lines worth of player information
-        if(playerID <= TOTAL_PLAYERS) {
+        if(playerID <= total_players) {
             totalLineNum++;
             lineCounter++;
-
             // line 1 of each player loop contains the player name
             // check whether name is valid then set it
             if(lineCounter == 1) {
@@ -364,7 +410,6 @@ int setupGame(GameEngine& engine, std::string in, int currentLine) {
             int counter = 0;
 
             for (int i = 0; text[i]; i++) {
-                
                 if(isupper(text[i]) && isalpha(text[i]) && text[i] != ',' && order == false) {
                     colour = text[i];
                     order = true;

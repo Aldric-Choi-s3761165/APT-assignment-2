@@ -12,6 +12,7 @@ Enter the filename from which load a game
 > 
 Qwirkle game successfully loaded
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -34,138 +35,156 @@ Your hand is
 Y3, P6, B1, O2, R5, Y5
 
 > 
+If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
 Score for JOSH: 11
 Score for JACQ: 6
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
-A |  |  |  |  |Y5|  |  |  |  |  |  |  |
-B |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-C |  |  |R4|  |G5|  |  |  |  |  |  |  |
-D |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-E |  |  |P4|  |  |  |  |  |  |  |  |  |
-F |  |  |  |  |  |  |  |  |  |  |  |  |
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |Y5|  |  |  |  |  |  |  |
+C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
+D |  |  |R4|  |G5|  |  |  |  |  |  |  |
+E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
+F |  |  |P4|  |  |  |  |  |  |  |  |  |
 G |  |  |  |  |  |  |  |  |  |  |  |  |
 H |  |  |  |  |  |  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
+M |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
 O3, B2, Y4, O6, P3, P2
 
-> 
-JOSH, it's your turn
-Score for JOSH: 11
-Score for JACQ: 8
-   0  1  2  3  4  5  6  7  8  9  10 11 
-  -------------------------------------
-A |  |  |  |  |Y5|Y4|  |  |  |  |  |  |
-B |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-C |  |  |R4|  |G5|  |  |  |  |  |  |  |
-D |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-E |  |  |P4|  |  |  |  |  |  |  |  |  |
-F |  |  |  |  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
-I |  |  |  |  |  |  |  |  |  |  |  |  |
-J |  |  |  |  |  |  |  |  |  |  |  |  |
-K |  |  |  |  |  |  |  |  |  |  |  |  |
-L |  |  |  |  |  |  |  |  |  |  |  |  |
+> INVALID: There is no tile beside the position you are placing.
 
-Your hand is
-O6, Y3, P6, B1, O2, R5
-
-> 
+If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
-Score for JOSH: 14
-Score for JACQ: 8
+Score for JOSH: 11
+Score for JACQ: 6
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
-A |  |  |  |  |Y5|Y4|Y3|  |  |  |  |  |
-B |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-C |  |  |R4|  |G5|  |  |  |  |  |  |  |
-D |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-E |  |  |P4|  |  |  |  |  |  |  |  |  |
-F |  |  |  |  |  |  |  |  |  |  |  |  |
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |Y5|  |  |  |  |  |  |  |
+C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
+D |  |  |R4|  |G5|  |  |  |  |  |  |  |
+E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
+F |  |  |P4|  |  |  |  |  |  |  |  |  |
 G |  |  |  |  |  |  |  |  |  |  |  |  |
 H |  |  |  |  |  |  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
+M |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
-G2, O3, B2, O6, P3, P2
+Y4, O3, B2, O6, P3, P2
+
+> INVALID: Tile does not exist in your hand or command typed incorrectly
+Make sure your command contains no extra spaces
+
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 11
+Score for JACQ: 6
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |Y5|  |  |  |  |  |  |  |
+C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
+D |  |  |R4|  |G5|  |  |  |  |  |  |  |
+E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
+F |  |  |P4|  |  |  |  |  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+M |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+Y4, O3, B2, O6, P3, P2
 
 > 
 Game successfully saved
 
+If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
-Score for JOSH: 14
-Score for JACQ: 8
+Score for JOSH: 11
+Score for JACQ: 6
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
-A |  |  |  |  |Y5|Y4|Y3|  |  |  |  |  |
-B |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-C |  |  |R4|  |G5|  |  |  |  |  |  |  |
-D |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-E |  |  |P4|  |  |  |  |  |  |  |  |  |
-F |  |  |  |  |  |  |  |  |  |  |  |  |
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |Y5|  |  |  |  |  |  |  |
+C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
+D |  |  |R4|  |G5|  |  |  |  |  |  |  |
+E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
+F |  |  |P4|  |  |  |  |  |  |  |  |  |
 G |  |  |  |  |  |  |  |  |  |  |  |  |
 H |  |  |  |  |  |  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
+M |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
-G2, O3, B2, O6, P3, P2
+Y4, O3, B2, O6, P3, P2
 
-> 
-JOSH, it's your turn
-Score for JOSH: 14
-Score for JACQ: 12
-   0  1  2  3  4  5  6  7  8  9  10 11 
-  -------------------------------------
-A |  |  |  |  |Y5|Y4|Y3|  |  |  |  |  |
-B |  |B2|B4|B6|B5|  |  |  |  |  |  |  |
-C |  |  |R4|  |G5|  |  |  |  |  |  |  |
-D |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-E |  |  |P4|  |  |  |  |  |  |  |  |  |
-F |  |  |  |  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
-I |  |  |  |  |  |  |  |  |  |  |  |  |
-J |  |  |  |  |  |  |  |  |  |  |  |  |
-K |  |  |  |  |  |  |  |  |  |  |  |  |
-L |  |  |  |  |  |  |  |  |  |  |  |  |
+> INVALID: There is no tile beside the position you are placing.
 
-Your hand is
-B1, O6, P6, B1, O2, R5
-
-> 
+If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
-Score for JOSH: 19
-Score for JACQ: 12
+Score for JOSH: 11
+Score for JACQ: 6
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
-A |  |  |  |  |Y5|Y4|Y3|  |  |  |  |  |
-B |B1|B2|B4|B6|B5|  |  |  |  |  |  |  |
-C |  |  |R4|  |G5|  |  |  |  |  |  |  |
-D |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-E |  |  |P4|  |  |  |  |  |  |  |  |  |
-F |  |  |  |  |  |  |  |  |  |  |  |  |
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |Y5|  |  |  |  |  |  |  |
+C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
+D |  |  |R4|  |G5|  |  |  |  |  |  |  |
+E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
+F |  |  |P4|  |  |  |  |  |  |  |  |  |
 G |  |  |  |  |  |  |  |  |  |  |  |  |
 H |  |  |  |  |  |  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
+M |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
-Y2, G2, O3, O6, P3, P2
+B2, Y4, O3, O6, P3, P2
+
+> INVALID: Tile does not exist in your hand or command typed incorrectly
+Make sure your command contains no extra spaces
+
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 11
+Score for JACQ: 6
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |Y5|  |  |  |  |  |  |  |
+C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
+D |  |  |R4|  |G5|  |  |  |  |  |  |  |
+E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
+F |  |  |P4|  |  |  |  |  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+M |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+B2, Y4, O3, O6, P3, P2
 
 > ^D
 

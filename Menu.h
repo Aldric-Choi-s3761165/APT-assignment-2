@@ -16,5 +16,8 @@ int loadValid(std::string in);
 int loadPlayers(GameEngine& engine, std::string in);
 int setupGame(GameEngine& engine, std::string in, int currentLine);
 void corruptFile();
+bool playersValid(std::string in);
+
+int total_players;
 
 #endif // MENU_H

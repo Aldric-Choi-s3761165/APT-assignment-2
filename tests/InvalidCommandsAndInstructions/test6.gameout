@@ -12,6 +12,7 @@ Enter the filename from which load a game
 > 
 Qwirkle game successfully loaded
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -34,8 +35,9 @@ Your hand is
 Y1, P6, B1, O2, R5, Y5
 
 > INVALID: It should be the same colour and not the same shape.
-Make sure no duplicates in same line as well.
+Make sure no same colour in same line as well.
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -59,6 +61,7 @@ Y1, P6, B1, O2, R5, Y5
 
 > INVALID: There is no tile beside the position you are placing.
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -81,8 +84,9 @@ Your hand is
 Y1, P6, B1, O2, R5, Y5
 
 > INVALID: It should be the same shape and not the same colour.
-Make sure no duplicates in same line as well.
+Make sure no same shape in same line as well.
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -104,8 +108,9 @@ L |  |  |  |  |  |  |  |  |  |  |  |  |
 Your hand is
 Y1, P6, B1, O2, R5, Y5
 
-> Invalid Command
+> INVALID: Invalid Command
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -129,6 +134,7 @@ Y1, P6, B1, O2, R5, Y5
 
 > INVALID: Cannot have duplicate tile in the same lines.
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -150,9 +156,10 @@ L |  |  |  |  |  |  |  |  |  |  |  |  |
 Your hand is
 Y1, P6, B1, O2, R5, Y5
 
-> Tile does not exist in your hand or command typed incorrectly
+> INVALID: Tile does not exist in your hand or command typed incorrectly
 Make sure your command contains no extra spaces
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -174,9 +181,10 @@ L |  |  |  |  |  |  |  |  |  |  |  |  |
 Your hand is
 Y1, P6, B1, O2, R5, Y5
 
-> Tile does not exist in your hand or command typed incorrectly
+> INVALID: Tile does not exist in your hand or command typed incorrectly
 Make sure your command contains no extra spaces
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -198,8 +206,9 @@ L |  |  |  |  |  |  |  |  |  |  |  |  |
 Your hand is
 Y1, P6, B1, O2, R5, Y5
 
-> Invalid Command
+> INVALID: Invalid Command
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6
@@ -221,8 +230,9 @@ L |  |  |  |  |  |  |  |  |  |  |  |  |
 Your hand is
 Y1, P6, B1, O2, R5, Y5
 
-> Invalid filename. There should be no spaces.
+> INVALID: Invalid filename. There should be no spaces.
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 8
 Score for JACQ: 6

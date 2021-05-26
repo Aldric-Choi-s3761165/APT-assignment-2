@@ -12,6 +12,7 @@ Enter the filename from which load a game
 > 
 Qwirkle game successfully loaded
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 0
 Score for JACQ: 0
@@ -35,6 +36,7 @@ Y2, Y6
 
 > QUIRKLE!!!
 
+If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
 Score for JOSH: 24
 Score for JACQ: 0
@@ -58,6 +60,7 @@ O2, O1
 
 > QUIRKLE!!!
 
+If you are unsure of the commands or gameplay, please type 'help'
 JOSH, it's your turn
 Score for JOSH: 24
 Score for JACQ: 12

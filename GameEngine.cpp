@@ -9,20 +9,14 @@ GameEngine::GameEngine() {
     board = new Board();
     gameRunning = true;
 
-    // initialize each array pos to nullptr else an error
-    // will occur when getting a player if the array is uninitialized
-    for(int i = 0; i < TOTAL_PLAYERS; i++) {
-        players[i] = nullptr;
-    }
 }
 
 GameEngine::~GameEngine() {
     delete bag;
     delete board;
-    for(int i = 0; i < TOTAL_PLAYERS; i++) {
-        if(players[i] != nullptr) {
-            delete players[i];
-        }
+    
+    for(Player* player : players){
+        delete player;
     }
 }
 
@@ -33,28 +27,24 @@ GameEngine::~GameEngine() {
 // first player held will be lost
 
 bool GameEngine::newPlayer(int id, std::string n) {
-    Player* player = new Player(id, n);
+    players.push_back(new Player(id, n));
 
     for(int i = 0; i < PLAYER_HAND_LIMIT; i++) {
         Tile* t = bag->pop();
         if(t != nullptr) {
-            player->addNode(t);
+            players.at(id-1)->addNode(t);
         }
         else {
             throw std::runtime_error("Bag is empty, error has occured"); //temp testing may remove later
         }
     }
 
-    players[id - 1] = player;
-
     return true;
 }
 
 bool GameEngine::existingPlayer(int id, std::string name, int score, LinkedList* hand) {
-    Player* player = new Player(id, name, score, hand);
-    
-    players[id - 1] = player;
-    
+    players.push_back(new Player(id, name, score, hand));
+        
     return true;
 }
 
@@ -196,7 +186,7 @@ void GameEngine::gameRun(int id) {
             // if command was completed successfully
             if(getAction(input, id)) {
                 id++;
-                if(id > TOTAL_PLAYERS) {
+                if(id > players.size()) {
                     id = 1;
                 }
             }
@@ -225,7 +215,7 @@ bool GameEngine::getAction(std::string line, int id){
             if(isalpha(line[6]) && isdigit(line[7])) {
                 char colour = line[6];
                 int shape = std::stoi(std::string(1,line[7]));
-                Tile* t = players[id - 1]->getPlayerHand()->getNode(colour, shape);
+                Tile* t = players.at(id-1)->getPlayerHand()->getNode(colour, shape);
 
                 if(t != nullptr) {
                     std::string cut = line.substr(13, line.size() - 13);
@@ -243,17 +233,17 @@ bool GameEngine::getAction(std::string line, int id){
                         
                         if(board->placeTile(y, x, t, false)) {
                             if(bag->getLength() > 0) {
-                                players[id - 1]->addNode(bag->pop());
+                                players.at(id-1)->addNode(bag->pop());
                             }
                             checkScore(id, y, x);
                             actionCompleted = true;
                         }
                         else {
-                            players[id - 1]->addNode(t);
+                            players.at(id-1)->addNode(t);
                         }
                     }
                     else {
-                        players[id - 1]->addNode(t);
+                        players.at(id-1)->addNode(t);
                         errors(2);
 
                     }
@@ -283,11 +273,11 @@ bool GameEngine::getAction(std::string line, int id){
                 char colour = line[8];
                 int shape = std::stoi(std::string(1,line[9]));
                 if(bag->getLength() > 0) {
-                    Tile* t = players[id - 1]->getPlayerHand()->getNode(colour, shape);
+                    Tile* t = players.at(id-1)->getPlayerHand()->getNode(colour, shape);
 
                     if(t != nullptr) {
                         bag->addBack(t);
-                        players[id - 1]->addNode(bag->pop());
+                        players.at(id-1)->addNode(bag->pop());
                         actionCompleted = true;
                     }
                     else {
@@ -331,9 +321,9 @@ bool GameEngine::getAction(std::string line, int id){
     if(invalidAction == false) {
         // after replace or place commands we must now reset skip states for all players
         // as each player that skipped previously may have an option on the next turn
-        for(int i = 0; i < TOTAL_PLAYERS; i++) {
-            if(players[i] != nullptr) {
-                players[i]->setSkip(false);
+        for(int i = 0; i < players.size(); i++) {
+            if(players.at(i) != nullptr) {
+                players.at(i)->setSkip(false);
             }
         }
     }
@@ -364,13 +354,13 @@ bool GameEngine::getAction(std::string line, int id){
             }
         }
         else if(!(stringCheck.compare("skip"))) {
-            players[id - 1]->setSkip(true);
+            players.at(id-1)->setSkip(true);
             bool end = true;
-            for(int i = 0; i < TOTAL_PLAYERS; i++) {
-                if(players[i] != nullptr) {
-                    if(players[i]->getSkip() == false) {
+            for(int i = 0; i < players.size(); i++) {
+                if(players.at(i) != nullptr) {
+                    if(players.at(i)->getSkip() == false) {
                         end = false;
-                        i = TOTAL_PLAYERS;
+                        i = players.size();
                     }
                 }
             }
@@ -416,7 +406,7 @@ void GameEngine::checkScore(int id, char row, int col) {
         std::cout << "QUIRKLE!!!" << std::endl;
     }
 
-    if(players[id-1]->getPlayerHand()->getLength() == 0) {
+    if(players.at(id-1)->getPlayerHand()->getLength() == 0) {
         // player who uses all cards gets bonus 6 points and game ends
         addScore(id, 6);
         gameResult();
@@ -425,8 +415,8 @@ void GameEngine::checkScore(int id, char row, int col) {
 }
 
 void GameEngine::addScore(int id,int score) {
-    int currScore = players[id-1]->getScore() + score;
-    players[id-1]->setScore(currScore);
+    int currScore = players.at(id-1)->getScore() + score;
+    players.at(id-1)->setScore(currScore);
 }
 
 void GameEngine:: gameResult() {
@@ -439,32 +429,32 @@ void GameEngine:: gameResult() {
 
     std::cout <<"\nGame over"<< std::endl;
 
-    for(int i = 0; i < TOTAL_PLAYERS; i++) {
-        if(i + 1 != TOTAL_PLAYERS) {
-            if(players[winnerID - 1]->getScore() < players[i+1]->getScore()) {
+    for(int i = 0; i < players.size(); i++) {
+        if(i + 1 != players.size()) {
+            if(players.at(winnerID - 1)->getScore() < players.at(i+1)->getScore()) {
                 winnerID = i + 2;
             }
-            else if(players[winnerID - 1]->getScore() == players[i+1]->getScore()) {
+            else if(players.at(winnerID - 1)->getScore() == players.at(i+1)->getScore()) {
                 draw = true;
             }
         }
 
-        std::cout << "Score for " << players[i]->getName() << ": " << players[i]->getScore() << std::endl;
+        std::cout << "Score for " << players.at(i)->getName() << ": " << players.at(i)->getScore() << std::endl;
     }
 
     if(draw == false) {
-        std::cout << "Player " << players[winnerID - 1]->getName() << " won!" << std::endl;
+        std::cout << "Player " << players.at(winnerID - 1)->getName() << " won!" << std::endl;
     }
     else {
-        int winningScore = players[winnerID - 1]->getScore();
+        int winningScore = players.at(winnerID - 1)->getScore();
         std::string winners = "";
         
-        for(int i = 0; i < TOTAL_PLAYERS; i++) {
-            if(players[i]->getScore() == winningScore) {
+        for(int i = 0; i < players.size(); i++) {
+            if(players.at(i)->getScore() == winningScore) {
                 if(winners != "") {
                     winners += " & ";
                 }
-                winners += players[i]->getName();
+                winners += players.at(i)->getName();
             }
         }
         std::cout << "Players " << winners << " drew!" << std::endl;
@@ -493,14 +483,14 @@ void GameEngine::errors(int error) {
 }
 
 void GameEngine::display(int id) {
-    Player* currPlayer = players[id - 1];
+    Player* currPlayer = players.at(id - 1);
 
     std::cout << std::endl;
     std::cout << "If you are unsure of the commands or gameplay, please type 'help'" << std::endl;
     std::cout << currPlayer->getName() << ", it's your turn" << std::endl;
-    for(int i = 0; i < TOTAL_PLAYERS; i++) {
-        Player* player = players[i];
-        std::cout << "Score for " << player->getName() << ": " << players[i]->getScore() << std::endl;
+    for(int i = 0; i < players.size(); i++) {
+        Player* player = players.at(i);
+        std::cout << "Score for " << player->getName() << ": " << players.at(i)->getScore() << std::endl;
     }
 
     board->printBoard();
@@ -547,11 +537,11 @@ void GameEngine::setupGame() {
 int GameEngine::getPlayerId(std::string name) {
     int playerID = 0;
 
-    for(int i = 0; i < TOTAL_PLAYERS; i++) {
-        if(players[i] != nullptr) {
-            if(!(name.compare(players[i]->getName()))) {
-                playerID = players[i]->getID();
-                i = TOTAL_PLAYERS;
+    for(int i = 0; i < players.size(); i++) {
+        if(players.at(i) != nullptr) {
+            if(!(name.compare(players.at(i)->getName()))) {
+                playerID = players.at(i)->getID();
+                i = players.size();
             }
         }
     }
@@ -564,13 +554,15 @@ void GameEngine::saveFile(std::string fileName, int id) {
     std::ofstream saveFile(directory, std::ofstream::out);
     std::string name;
 
-    for(int i = 0; i < TOTAL_PLAYERS; i++) {
-        saveFile << players[i]->getName() << std::endl;
-        saveFile << players[i]->getScore() << std::endl;
-        saveFile << players[i]->getPlayerHand()->savingNodes() << std::endl;
+    saveFile << players.size() << std::endl;
 
-        if(players[i]->getID() == id) {
-            name = players[i]->getName();
+    for(int i = 0; i < players.size(); i++) {
+        saveFile << players.at(i)->getName() << std::endl;
+        saveFile << players.at(i)->getScore() << std::endl;
+        saveFile << players.at(i)->getPlayerHand()->savingNodes() << std::endl;
+
+        if(players.at(i)->getID() == id) {
+            name = players.at(i)->getName();
         }
     }
 

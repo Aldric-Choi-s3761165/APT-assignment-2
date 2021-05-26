@@ -18,7 +18,7 @@
 #define CLOVER    6
 
 // Total Players
-#define TOTAL_PLAYERS 2
+// #define TOTAL_PLAYERS 3
 
 // Total Students
 #define TOTAL_STUDENTS 4

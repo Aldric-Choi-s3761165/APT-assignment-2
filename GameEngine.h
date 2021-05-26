@@ -32,9 +32,10 @@ private:
     void saveFile(std::string fileName, int id);
     
     LinkedList* bag;
-    Player* players[TOTAL_PLAYERS];
+    // Player* players[TOTAL_PLAYERS];
     Board* board;
     bool gameRunning;
+    std::vector<Player*> players;
     
 };
 
