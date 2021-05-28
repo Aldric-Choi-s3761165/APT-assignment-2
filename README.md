@@ -7,3 +7,5 @@ Minor Enhancments:
 Major Enhancements:
 1. Players can choose 2-4 player modes
 2. Each player can place multiple tiles
+
+make and ./run in order to compile and run the code
