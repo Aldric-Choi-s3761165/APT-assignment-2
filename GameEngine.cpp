@@ -4,17 +4,18 @@
 #include <cstring>
 #include <fstream>
 
+int movesMade = 0;
+
 GameEngine::GameEngine() {
     bag = new LinkedList();
     board = new Board();
     gameRunning = true;
-
 }
 
 GameEngine::~GameEngine() {
     delete bag;
     delete board;
-    
+        
     for(Player* player : players){
         delete player;
     }
@@ -172,6 +173,7 @@ void GameEngine::newBag(LinkedList* bag) {
     this->bag = bag;
 }
 
+
 void GameEngine::gameRun(int id) {
     
     std::string input;
@@ -232,11 +234,8 @@ bool GameEngine::getAction(std::string line, int id){
                         x = std::stoi(cut);
                         
                         if(board->placeTile(y, x, t, false)) {
-                            if(bag->getLength() > 0) {
-                                players.at(id-1)->addNode(bag->pop());
-                            }
+                            movesMade++;                            
                             checkScore(id, y, x);
-                            actionCompleted = true;
                         }
                         else {
                             players.at(id-1)->addNode(t);
@@ -272,20 +271,25 @@ bool GameEngine::getAction(std::string line, int id){
             if(isalpha(line[8]) && isdigit(line[9])) {
                 char colour = line[8];
                 int shape = std::stoi(std::string(1,line[9]));
-                if(bag->getLength() > 0) {
-                    Tile* t = players.at(id-1)->getPlayerHand()->getNode(colour, shape);
+                if(movesMade > 0){
+                    std::cout << "Cannot replace a tile in the middle of your turn." << std::endl;
+                }
+                else{
+                    if(bag->getLength() > 0) {
+                        Tile* t = players.at(id-1)->getPlayerHand()->getNode(colour, shape);
 
-                    if(t != nullptr) {
-                        bag->addBack(t);
-                        players.at(id-1)->addNode(bag->pop());
-                        actionCompleted = true;
+                        if(t != nullptr) {
+                            bag->addBack(t);
+                            players.at(id-1)->addNode(bag->pop());
+                            actionCompleted = true;
+                        }
+                        else {
+                            errors(1);
+                        }
                     }
                     else {
-                        errors(1);
+                        errors(3);
                     }
-                }
-                else {
-                    errors(3);
                 }
             }
             else {
@@ -305,6 +309,7 @@ bool GameEngine::getAction(std::string line, int id){
             std::cout << "• Note 2: The board resizes when you put it on the edge" << std::endl;
             std::cout << "• To place a tile: Type 'place <Tile> at <Position on Board>' e.g. place G5 at A3" << std::endl;
             std::cout << "• To replace a tile you dont want in your hand: Type 'replace <Tile>' e.g. replace C3" << std::endl;
+            std::cout << "• You can place multiple tiles in a turn, just type 'done' to check if you have placed all placeable tiles" << std::endl;
             std::cout << "• If you do not have any valid tiles to place in your hand: Type 'skip'" << std::endl;
             std::cout << "• To save the game: Type 'save' then filname e.g. 'save filename'" << std::endl;
             std::cout << "• To end the game without saving: type 'ctrl+d'\n"<< std::endl;
@@ -341,35 +346,59 @@ bool GameEngine::getAction(std::string line, int id){
                         spaceExists = true;
                     }
                 }
-
-                if(spaceExists == false) {
-                    saveFile(fileName, id);
+                if(movesMade > 0){
+                    std::cout << "Cannot save file while in the middle of your turn." << std::endl;
                 }
-                else {
-                    errors(4);
-                }
+                else{
+                    if(spaceExists == false) {
+                        saveFile(fileName, id);
+                    }
+                    else {
+                        errors(4);
+                    }
+                }                
             }
             else {
                 std::cout << "No filename given" << std::endl;
             }
         }
         else if(!(stringCheck.compare("skip"))) {
-            players.at(id-1)->setSkip(true);
-            bool end = true;
-            for(int i = 0; i < players.size(); i++) {
-                if(players.at(i) != nullptr) {
-                    if(players.at(i)->getSkip() == false) {
-                        end = false;
-                        i = players.size();
+            if(movesMade > 0){
+                std::cout << "Cannot skip while in the middle of your turn." << std::endl;
+            }
+            else{
+                players.at(id-1)->setSkip(true);
+                bool end = true;
+                for(int i = 0; i < players.size(); i++) {
+                    if(players.at(i) != nullptr) {
+                        if(players.at(i)->getSkip() == false) {
+                            end = false;
+                            i = players.size();
+                        }
                     }
                 }
-            }
 
-            if(end) {
-                gameResult();
-            }
+                if(end) {
+                    gameResult();
+                }
 
-            actionCompleted = true;
+                actionCompleted = true;
+            }
+            
+        }
+        else if(!(stringCheck.compare("done"))) {
+            if(movesMade > 0){
+                for(int i = 0; i < movesMade; i++){
+                    if(bag->getLength() > 0) {
+                        players.at(id-1)->addNode(bag->pop());
+                    }
+                }
+                movesMade = 0;
+                actionCompleted = true;
+            }
+            else{
+                std::cout << "Invalid command. You did not make a valid move." << std::endl;
+            }
         }
         else {
             invalidAction = true;
@@ -496,6 +525,9 @@ void GameEngine::display(int id) {
     board->printBoard();
 
     std::cout << std::endl;
+    if(movesMade > 0){
+        std::cout << "You can place another tile. \nPlease enter 'done' if you are done placing all tiles." << std::endl;
+    }
     std::cout << "Your hand is" << std::endl;
     currPlayer->displayTileHand();
     std::cout << std::endl;

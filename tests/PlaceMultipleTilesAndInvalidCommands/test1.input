@@ -1,0 +1,13 @@
+2
+saves/test1
+place Y5 at D6
+place Y3 at D7
+done
+place O3 at C7
+place O6 at C8
+done
+place O2 at C9
+save game
+replace O6
+skip
+done

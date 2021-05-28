@@ -19,13 +19,13 @@ Score for JACQ: 6
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
 A |  |  |  |  |  |  |  |  |  |  |  |  |
-B |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-C |  |  |R4|  |G5|  |  |  |  |  |  |  |
-D |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-E |  |  |P4|  |  |  |  |  |  |  |  |  |
-F |  |  |  |  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |  |  |  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
@@ -36,180 +36,339 @@ Y3, P6, B1, O2, R5, Y5
 
 > 
 If you are unsure of the commands or gameplay, please type 'help'
+JOSH, it's your turn
+Score for JOSH: 11
+Score for JACQ: 6
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|  |  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+Y3, P6, B1, O2, R5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
 Score for JOSH: 11
 Score for JACQ: 6
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
 A |  |  |  |  |  |  |  |  |  |  |  |  |
-B |  |  |  |  |Y5|  |  |  |  |  |  |  |
-C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-D |  |  |R4|  |G5|  |  |  |  |  |  |  |
-E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-F |  |  |P4|  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|  |  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
-M |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
 O3, B2, Y4, O6, P3, P2
 
-> INVALID: There is no tile beside the position you are placing.
-
+> 
 If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
 Score for JOSH: 11
-Score for JACQ: 6
+Score for JACQ: 8
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
 A |  |  |  |  |  |  |  |  |  |  |  |  |
-B |  |  |  |  |Y5|  |  |  |  |  |  |  |
-C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-D |  |  |R4|  |G5|  |  |  |  |  |  |  |
-E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-F |  |  |P4|  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y4|  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
-M |  |  |  |  |  |  |  |  |  |  |  |  |
 
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
 Your hand is
-Y4, O3, B2, O6, P3, P2
+O3, B2, O6, P3, P2
 
-> INVALID: Tile does not exist in your hand or command typed incorrectly
-Make sure your command contains no extra spaces
-
+> 
 If you are unsure of the commands or gameplay, please type 'help'
-JACQ, it's your turn
+JOSH, it's your turn
 Score for JOSH: 11
-Score for JACQ: 6
+Score for JACQ: 8
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
 A |  |  |  |  |  |  |  |  |  |  |  |  |
-B |  |  |  |  |Y5|  |  |  |  |  |  |  |
-C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-D |  |  |R4|  |G5|  |  |  |  |  |  |  |
-E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-F |  |  |P4|  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y4|  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
-M |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
-Y4, O3, B2, O6, P3, P2
+O6, Y3, P6, B1, O2, R5
 
-> INVALID: There is no tile beside the position you are placing.
-
+> 
 If you are unsure of the commands or gameplay, please type 'help'
-JACQ, it's your turn
-Score for JOSH: 11
-Score for JACQ: 6
+JOSH, it's your turn
+Score for JOSH: 14
+Score for JACQ: 8
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
 A |  |  |  |  |  |  |  |  |  |  |  |  |
-B |  |  |  |  |Y5|  |  |  |  |  |  |  |
-C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-D |  |  |R4|  |G5|  |  |  |  |  |  |  |
-E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-F |  |  |P4|  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y4|Y3|  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
-M |  |  |  |  |  |  |  |  |  |  |  |  |
 
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
 Your hand is
-B2, Y4, O3, O6, P3, P2
+O6, P6, B1, O2, R5
 
-> INVALID: Tile does not exist in your hand or command typed incorrectly
-Make sure your command contains no extra spaces
-
+> 
 If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
-Score for JOSH: 11
-Score for JACQ: 6
+Score for JOSH: 14
+Score for JACQ: 8
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
 A |  |  |  |  |  |  |  |  |  |  |  |  |
-B |  |  |  |  |Y5|  |  |  |  |  |  |  |
-C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-D |  |  |R4|  |G5|  |  |  |  |  |  |  |
-E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-F |  |  |P4|  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y4|Y3|  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
-M |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
-B2, Y4, O3, O6, P3, P2
+G2, O3, B2, O6, P3, P2
 
-> INVALID: There is no tile beside the position you are placing.
-
+> 
 If you are unsure of the commands or gameplay, please type 'help'
 JACQ, it's your turn
-Score for JOSH: 11
-Score for JACQ: 6
+Score for JOSH: 14
+Score for JACQ: 12
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
 A |  |  |  |  |  |  |  |  |  |  |  |  |
-B |  |  |  |  |Y5|  |  |  |  |  |  |  |
-C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-D |  |  |R4|  |G5|  |  |  |  |  |  |  |
-E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-F |  |  |P4|  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y4|Y3|  |  |  |
+E |  |  |  |B2|B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
-M |  |  |  |  |  |  |  |  |  |  |  |  |
 
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
 Your hand is
-P2, B2, Y4, O3, O6, P3
+G2, O3, O6, P3, P2
 
-> INVALID: Tile does not exist in your hand or command typed incorrectly
-Make sure your command contains no extra spaces
-
+> 
 If you are unsure of the commands or gameplay, please type 'help'
-JACQ, it's your turn
-Score for JOSH: 11
-Score for JACQ: 6
+JOSH, it's your turn
+Score for JOSH: 14
+Score for JACQ: 12
    0  1  2  3  4  5  6  7  8  9  10 11 
   -------------------------------------
 A |  |  |  |  |  |  |  |  |  |  |  |  |
-B |  |  |  |  |Y5|  |  |  |  |  |  |  |
-C |  |  |B4|B6|B5|  |  |  |  |  |  |  |
-D |  |  |R4|  |G5|  |  |  |  |  |  |  |
-E |  |Y1|Y4|Y2|  |  |  |  |  |  |  |  |
-F |  |  |P4|  |  |  |  |  |  |  |  |  |
-G |  |  |  |  |  |  |  |  |  |  |  |  |
-H |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y4|Y3|  |  |  |
+E |  |  |  |B2|B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
 I |  |  |  |  |  |  |  |  |  |  |  |  |
 J |  |  |  |  |  |  |  |  |  |  |  |  |
 K |  |  |  |  |  |  |  |  |  |  |  |  |
 L |  |  |  |  |  |  |  |  |  |  |  |  |
-M |  |  |  |  |  |  |  |  |  |  |  |  |
 
 Your hand is
-P2, B2, Y4, O3, O6, P3
+B1, O6, P6, B1, O2, R5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JOSH, it's your turn
+Score for JOSH: 19
+Score for JACQ: 12
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y4|Y3|  |  |  |
+E |  |  |B1|B2|B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+O6, P6, B1, O2, R5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 19
+Score for JACQ: 12
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y4|Y3|  |  |  |
+E |  |  |B1|B2|B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+Y2, G2, O3, O6, P3, P2
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 19
+Score for JACQ: 14
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |P2|  |  |Y5|Y4|Y3|  |  |  |
+E |  |  |B1|B2|B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+Y2, G2, O3, O6, P3
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JOSH, it's your turn
+Score for JOSH: 19
+Score for JACQ: 14
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |P2|  |  |Y5|Y4|Y3|  |  |  |
+E |  |  |B1|B2|B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+Y1, O6, P6, B1, O2, R5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JOSH, it's your turn
+Score for JOSH: 23
+Score for JACQ: 14
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |P2|  |  |Y5|Y4|Y3|Y1|  |  |
+E |  |  |B1|B2|B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+O6, P6, B1, O2, R5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 23
+Score for JACQ: 14
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |P2|  |  |Y5|Y4|Y3|Y1|  |  |
+E |  |  |B1|B2|B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+Y6, Y2, G2, O3, O6, P3
 
 > ^D
 

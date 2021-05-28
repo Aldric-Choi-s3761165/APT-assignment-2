@@ -36,7 +36,6 @@ private:
     Board* board;
     bool gameRunning;
     std::vector<Player*> players;
-    
 };
 
 

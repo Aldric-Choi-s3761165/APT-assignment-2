@@ -1,9 +1,16 @@
 2
 saves/test1
-place Y5 at A4
-place Y4 at A5
-place Y3 at A6
-place B2 at B1
-place B1 at B0
-place P2 at A1
-place Y1 at A7
+place Y5 at D6
+done
+place Y4 at D7
+done
+place Y3 at D8
+done
+place B2 at E3
+done
+place B1 at E2
+done
+place P2 at D3
+done
+place Y1 at D9
+done

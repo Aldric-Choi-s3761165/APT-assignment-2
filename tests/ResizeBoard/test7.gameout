@@ -47,6 +47,25 @@ G4, Y1, R5, G4, B2, O5
 
 > 
 If you are unsure of the commands or gameplay, please type 'help'
+A, it's your turn
+Score for A: 3
+Score for B: 0
+   0  1  2  3  4  5  6  
+  ----------------------
+A |  |  |  |  |  |  |  |
+B |  |G4|G5|  |  |  |  |
+C |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |  |
+E |  |  |  |  |  |  |  |
+F |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+Y1, R5, G4, B2, O5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
 B, it's your turn
 Score for A: 3
 Score for B: 0
@@ -61,6 +80,26 @@ F |  |  |  |  |  |  |  |
 
 Your hand is
 O3, R4, B4, P3, B2, P1
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+B, it's your turn
+Score for A: 3
+Score for B: 2
+   0  1  2  3  4  5  6  
+  ----------------------
+A |  |  |  |  |  |  |  |
+B |  |B4|  |  |  |  |  |
+C |  |G4|G5|  |  |  |  |
+D |  |  |  |  |  |  |  |
+E |  |  |  |  |  |  |  |
+F |  |  |  |  |  |  |  |
+G |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+O3, R4, P3, B2, P1
 
 > 
 If you are unsure of the commands or gameplay, please type 'help'
@@ -82,6 +121,26 @@ G3, Y1, R5, G4, B2, O5
 
 > 
 If you are unsure of the commands or gameplay, please type 'help'
+A, it's your turn
+Score for A: 6
+Score for B: 2
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |B4|  |  |  |  |  |
+C |  |G3|G4|G5|  |  |  |  |
+D |  |  |  |  |  |  |  |  |
+E |  |  |  |  |  |  |  |  |
+F |  |  |  |  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+Y1, R5, G4, B2, O5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
 B, it's your turn
 Score for A: 6
 Score for B: 2
@@ -97,6 +156,27 @@ G |  |  |  |  |  |  |  |  |
 
 Your hand is
 P2, O3, R4, P3, B2, P1
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+B, it's your turn
+Score for A: 6
+Score for B: 5
+   0  1  2  3  4  5  6  7  
+  -------------------------
+A |  |  |  |  |  |  |  |  |
+B |  |  |R4|  |  |  |  |  |
+C |  |  |B4|  |  |  |  |  |
+D |  |G3|G4|G5|  |  |  |  |
+E |  |  |  |  |  |  |  |  |
+F |  |  |  |  |  |  |  |  |
+G |  |  |  |  |  |  |  |  |
+H |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+P2, O3, P3, B2, P1
 
 > 
 If you are unsure of the commands or gameplay, please type 'help'
