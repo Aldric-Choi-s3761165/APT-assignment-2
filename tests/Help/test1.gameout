@@ -1,0 +1,224 @@
+Welcome to Qwrikle!
+-------------------
+Menu
+---- 
+1. New Game 
+2. Load Game 
+3. Credits (Show student information) 
+4. Quit 
+
+> 
+Enter the filename from which load a game
+> 
+Qwirkle game successfully loaded
+
+If you are unsure of the commands or gameplay, please type 'help'
+JOSH, it's your turn
+Score for JOSH: 8
+Score for JACQ: 6
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |  |  |  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+Y3, P6, B1, O2, R5, Y5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JOSH, it's your turn
+Score for JOSH: 11
+Score for JACQ: 6
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|  |  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+Y3, P6, B1, O2, R5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JOSH, it's your turn
+Score for JOSH: 13
+Score for JACQ: 6
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y3|  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+P6, B1, O2, R5
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 13
+Score for JACQ: 6
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y3|  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+O3, B2, Y4, O6, P3, P2
+
+> 
+- These are the commands you can use:
+• Note 1: There should be no extra spaces in the commands.
+• Note 2: The board resizes when you put it on the edge
+• To place a tile: Type 'place <Tile> at <Position on Board>' e.g. place G5 at A3
+• To replace a tile you dont want in your hand: Type 'replace <Tile>' e.g. replace C3
+• You can place multiple tiles in a turn, just type 'done' to check if you have placed all placeable tiles
+• If you do not have any valid tiles to place in your hand: Type 'skip'
+• To save the game: Type 'save' then filname e.g. 'save filename'
+• To end the game without saving: type 'ctrl+d'
+
+
+- Game Rules:
+• There can only be 6 tiles per row or column of tiles
+• You can put the same colour in the same row but not on the same column
+• You can put the same shape in the same column but not on the same row
+
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 13
+Score for JACQ: 6
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |  |  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y3|  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+O3, B2, Y4, O6, P3, P2
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 13
+Score for JACQ: 8
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |O3|  |  |  |  |
+D |  |  |  |  |  |  |Y5|Y3|  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+B2, Y4, O6, P3, P2
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JACQ, it's your turn
+Score for JOSH: 13
+Score for JACQ: 10
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |O3|O6|  |  |  |
+D |  |  |  |  |  |  |Y5|Y3|  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+You can place another tile. 
+Please enter 'done' if you are done placing all tiles.
+Your hand is
+B2, Y4, P3, P2
+
+> 
+If you are unsure of the commands or gameplay, please type 'help'
+JOSH, it's your turn
+Score for JOSH: 13
+Score for JACQ: 10
+   0  1  2  3  4  5  6  7  8  9  10 11 
+  -------------------------------------
+A |  |  |  |  |  |  |  |  |  |  |  |  |
+B |  |  |  |  |  |  |  |  |  |  |  |  |
+C |  |  |  |  |  |  |  |O3|O6|  |  |  |
+D |  |  |  |  |  |  |Y5|Y3|  |  |  |  |
+E |  |  |  |  |B4|B6|B5|  |  |  |  |  |
+F |  |  |  |  |R4|  |G5|  |  |  |  |  |
+G |  |  |  |Y1|Y4|Y2|  |  |  |  |  |  |
+H |  |  |  |  |P4|  |  |  |  |  |  |  |
+I |  |  |  |  |  |  |  |  |  |  |  |  |
+J |  |  |  |  |  |  |  |  |  |  |  |  |
+K |  |  |  |  |  |  |  |  |  |  |  |  |
+L |  |  |  |  |  |  |  |  |  |  |  |  |
+
+Your hand is
+G2, O6, P6, B1, O2, R5
+
+> ^D
+
+Goodbye
